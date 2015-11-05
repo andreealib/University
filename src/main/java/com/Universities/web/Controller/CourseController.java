@@ -177,4 +177,6 @@ public class CourseController {
         List<Faculty> facultyList = facultyDAO.getAllFaculties();
         model.addAttribute("faculties", facultyList);
     }
+
+    // Test test test test
 }
