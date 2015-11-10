@@ -23,9 +23,10 @@
       <div class="navbar-header">
         <ul class="nav navbar-nav navbar-right">
             <li><a href="<%=request.getContextPath()%>/index.jsp">Home</a></li>
-          <li><a href="<%=request.getContextPath()%>/universities/faculties">Faculties</a></li>
-          <li><a href="<%=request.getContextPath()%>/universities/students">Students</a></li>
-          <li><a href="<%=request.getContextPath()%>/universities/courses">Courses</a></li>
+            <li><a href="<%=request.getContextPath()%>/universities/faculties">Faculties</a></li>
+            <li><a href="<%=request.getContextPath()%>/universities/students">Students</a></li>
+            <li><a href="<%=request.getContextPath()%>/universities/professors">Professors</a></li>
+            <li><a href="<%=request.getContextPath()%>/universities/courses">Courses</a></li>
         </ul>
       </div>
 

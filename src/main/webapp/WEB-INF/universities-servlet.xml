@@ -18,11 +18,15 @@
     <bean id="UniversityDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />
         <property name="url" value="jdbc:mysql://localhost:3306/university" />
-        <property name="username" value="student" />
-        <property name="password" value="student" />
+        <property name="username" value="root" />
+        <property name="password" value="Deealib2015." />
     </bean>
 
     <bean id="facultyDAO" class="com.Universities.web.DaoImpl.FacultyDAOImpl">
+        <property name="dataSource" ref="UniversityDataSource" />
+    </bean>
+
+    <bean id="professorDAO" class="com.Universities.web.DaoImpl.ProfessorDAOImpl">
         <property name="dataSource" ref="UniversityDataSource" />
     </bean>
 
@@ -34,8 +38,14 @@
         <property name="dataSource" ref="UniversityDataSource" />
     </bean>
 
+    <bean id="professorCourseHandlerDAO" class="com.Universities.web.DaoImpl.ProfessorCourseHandlerDAOImpl">
+        <property name="dataSource" ref="UniversityDataSource" />
+    </bean>
+
     <bean id="studentsAtCourseDAO" class="com.Universities.web.DaoImpl.StudentsAtCourseDAOImpl">
         <property name="dataSource" ref="UniversityDataSource" />
     </bean>
+
+
 
 </beans>

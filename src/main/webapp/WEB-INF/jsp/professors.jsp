@@ -1,18 +1,17 @@
 <%--
   Created by IntelliJ IDEA.
-  User: Lei Florin
-  Date: 27.09.2015
-  Time: 21:27
+  User: andreealibotean
+  Date: 11/9/2015
+  Time: 5:03 PM
   To change this template use File | Settings | File Templates.
 --%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Faculties List</title>
+    <title>Professors list</title>
     <link href="<c:url value="/resources/core/css/bootstrap.min.css" />" rel="stylesheet">
 </head>
 <body>
@@ -31,54 +30,52 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="page-header">
-                    <h1 id="tables">Faculties list</h1>
+                    <h1 id="tables">Professors list</h1>
                 </div>
-
                 <div class="bs-component">
                     <table class="table table-striped table-hover ">
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th>Faculty Name</th>
-                            <th>Faculty City</th>
+                            <th>Professor name</th>
+                            <th>Faculty name</th>
                             <th colspan="3" class="actions">Actions</th>
+
                         </tr>
                         </thead>
-
                         <tbody>
-                        <c:forEach var="faculty" items="${faculties}" varStatus="status">
+                        <c:forEach var="professor" items="${professors}" varStatus="status">
                             <tr>
                                 <td>${status.index + 1}</td>
-                                <td>${faculty.name}</td>
-                                <td>${faculty.city}</td>
-                                <td><a href="${pageContext.request.contextPath}/universities/faculties/${faculty.idfaculty}">View</a></td>
-                                <td><a href="${pageContext.request.contextPath}/universities/faculties/edit/${faculty.idfaculty}">Edit</a></td>
-                                <td><a href="${pageContext.request.contextPath}/universities/faculties/delete/${faculty.idfaculty}">Delete</a></td>
-                            </tr>
-                        </c:forEach>
-                        </tbody>
+                                <td>${professor.name}</td>
+                                <td>${professor.faculty.name}</td>
+                                <td>
+                                    <a href="${pageContext.request.contextPath}/universities/professors/${professor.idprofessor}">View</a>
+                                </td>
+                                <td>
+                                    <a href="${pageContext.request.contextPath}/universities/professors/edit/${professor.idprofessor}">Edit</a>
+                                </td>
+                                <td>
+                                    <a href="${pageContext.request.contextPath}/universities/professors/delete/${professor.idprofessor}">Delete</a>
 
+                                </td>
+                            </tr>
+
+                        </c:forEach>
+
+                        </tbody>
                         <tbody>
                         <tr>
-                            <td colspan="6"><a href="${pageContext.request.contextPath}/universities/facultyForm">Add</a>
+                            <td colspan="6"><a href="${pageContext.request.contextPath}/universities/professorForm">Add</a>
                             </td>
                         </tr>
                         </tbody>
                     </table>
                 </div>
-
             </div>
         </div>
     </div>
 </div>
-//
-        <form method="get" id="searchFaculty" name="searchFaculty" action="<%=request.getContextPath()%>/faculties/search">
-            <div class="small-3 columns">
-                <input type="text" id ="txt" name="searchString" >
-            </div>
-            <div class="small-5 columns end" value="Search" id="button-id" onclick="document.forms[0].submit">Search</div>
-            <div> ${player.superTeam} </div>
-        </form>
-//
+
 </body>
 </html>

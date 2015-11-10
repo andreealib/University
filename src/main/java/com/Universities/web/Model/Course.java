@@ -7,6 +7,7 @@ package com.Universities.web.Model;
  */
 public class Course {
 
+
     private long idcourse;
     private long idfaculty;
     private String name;
