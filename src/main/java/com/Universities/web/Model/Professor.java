@@ -26,19 +26,19 @@ public class Professor {
 
     }
 
-    public long getIdProfessor() {
+    public long getIdprofessor() {
         return idprofessor;
     }
 
-    public void setIdProfessor(long idProfessor) {
+    public void setIdprofessor(long idProfessor) {
         this.idprofessor = idProfessor;
     }
 
-    public long getIdFaculty() {
+    public long getIdfaculty() {
         return idfaculty;
     }
 
-    public void setIdFaculty(long idFaculty) {
+    public void setIdfaculty(long idFaculty) {
         this.idfaculty = idFaculty;
     }
 

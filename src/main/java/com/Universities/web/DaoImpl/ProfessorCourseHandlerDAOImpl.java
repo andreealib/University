@@ -4,7 +4,6 @@ import com.Universities.web.Dao.ProfessorCourseHandlerDAO;
 import com.Universities.web.Model.ProfessorCourseHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
-
 import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +12,7 @@ import java.util.Map;
 /**
  * Created by andreealibotean on 11/9/2015.
  */
+
 public class ProfessorCourseHandlerDAOImpl extends JdbcDaoSupport implements ProfessorCourseHandlerDAO {
 
     @Autowired

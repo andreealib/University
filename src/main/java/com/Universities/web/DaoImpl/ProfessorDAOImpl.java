@@ -5,13 +5,13 @@ import com.Universities.web.Mapper.ProfessorRowMapper;
 import com.Universities.web.Model.Professor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
-
 import javax.sql.DataSource;
 import java.util.List;
 
 /**
  * Created by andreealibotean on 11/9/2015.
  */
+
 public class ProfessorDAOImpl extends JdbcDaoSupport implements ProfessorDAO {
     @Autowired
     public ProfessorDAOImpl(DataSource dataSource) {
@@ -20,7 +20,7 @@ public class ProfessorDAOImpl extends JdbcDaoSupport implements ProfessorDAO {
 
     public void insert(Professor professor) {
         String SQL = "insert into professors (idprofessor,idfaculty,name,birthDate,sex,CNP) value(?,?,?,?,?,?) ";
-        Object[] object = new Object[]{professor.getIdProfessor(), professor.getIdFaculty(), professor.getName(), professor.getBirthDate(), professor.getSex(), professor.getCNP()};
+        Object[] object = new Object[]{professor.getIdprofessor(), professor.getIdfaculty(), professor.getName(), professor.getBirthDate(), professor.getSex(), professor.getCNP()};
         getJdbcTemplate().update(SQL, object);
     }
 
@@ -47,9 +47,9 @@ public class ProfessorDAOImpl extends JdbcDaoSupport implements ProfessorDAO {
     }
 
     public Professor findByProfessorId(int idprofessor) {
-        String SQL="select professors.*,faculties.idfaculty,faculties.name as facultyName,faculties.city from professors,faculties " +
+        String SQL = "select professors.*,faculties.idfaculty,faculties.name as facultyName,faculties.city from professors,faculties " +
                 "where professors.idfaculty=faculties.idfaculty and professors.idprofessor=?";
-        Professor professor=(Professor) getJdbcTemplate().queryForObject(SQL,new Object[]{idprofessor},new ProfessorRowMapper());
+        Professor professor = (Professor) getJdbcTemplate().queryForObject(SQL, new Object[]{idprofessor}, new ProfessorRowMapper());
         return professor;
     }
 }

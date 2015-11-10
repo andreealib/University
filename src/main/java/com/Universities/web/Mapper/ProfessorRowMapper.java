@@ -18,8 +18,8 @@ public class ProfessorRowMapper implements RowMapper<Professor> {
         Professor professor = new Professor();
         Faculty faculty = new Faculty();
 
-        professor.setIdProfessor(rs.getInt("idprofessor"));
-        professor.setIdFaculty(rs.getInt("idfaculty"));
+        professor.setIdprofessor(rs.getInt("idprofessor"));
+        professor.setIdfaculty(rs.getInt("idfaculty"));
         professor.setName(rs.getString("name"));
         professor.setBirthDate(rs.getString("birthDate"));
         professor.setSex(rs.getString("sex"));
