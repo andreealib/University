@@ -100,10 +100,14 @@ public class ProfessorController {
     @RequestMapping(value = "/professorForm", method = RequestMethod.GET)
     public String setupProfessorForm(Model model) {
         Professor professor = new Professor();
+        //ProfessorCourseHandler professorCourseHandler=new ProfessorCourseHandler();
+        //model.addAttribute("professorCourseHandler",professorCourseHandler);
         model.addAttribute("professor", professor);
         dropDownFaculties(model);
+        //checkboxCourses(model);
         return "professorForm";
     }
+
 
     @RequestMapping(value = "/professorForm", method = RequestMethod.POST)
     public String submitProfessorForm(@ModelAttribute("professor") Professor professor, BindingResult result, SessionStatus status) {
@@ -123,5 +127,10 @@ public class ProfessorController {
     private void dropDownFaculties(Model model) {
         List<Faculty> facultyList = facultyDAO.getAllFaculties();
         model.addAttribute("faculties", facultyList);
+    }
+
+    private void checkboxCourses(Model model){
+        List<Course> courseList=courseDAO.getallCourses();
+        model.addAttribute("courses",courseList);
     }
 }

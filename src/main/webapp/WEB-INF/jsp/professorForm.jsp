@@ -55,6 +55,8 @@
                                         <form:options items="${faculties}" itemValue="idfaculty" itemLabel="name"/>
                                     </form:select>
 
+
+
                                     <div class="has-error" style="color: #ff0700">
                                         <form:errors path="idfaculty"/>
                                     </div>

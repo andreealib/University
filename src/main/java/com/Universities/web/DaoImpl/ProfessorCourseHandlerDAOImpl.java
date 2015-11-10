@@ -54,4 +54,10 @@ public class ProfessorCourseHandlerDAOImpl extends JdbcDaoSupport implements Pro
         return courseList;
 
     }
+
+    public void insert(ProfessorCourseHandler professorCourseHandler) {
+        String SQL = "insert into professor_course_handler (idprofessor,idfaculty,idcourse) value(?,?,?) ";
+        Object[] object = new Object[]{professorCourseHandler.getIdprofessor(), professorCourseHandler.getIdfaculty(),professorCourseHandler.getIdcourse()};
+        getJdbcTemplate().update(SQL, object);
+    }
 }
