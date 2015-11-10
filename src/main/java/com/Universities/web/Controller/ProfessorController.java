@@ -2,16 +2,20 @@ package com.Universities.web.Controller;
 
 import com.Universities.web.Dao.*;
 import com.Universities.web.Model.Course;
+import com.Universities.web.Model.Faculty;
 import com.Universities.web.Model.Professor;
 import com.Universities.web.Model.ProfessorCourseHandler;
 import com.Universities.web.Validator.ProfessorValidator;
+import com.sun.tracing.dtrace.ModuleAttributes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
@@ -87,7 +91,37 @@ public class ProfessorController {
         return "redirect:/universities/professors";
     }
 
+    @RequestMapping(value = "/professors/delete/{idprofessor:.+}", method = RequestMethod.GET)
+    public String deleteProfessor(@PathVariable("idprofessor") int idprofessor) {
+        professorDAO.delete(idprofessor);
+        return "redirect:/universities/professors";
+    }
 
+    @RequestMapping(value = "/professorForm", method = RequestMethod.GET)
+    public String setupProfessorForm(Model model) {
+        Professor professor = new Professor();
+        model.addAttribute("professor", professor);
+        dropDownFaculties(model);
+        return "professorForm";
+    }
 
+    @RequestMapping(value = "/professorForm", method = RequestMethod.POST)
+    public String submitProfessorForm(@ModelAttribute("professor") Professor professor, BindingResult result, SessionStatus status) {
 
+        professorValidator.validate(professor, result);
+        if (result.hasErrors()) {
+            ModelAndView modelAndView = new ModelAndView("professorForm");
+            modelAndView.addObject("professor", professor);
+            return modelAndView.getViewName();
+        }
+
+        professorDAO.insert(professor);
+        status.isComplete();
+        return "redirect:professors";
+    }
+
+    private void dropDownFaculties(Model model) {
+        List<Faculty> facultyList = facultyDAO.getAllFaculties();
+        model.addAttribute("faculties", facultyList);
+    }
 }
