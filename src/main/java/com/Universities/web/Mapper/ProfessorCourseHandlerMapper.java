@@ -12,7 +12,6 @@ import java.sql.SQLException;
 public class ProfessorCourseHandlerMapper implements RowMapper<ProfessorCourseHandler> {
     public ProfessorCourseHandler mapRow(ResultSet rs, int rowNum) throws SQLException {
         ProfessorCourseHandler professorCourseHandler = new ProfessorCourseHandler();
-        professorCourseHandler.setIdfaculty(rs.getInt("idfaculty"));
         professorCourseHandler.setIdcourse(rs.getInt("idcourse"));
         professorCourseHandler.setIdprofessor(rs.getInt("idprofessor"));
 

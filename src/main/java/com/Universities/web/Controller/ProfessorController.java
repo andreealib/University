@@ -129,8 +129,5 @@ public class ProfessorController {
         model.addAttribute("faculties", facultyList);
     }
 
-    private void checkboxCourses(Model model){
-        List<Course> courseList=courseDAO.getallCourses();
-        model.addAttribute("courses",courseList);
-    }
+
 }

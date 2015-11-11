@@ -45,7 +45,7 @@
                     <fieldset>
                         <legend>Add new professor</legend>
                             <%--Faculty--%>
-                        <div class="form-group">added
+                        <div class="form-group">
                             <label class="col-lg-4 control-label">Faculty Name</label>
                             <div class="col-lg-8">
                                 <div class="radio">

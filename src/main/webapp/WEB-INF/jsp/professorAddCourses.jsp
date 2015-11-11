@@ -1,17 +1,19 @@
 <%--
   Created by IntelliJ IDEA.
   User: andreealibotean
-  Date: 11/10/2015
-  Time: 10:42 AM
+  Date: 11/11/2015
+  Time: 9:40 AM
   To change this template use File | Settings | File Templates.
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
 
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Professor details</title>
+    <title>Add courses for professor</title>
     <link href="<c:url value="/resources/core/css/bootstrap.min.css" />" rel="stylesheet">
 </head>
 <body>
@@ -40,7 +42,7 @@
                 <div class="well bs-component">
                     <form class="form-horizontal">
                         <fieldset>
-                            <legend>Professor details</legend>
+                            <legend>Add courses for professor:</legend>
 
                             <%--Professor Name--%>
                             <div class="form-group">
@@ -70,32 +72,6 @@
                             </div>
 
 
-                            <%--Date of birth--%>
-                            <div class="form-group">
-                                <label class="col-lg-2 control-label">Date of birth:</label>
-
-                                <div class="col-lg-8">
-                                    <div class="radio">
-                                        <label>
-                                            ${professor.birthDate}
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <%--Sex--%>
-                            <div class="form-group">
-                                <label class="col-lg-2 control-label">Sex:</label>
-
-                                <div class="col-lg-8">
-                                    <div class="radio">
-                                        <label>
-                                            ${professor.sex}
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-
                             <%--CNP--%>
                             <div class="form-group">
                                 <label class="col-lg-2 control-label">CNP:</label>
@@ -112,12 +88,8 @@
                             <div class="form-group">
                                 <div class="col-lg-12">
                                     <a class="btn btn-default"
-                                       href="<%=request.getContextPath()%>/universities/professorForm">Add professor</a>
-                                    <a class="btn btn-default"
-                                       href="<%=request.getContextPath()%>/universities/professors/edit/${professor.idprofessor}">Update
-                                        professor</a>
-                                    <a class="btn btn-default"
-                                       href="<%=request.getContextPath()%>/universities/professors">Back</a>
+                                       href="<%=request.getContextPath()%>/universities/professors">Back to
+                                        Professors</a>
                                 </div>
                             </div>
                         </fieldset>
@@ -126,10 +98,10 @@
             </div>
         </div>
 
-        <%--List of courses--%>
+        <%--List of courses assigned to professor--%>
         <div class="row table-bordered">
             <div class="form-group">
-                <label class="col-lg-2 control-label">Courses list</label>
+                <label class="col-lg-2 control-label">Courses assigned to professor:</label>
 
                 <div class="col-lg-10">
                     <div class="radio">
@@ -144,28 +116,103 @@
                                     </tr>
                                 </c:forEach>
                                 </tbody>
-                                </table>
+                            </table>
                         </label>
-
                     </div>
                 </div>
+
             </div>
         </div>
 
-        <div>
-            <label>
-                <a class="btn btn-default"
-                   href="<%=request.getContextPath()%>/universities/professors/addCourses/${professor.idprofessor}">Add
-                    courses for this professor</a>
-            </label>
+
+        <%--Form to add courses to professor --%>
+        <div class="row table-bordered">
+            <div class="form-group">
+                <form:form method="post" modelAttribute="professorCourseHandler" class="form-horizontal">
+                    <fieldset>
+
+
+                        <label class="col-lg-2 control-label">Add courses for professor:</label>
+
+                        <div class="col-lg-10">
+                            <div class="radio">
+                                <label>
+                                    <table class="table table-striped table-hover ">
+                                        <tbody>
+                                        <c:forEach var="course" items="${allCourses}">
+                                            <tr>
+                                                <td>
+                                                    <form:checkbox path="idcourses" value="${course.idcourse}"/>${course.name}
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
+                                        </tbody>
+                                </label>
+
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label"></label>
+
+                            <div class="col-lg-8" hidden="true">
+                                <form:input type="text" path="idprofessor" value="${professor.idprofessor}"/>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <div class="col-lg-6 col-lg-offset-6">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+
+
+                    </fieldset>
+                </form:form>
+
+
+            </div>
         </div>
+
 
     </div>
 
-</div>
 
 </div>
+
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

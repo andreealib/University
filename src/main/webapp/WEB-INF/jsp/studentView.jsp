@@ -154,6 +154,7 @@
                   </tr>
                 </c:forEach>
                 </tbody>
+                </table>
             </label>
           </div>
         </div>

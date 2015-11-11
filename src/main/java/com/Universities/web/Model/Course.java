@@ -69,4 +69,14 @@ public class Course {
         this.faculty = faculty;
     }
 
+    @Override
+    public boolean equals(Object otherCourse){
+        boolean result=false;
+        if(otherCourse instanceof Course){
+            Course thatCourse=(Course) otherCourse;
+            result=(this.getIdcourse()==thatCourse.getIdcourse());
+        }
+        return result;
+    }
+
 }
