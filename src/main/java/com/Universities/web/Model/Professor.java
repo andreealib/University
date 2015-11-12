@@ -1,5 +1,7 @@
 package com.Universities.web.Model;
 
+import javax.validation.constraints.*;
+
 /**
  * Created by andreealibotean on 11/9/2015.
  */
@@ -15,14 +17,14 @@ public class Professor {
     public Professor() {
     }
 
-    public Professor(long idprofessor, long idfaculty, String name, String birthDate, String sex, String CNP,Faculty faculty) {
+    public Professor(long idprofessor, long idfaculty, String name, String birthDate, String sex, String CNP, Faculty faculty) {
         this.idprofessor = idprofessor;
         this.idfaculty = idfaculty;
         this.name = name;
         this.birthDate = birthDate;
         this.sex = sex;
         this.CNP = CNP;
-        this.faculty=faculty;
+        this.faculty = faculty;
 
     }
 

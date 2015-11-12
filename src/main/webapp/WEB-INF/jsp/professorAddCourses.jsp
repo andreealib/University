@@ -126,63 +126,61 @@
 
 
         <%--Form to add courses to professor --%>
-        <div class="row table-bordered">
-            <div class="form-group">
-                <form:form method="post" modelAttribute="professorCourseHandler" class="form-horizontal">
-                    <fieldset>
+        <c:choose>
+            <c:when test="${not empty allCourses}">
+                <div class="row table-bordered">
+                    <div class="form-group">
+
+                        <form:form method="post" modelAttribute="professorCourseHandler" class="form-horizontal">
+                            <fieldset>
+
+                                <label class="col-lg-2 control-label">Add courses for professor:</label>
+
+                                <div class="col-lg-10">
+                                    <div class="radio">
+                                        <label>
+                                            <table class="table table-striped table-hover ">
+                                                <tbody>
+                                                <c:forEach var="course" items="${allCourses}">
+                                                    <tr>
+                                                        <td>
+                                                            <form:checkbox path="idcourses" value="${course.idcourse}"/>${course.name}
+                                                        </td>
+                                                    </tr>
+                                                </c:forEach>
+                                                </tbody>
+                                        </label>
+
+                                    </div>
+                                </div>
 
 
-                        <label class="col-lg-2 control-label">Add courses for professor:</label>
+                                <div class="form-group">
+                                    <label class="col-lg-4 control-label"></label>
 
-                        <div class="col-lg-10">
-                            <div class="radio">
-                                <label>
-                                    <table class="table table-striped table-hover ">
-                                        <tbody>
-                                        <c:forEach var="course" items="${allCourses}">
-                                            <tr>
-                                                <td>
-                                                    <form:checkbox path="idcourses" value="${course.idcourse}"/>${course.name}
-                                                </td>
-                                            </tr>
-                                        </c:forEach>
-                                        </tbody>
-                                </label>
-
-                            </div>
-                        </div>
+                                    <div class="col-lg-8" hidden="true">
+                                        <form:input type="text" path="idprofessor" value="${professor.idprofessor}"/>
+                                    </div>
+                                </div>
 
 
-                        <div class="form-group">
-                            <label class="col-lg-4 control-label"></label>
-
-                            <div class="col-lg-8" hidden="true">
-                                <form:input type="text" path="idprofessor" value="${professor.idprofessor}"/>
-                            </div>
-                        </div>
-
-
-                        <div class="form-group">
-                            <div class="col-lg-6 col-lg-offset-6">
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                            </div>
-                        </div>
-
-
-                    </fieldset>
-                </form:form>
-
-
-            </div>
-        </div>
-
-
+                                <div class="form-group">
+                                    <div class="col-lg-6 col-lg-offset-6">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form:form>
+                    </div>
+                </div>
+            </c:when>
+            <c:otherwise>
+                <b>There are no more courses available to assign to this professor.Please return to</b> <a
+                    class="btn btn-default" href="<%=request.getContextPath()%>/universities/professors">Professors</a>
+            </c:otherwise>
+        </c:choose>
     </div>
-
-
 </div>
-
-
 </body>
 </html>
 

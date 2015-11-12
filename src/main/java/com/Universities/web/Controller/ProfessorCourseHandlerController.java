@@ -61,13 +61,9 @@ public class ProfessorCourseHandlerController {
 
         allCourses.removeAll(courseList);
 
-
         modelAndView.addObject("professorCourseHandler", new ProfessorCourseHandler());
         modelAndView.addObject("professor", professor);
-
         modelAndView.addObject("allCourses", allCourses);
-
-
 
         System.out.println(coursesNotIncluded);
 
@@ -86,8 +82,6 @@ public class ProfessorCourseHandlerController {
         return "redirect:/universities/professors/" + String.valueOf(idprofessor);
 
     }
-
-
 
 
 }

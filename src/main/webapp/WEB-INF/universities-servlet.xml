@@ -9,6 +9,7 @@
 
     <context:component-scan base-package="com.Universities.web" />
 
+
     <!-- This is used by DispatcherServlet for transforming logical names into actual file names -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/jsp/" />
