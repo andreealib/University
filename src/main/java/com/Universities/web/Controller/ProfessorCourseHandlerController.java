@@ -64,9 +64,6 @@ public class ProfessorCourseHandlerController {
         modelAndView.addObject("professorCourseHandler", new ProfessorCourseHandler());
         modelAndView.addObject("professor", professor);
         modelAndView.addObject("allCourses", allCourses);
-
-        System.out.println(coursesNotIncluded);
-
         modelAndView.addObject(courseList);
 
         return modelAndView;
