@@ -1,20 +1,98 @@
 package com.Universities.web.Dao;
 
-import com.Universities.web.Model.Professor;
+
+import com.Universities.web.data.Course;
+import com.Universities.web.data.Professor;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.hibernate3.HibernateTemplate;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Created by andreealibotean on 11/9/2015.
  */
-public interface ProfessorDAO {
-    void insert(Professor professor);
+@Repository("professorDAO")
+@Transactional
+public class ProfessorDAO {
 
-    void update(Professor professor, int idprofessor);
+    private static final Logger logger = LoggerFactory.getLogger(ProfessorDAO.class);
 
-    void delete(int idprofessor);
+    @Autowired
+    private HibernateTemplate hibernateTemplate;
 
-    List<Professor> getAllProfessors();
+    private Session getSession() {
+        return hibernateTemplate.getSessionFactory().getCurrentSession();
+    }
 
-    Professor findByProfessorId(int idprofessor);
+    public Professor getProfessorById(Integer idProfessor) {
+        Session session = getSession();
+        String searchQuery = "from Professor p where p.idProfessor = :idProfessor";
+        Query query = session.createQuery(searchQuery);
+        query.setParameter("idProfessor", idProfessor);
+
+        Professor singleResult = (Professor) query.uniqueResult();
+        return singleResult;
+    }
+
+    public List<Professor> getLstProfessors() {
+        Session session = getSession();
+        List<Professor> lstProfessors = session.createQuery("from Professor").list();
+        return lstProfessors;
+    }
+
+    public void addProfessor(Professor professor) {
+
+        Session session = getSession();
+        session.save(professor);
+        logger.info("professor added");
+
+    }
+
+    public void updateProfessor(Professor professor) {
+
+        Session session = getSession();
+
+        Professor professor1 = getProfessorById(professor.getIdProfessor());
+
+        professor1.setName(professor.getName());
+        professor1.setSurname(professor.getSurname());
+        professor1.setCnp(professor.getCnp());
+        professor1.setGender(professor.getGender());
+        professor1.setCourses(professor.getCourses());
+
+        session.saveOrUpdate(professor1);
+
+
+    }
+
+    public boolean deleteProfessor(Integer idProfessor) {
+
+        Session session = getSession();
+        boolean deleted = false;
+        Professor professor = this.getProfessorById(idProfessor);
+        if (professor != null) {
+            session.delete(professor);
+            deleted = true;
+        }
+
+        return deleted;
+    }
+
+    public List<Course> listCoursesForProfessor(Integer idProfessor) {
+        Session session = getSession();
+        String queryString = "select courses from Professor p where p.idProfessor = :idProfessor";
+        Query query = session.createQuery(queryString);
+        query.setParameter("idProfessor", idProfessor);
+        List<Course> courses = query.list();
+        return courses;
+    }
+
+
 }

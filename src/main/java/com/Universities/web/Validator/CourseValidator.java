@@ -1,6 +1,7 @@
 package com.Universities.web.Validator;
 
-import com.Universities.web.Model.Course;
+
+import com.Universities.web.dto.CourseDTO;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
@@ -13,12 +14,11 @@ import org.springframework.validation.Validator;
 @Component
 public class CourseValidator implements Validator {
     public boolean supports(Class<?> clazz) {
-        return Course.class.isAssignableFrom(clazz);
+        return CourseDTO.class.isAssignableFrom(clazz);
     }
 
     public void validate(Object target, Errors errors) {
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "idfaculty", "required.idfaculty", "Faculty is mandatory");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "required.name", "Name is mandatory");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "professorName", "required.professorName", "Professor name is mandatory");
+
     }
 }
