@@ -109,7 +109,7 @@ public class CourseService {
     public void addStudentsForCourse(CourseDTO courseDTO) {
 
 
-        Set<StudentDTO> studentsDTO = courseDTO.getStgti status udents();
+        Set<StudentDTO> studentsDTO = courseDTO.getStudents();
 
         Course course = courseConverter.convertCourseDTOToCourse(courseDTO);
         Set<Student> students = new HashSet<Student>();
