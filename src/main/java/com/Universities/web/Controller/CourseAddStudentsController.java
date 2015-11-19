@@ -48,12 +48,12 @@ public class CourseAddStudentsController {
     }
 
     @RequestMapping(value = "/courses/{idCourse:.+}/addStudents", method = RequestMethod.POST)
-    public String submitAddStudents(@ModelAttribute("courseDTO") CourseDTO courseDTO){
+    public String submitAddStudents(@ModelAttribute("courseDTO") CourseDTO courseDTO, @PathVariable("idCourse") Integer idCourse) {
 
-
+        Integer id = idCourse;
         courseFacade.addStudentsForCourse(courseDTO);
 
-        return "redirect:/courses";
+        return "redirect:/courses/"+String.valueOf(id);
     }
 
 }

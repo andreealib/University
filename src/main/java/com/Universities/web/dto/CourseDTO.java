@@ -1,32 +1,33 @@
 package com.Universities.web.dto;
 
+import java.io.Serializable;
 import java.util.Set;
 
 /**
  * Created by andreealibotean on 11/17/2015.
  */
-public class CourseDTO {
+public class CourseDTO implements Serializable {
 
     private Integer idCourse;
     private String name;
-    private Set<StudentDTO> students;
-    private Set<ProfessorDTO> professors;
+    private Set<Integer> studentsIds;
+    private Set<Integer> professorsIds;
 
 
-    public Set<StudentDTO> getStudents() {
-        return students;
+    public Set<Integer> getStudentsIds() {
+        return studentsIds;
     }
 
-    public void setStudents(Set<StudentDTO> students) {
-        this.students = students;
+    public void setStudentsIds(Set<Integer> studentsIds) {
+        this.studentsIds = studentsIds;
     }
 
-    public Set<ProfessorDTO> getProfessors() {
-        return professors;
+    public Set<Integer> getProfessorsIds() {
+        return professorsIds;
     }
 
-    public void setProfessors(Set<ProfessorDTO> professors) {
-        this.professors = professors;
+    public void setProfessorsIds(Set<Integer> professorsIds) {
+        this.professorsIds = professorsIds;
     }
 
     public Integer getIdCourse() {
@@ -52,19 +53,15 @@ public class CourseDTO {
 
         CourseDTO courseDTO = (CourseDTO) o;
 
-        if (idCourse != null ? !idCourse.equals(courseDTO.idCourse) : courseDTO.idCourse != null) return false;
-        if (name != null ? !name.equals(courseDTO.name) : courseDTO.name != null) return false;
-        if (students != null ? !students.equals(courseDTO.students) : courseDTO.students != null) return false;
-        return !(professors != null ? !professors.equals(courseDTO.professors) : courseDTO.professors != null);
+        if (!idCourse.equals(courseDTO.idCourse)) return false;
+        return !(name != null ? !name.equals(courseDTO.name) : courseDTO.name != null);
 
     }
 
     @Override
     public int hashCode() {
-        int result = idCourse != null ? idCourse.hashCode() : 0;
+        int result = idCourse.hashCode();
         result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (students != null ? students.hashCode() : 0);
-        result = 31 * result + (professors != null ? professors.hashCode() : 0);
         return result;
     }
 }

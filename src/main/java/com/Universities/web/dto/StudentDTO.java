@@ -1,26 +1,27 @@
 package com.Universities.web.dto;
 
+import java.io.Serializable;
 import java.util.Set;
 
 /**
  * Created by andreealibotean on 11/17/2015.
  */
-public class StudentDTO {
+public class StudentDTO implements Serializable{
 
     private Integer idStudent;
     private String name;
     private String surname;
     private String gender;
     private Long cnp;
-    private Set<CourseDTO> courses;
+    private Set<Integer> coursesIds;
 
 
-    public Set<CourseDTO> getCourses() {
-        return courses;
+    public Set<Integer> getCoursesIds() {
+        return coursesIds;
     }
 
-    public void setCourses(Set<CourseDTO> courses) {
-        this.courses = courses;
+    public void setCoursesIds(Set<Integer> coursesIds) {
+        this.coursesIds = coursesIds;
     }
 
     public Integer getIdStudent() {
@@ -63,6 +64,7 @@ public class StudentDTO {
         this.cnp = cnp;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -70,35 +72,26 @@ public class StudentDTO {
 
         StudentDTO that = (StudentDTO) o;
 
-        if (idStudent != null ? !idStudent.equals(that.idStudent) : that.idStudent != null) return false;
-        if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        if (surname != null ? !surname.equals(that.surname) : that.surname != null) return false;
-        if (gender != null ? !gender.equals(that.gender) : that.gender != null) return false;
-        if (cnp != null ? !cnp.equals(that.cnp) : that.cnp != null) return false;
-        return !(courses != null ? !courses.equals(that.courses) : that.courses != null);
+        if (!idStudent.equals(that.idStudent)) return false;
+        return cnp.equals(that.cnp);
 
     }
 
     @Override
     public int hashCode() {
-        int result = idStudent != null ? idStudent.hashCode() : 0;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (surname != null ? surname.hashCode() : 0);
-        result = 31 * result + (gender != null ? gender.hashCode() : 0);
-        result = 31 * result + (cnp != null ? cnp.hashCode() : 0);
-        result = 31 * result + (courses != null ? courses.hashCode() : 0);
+        int result = idStudent.hashCode();
+        result = 31 * result + cnp.hashCode();
         return result;
     }
 
     @Override
     public String toString() {
         return "StudentDTO{" +
-                "idStudent=" + idStudent +
+                "gender='" + gender + '\'' +
+                ", idStudent=" + idStudent +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
-                ", gender='" + gender + '\'' +
                 ", cnp=" + cnp +
-                ", courses=" + courses +
                 '}';
     }
 }

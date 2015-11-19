@@ -1,25 +1,26 @@
 package com.Universities.web.dto;
 
+import java.io.Serializable;
 import java.util.Set;
 
 /**
  * Created by andreealibotean on 11/17/2015.
  */
-public class ProfessorDTO {
+public class ProfessorDTO implements Serializable{
     private Integer idProfessor;
     private String name;
     private String surname;
     private String gender;
     private Long cnp;
-    private Set<CourseDTO> courses;
+    private Set<Integer> coursesIds;
 
 
-    public Set<CourseDTO> getCourses() {
-        return courses;
+    public Set<Integer> getCoursesIds() {
+        return coursesIds;
     }
 
-    public void setCourses(Set<CourseDTO> courses) {
-        this.courses = courses;
+    public void setCoursesIds(Set<Integer> coursesIds) {
+        this.coursesIds = coursesIds;
     }
 
     public Integer getIdProfessor() {
@@ -69,23 +70,15 @@ public class ProfessorDTO {
 
         ProfessorDTO that = (ProfessorDTO) o;
 
-        if (idProfessor != null ? !idProfessor.equals(that.idProfessor) : that.idProfessor != null) return false;
-        if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        if (surname != null ? !surname.equals(that.surname) : that.surname != null) return false;
-        if (gender != null ? !gender.equals(that.gender) : that.gender != null) return false;
-        if (cnp != null ? !cnp.equals(that.cnp) : that.cnp != null) return false;
-        return !(courses != null ? !courses.equals(that.courses) : that.courses != null);
+        if (!idProfessor.equals(that.idProfessor)) return false;
+        return !(cnp != null ? !cnp.equals(that.cnp) : that.cnp != null);
 
     }
 
     @Override
     public int hashCode() {
-        int result = idProfessor != null ? idProfessor.hashCode() : 0;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (surname != null ? surname.hashCode() : 0);
-        result = 31 * result + (gender != null ? gender.hashCode() : 0);
+        int result = idProfessor.hashCode();
         result = 31 * result + (cnp != null ? cnp.hashCode() : 0);
-        result = 31 * result + (courses != null ? courses.hashCode() : 0);
         return result;
     }
 }

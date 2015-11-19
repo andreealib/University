@@ -60,5 +60,13 @@ public class CourseFacade {
         courseService.addStudentsForCourse(courseDTO);
     }
 
+    public void addProfessorsForCourse(CourseDTO courseDTO){
+        courseService.addProfessorsForCourse(courseDTO);
+    }
+
+
+
+
+
 
 }

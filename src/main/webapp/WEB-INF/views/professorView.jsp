@@ -127,6 +127,15 @@
                                         <td><a class="btn btn-default"
                                                href="<%=request.getContextPath()%>/courses/${courseDTO.idCourse}">${courseDTO.name}</a>
                                         </td>
+
+
+                                        <!--changes for deleting a course-->
+
+                                        <!--changes for deleting a course-->
+
+
+
+
                                     </tr>
                                 </c:forEach>
                                 </tbody>
@@ -138,13 +147,8 @@
             </div>
         </div>
 
-        <%--<div>--%>
-            <%--<label>--%>
-                <%--<a class="btn btn-default"--%>
-                   <%--href="<%=request.getContextPath()%>/universities/professors/addCourses/${professor.idprofessor}">Add--%>
-                    <%--courses for this professor</a>--%>
-            <%--</label>--%>
-        <%--</div>--%>
+
+
 
     </div>
 

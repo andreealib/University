@@ -131,6 +131,15 @@
             </div>
         </div>
 
+        <!--add professors to course-->
+        <div>
+            <label>
+                <a class="btn btn-default"
+                   href="<%=request.getContextPath()%>/courses/${course.idCourse}/addProfessors">Add
+                    professors</a>
+            </label>
+        </div>
+
 
     </div>
 

@@ -114,9 +114,14 @@ public class CourseDAO {
     public void addStudentsForCourse(Course course) {
 
         Session session = getSession();
-        //Set<Student> studentSet=course.getStudents();
         session.saveOrUpdate(course);
 
+    }
+
+    public void addProfessorsForCourse(Course course) {
+
+        Session session = getSession();
+        session.saveOrUpdate(course);
 
     }
 

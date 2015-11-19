@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: andreealibotean
-  Date: 11/18/2015
-  Time: 4:46 PM
+  Date: 11/19/2015
+  Time: 10:54 AM
   To change this template use File | Settings | File Templates.
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
@@ -13,7 +13,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Add students for course</title>
+    <title>Add professors for course</title>
     <link href="<c:url value="/resources/core/css/bootstrap.min.css" />" rel="stylesheet">
 </head>
 <body>
@@ -41,7 +41,7 @@
                 <div class="well bs-component">
                     <form class="form-horizontal">
                         <fieldset>
-                            <legend>Add students for course:</legend>
+                            <legend>Add professors for course:</legend>
 
 
                             <div class="form-group">
@@ -70,20 +70,20 @@
             </div>
         </div>
 
-        <%--List of students for course--%>
+        <%--List of professors for course--%>
         <div class="row table-bordered">
             <div class="form-group">
-                <label class="col-lg-2 control-label">Students assigned to course:</label>
+                <label class="col-lg-2 control-label">Professors teaching at course:</label>
 
                 <div class="col-lg-10">
                     <div class="radio">
                         <label>
                             <table class="table table-striped table-hover ">
                                 <tbody>
-                                <c:forEach var="studentDTO" items="${registeredStudents}">
+                                <c:forEach var="professorDTO" items="${registeredProfessors}">
                                     <tr>
                                         <td><a class="btn btn-default"
-                                               href="<%=request.getContextPath()%>/students/${studentDTO.idStudent}">${studentDTO.name}${' '}${studentDTO.surname}</a>
+                                               href="<%=request.getContextPath()%>/professors/${professorDTO.idProfessor}">${professorDTO.name}${' '}${professorDTO.surname}</a>
                                         </td>
                                     </tr>
                                 </c:forEach>
@@ -97,27 +97,27 @@
         </div>
 
 
-        <%--Form to add students --%>
+        <%--Form to add professors --%>
         <c:choose>
-            <c:when test="${not empty students}">
+            <c:when test="${not empty professors}">
                 <div class="row table-bordered">
                     <div class="form-group">
 
                         <form:form method="post" modelAttribute="courseDTO" class="form-horizontal">
                             <fieldset>
 
-                                <label class="col-lg-2 control-label">Enroll students:</label>
+                                <label class="col-lg-2 control-label">Enroll professors:</label>
 
                                 <div class="col-lg-10">
                                     <div class="radio">
                                         <label>
                                             <table class="table table-striped table-hover ">
                                                 <tbody>
-                                                <c:forEach var="studentDTO" items="${students}">
+                                                <c:forEach var="professorDTO" items="${professors}">
                                                     <tr>
                                                         <td>
-                                                            <form:checkbox path="studentsIds"
-                                                                           value="${studentDTO.idStudent}"/>${studentDTO.name}${' '}${studentDTO.surname}
+                                                            <form:checkbox path="professorsIds"
+                                                                           value="${professorDTO.idProfessor}"/>${professorDTO.name}${' '}${professorDTO.surname}
                                                         </td>
                                                     </tr>
                                                 </c:forEach>
@@ -126,6 +126,7 @@
 
                                     </div>
                                 </div>
+
 
 
                                 <div class="form-group">
@@ -139,7 +140,7 @@
                 </div>
             </c:when>
             <c:otherwise>
-                <b>There are no more students available to enroll to this course.Please return to</b> <a
+                <b>There are no more professors available to enroll to this course.Please return to</b> <a
                     class="btn btn-default" href="<%=request.getContextPath()%>/courses">Courses</a>
             </c:otherwise>
         </c:choose>
@@ -147,4 +148,3 @@
 </div>
 </body>
 </html>
-

@@ -1,9 +1,7 @@
 package com.Universities.web.services;
 
 import com.Universities.web.Dao.CourseDAO;
-import com.Universities.web.converter.CourseConverter;
-import com.Universities.web.converter.ProfessorConverter;
-import com.Universities.web.converter.StudentConverter;
+import com.Universities.web.converter.*;
 import com.Universities.web.data.Course;
 import com.Universities.web.data.Professor;
 import com.Universities.web.data.Student;
@@ -35,6 +33,12 @@ public class CourseService {
 
     @Autowired
     ProfessorConverter professorConverter;
+
+    @Autowired
+    IntegerToStudent integerToStudent;
+
+    @Autowired
+    IntegerToProfessor integerToProfessor;
 
 
     public CourseDTO getCourseById(Integer idCourse) {
@@ -109,16 +113,36 @@ public class CourseService {
     public void addStudentsForCourse(CourseDTO courseDTO) {
 
 
-        Set<StudentDTO> studentsDTO = courseDTO.getStudents();
+        Set<Integer> studentsIds = courseDTO.getStudentsIds();
 
-        Course course = courseConverter.convertCourseDTOToCourse(courseDTO);
+        Course course =courseDAO.getCourseById(courseDTO.getIdCourse());
+
         Set<Student> students = new HashSet<Student>();
-        for (StudentDTO s : studentsDTO) {
-            students.add(studentConverter.convertStudentDTOToStudent(s));
+        for (Integer s : studentsIds) {
+
+            students.add(integerToStudent.convert(s));
         }
-        course.setStudents(students);
+        course.getStudents().addAll(students);
 
         courseDAO.addStudentsForCourse(course);
+
+    }
+
+    public void addProfessorsForCourse(CourseDTO courseDTO) {
+
+
+        Set<Integer> professorsIds = courseDTO.getProfessorsIds();
+
+        Course course =courseDAO.getCourseById(courseDTO.getIdCourse());
+
+        Set<Professor> professors = new HashSet<Professor>();
+        for (Integer p : professorsIds) {
+
+            professors.add(integerToProfessor.convert(p));
+        }
+        course.getProfessors().addAll(professors);
+
+        courseDAO.addProfessorsForCourse(course);
 
     }
 
