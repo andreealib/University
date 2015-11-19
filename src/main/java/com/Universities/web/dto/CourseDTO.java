@@ -53,15 +53,12 @@ public class CourseDTO implements Serializable {
 
         CourseDTO courseDTO = (CourseDTO) o;
 
-        if (!idCourse.equals(courseDTO.idCourse)) return false;
-        return !(name != null ? !name.equals(courseDTO.name) : courseDTO.name != null);
+        return idCourse.equals(courseDTO.idCourse);
 
     }
 
     @Override
     public int hashCode() {
-        int result = idCourse.hashCode();
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        return result;
+        return idCourse.hashCode();
     }
 }

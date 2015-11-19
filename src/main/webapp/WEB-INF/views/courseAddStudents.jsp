@@ -50,7 +50,7 @@
                                 <div class="col-lg-8">
                                     <div class="radio">
                                         <label>
-                                            ${course.name}
+                                            ${courseDTO.name}
                                         </label>
                                     </div>
                                 </div>

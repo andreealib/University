@@ -29,8 +29,8 @@ public class Professor implements Serializable {
     @Column(name = "cnp")
     private Long cnp;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name="professor_has_course",joinColumns = @JoinColumn(name="professor_idProfessor"),inverseJoinColumns = @JoinColumn(name="course_idCourse"))
+    @ManyToMany(fetch = FetchType.EAGER,mappedBy = "professors")
+    //@JoinTable(name="professor_has_course",joinColumns = @JoinColumn(name="professor_idProfessor"),inverseJoinColumns = @JoinColumn(name="course_idCourse"))
     private Set<Course> courses;
 
     public Integer getIdProfessor() {

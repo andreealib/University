@@ -110,5 +110,14 @@
         </beans:property>
     </beans:bean>
 
+    <!--convert course sent through form to course(Model)-->
+    <beans:bean id="conversionServiceCourse" class="org.springframework.context.support.ConversionServiceFactoryBean">
+        <beans:property name="converters">
+            <beans:set>
+                <beans:bean class="com.Universities.web.converter.IntegerToCourse"/>
+            </beans:set>
+        </beans:property>
+    </beans:bean>
+
 
 </beans>

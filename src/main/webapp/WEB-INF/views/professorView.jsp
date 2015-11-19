@@ -130,10 +130,10 @@
 
 
                                         <!--changes for deleting a course-->
-
+                                        <td>
+                                            <a href="${pageContext.request.contextPath}/professors/${professor.idProfessor}/delete/${courseDTO.idCourse}">Delete</a>
+                                        </td>
                                         <!--changes for deleting a course-->
-
-
 
 
                                     </tr>
@@ -146,8 +146,6 @@
                 </div>
             </div>
         </div>
-
-
 
 
     </div>

@@ -29,8 +29,8 @@ public class Student implements Serializable {
     @Column(name = "cnp")
     private Long cnp;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name="course_has_student",joinColumns = @JoinColumn(name="student_idStudent"),inverseJoinColumns = @JoinColumn(name="course_idCourse"))
+    @ManyToMany(fetch = FetchType.EAGER,mappedBy = "students")
+    //@JoinTable(name="course_has_student",joinColumns = @JoinColumn(name="student_idStudent"),inverseJoinColumns = @JoinColumn(name="course_idCourse"))
     private Set<Course> courses;
 
     public Integer getIdStudent() {

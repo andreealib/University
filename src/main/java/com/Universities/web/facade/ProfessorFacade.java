@@ -46,7 +46,9 @@ public class ProfessorFacade {
         return professorService.deleteProfessor(idProfessor);
     }
 
-    public List<CourseDTO> listCoursesForProfessor(Integer idProfessor){
+    public List<CourseDTO> listCoursesForProfessor(Integer idProfessor) {
         return professorService.listCoursesForProfessor(idProfessor);
     }
+
+
 }

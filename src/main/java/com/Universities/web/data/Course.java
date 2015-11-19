@@ -20,11 +20,11 @@ public class Course implements Serializable {
     @Column(name = "name")
     private String name;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER,cascade = {CascadeType.ALL})
     @JoinTable(name="course_has_student",joinColumns = @JoinColumn(name="course_idCourse"),inverseJoinColumns = @JoinColumn(name= "student_idStudent"))
     private Set<Student> students;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER,cascade = {CascadeType.ALL})
     @JoinTable(name="professor_has_course",joinColumns = @JoinColumn(name="course_idCourse"),inverseJoinColumns = @JoinColumn(name="professor_idProfessor"))
     private Set<Professor> professors;
 
