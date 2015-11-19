@@ -20,9 +20,10 @@ public class ProfessorDeleteCoursesController {
     @Autowired
     ProfessorFacade professorFacade;
 
-//    @RequestMapping(value = "/professors/{idProfessor:.+}/delete/{idCourse:.+}", method = RequestMethod.GET)
-//    public String deleteCourse(@PathVariable("idProfessor") Integer idProfessor, @PathVariable("idCourse") Integer idCourse) {
-//        professorFacade.deleteCourseForProfessor(idProfessor, idCourse);
-//        return "redirect:/professors/"+idProfessor;
-//    }
+    @RequestMapping(value = "/professors/{idProfessor:.+}/delete/{idCourse:.+}", method = RequestMethod.GET)
+    public String deleteCourse(@PathVariable("idProfessor") Integer idProfessor, @PathVariable("idCourse") Integer idCourse) {
+        //professorFacade.deleteCourseForProfessor(idProfessor, idCourse);
+        return "redirect:/professors/" + idProfessor;
+
+    }
 }
