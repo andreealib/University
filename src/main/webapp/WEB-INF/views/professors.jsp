@@ -18,7 +18,7 @@
 <div class="container">
     <div class="navbar-header">
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="<%=request.getContextPath()%>/index">Home</a></li>
+            <li><a href="http://localhost:8080">Home</a></li>
             <li><a href="<%=request.getContextPath()%>/students">Students</a></li>
             <li><a href="<%=request.getContextPath()%>/professors">Professors</a></li>
             <li><a href="<%=request.getContextPath()%>/courses">Courses</a></li>
