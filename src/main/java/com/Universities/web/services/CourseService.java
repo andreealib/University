@@ -110,26 +110,26 @@ public class CourseService {
         return registeredProfessors;
     }
 
-    public void addStudentsForCourse( CourseDTO courseDTO) {
+    public void addStudentsForCourse(CourseDTO courseDTO) {
 
 
-            Set<Integer> studentsIds = courseDTO.getStudentsIds();
+        Set<Integer> studentsIds = courseDTO.getStudentsIds();
 
-            Course course = courseDAO.getCourseById(courseDTO.getIdCourse());
+        Course course = courseDAO.getCourseById(courseDTO.getIdCourse());
 
-            Set<Student> students = new HashSet<Student>();
-            for (Integer s : studentsIds) {
+        Set<Student> students = new HashSet<Student>();
+        for (Integer s : studentsIds) {
 
-                students.add(integerToStudent.convert(s));
-            }
-            course.getStudents().addAll(students);
+            students.add(integerToStudent.convert(s));
+        }
+        course.getStudents().addAll(students);
 
-            courseDAO.addStudentsForCourse(course);
+        courseDAO.addStudentsForCourse(course);
 
 
     }
 
-    public void addProfessorsForCourse( CourseDTO courseDTO) {
+    public void addProfessorsForCourse(CourseDTO courseDTO) {
 
 
         //CourseDTO courseDTO = courseConverter.convertCourseToDTO(courseDAO.getCourseById(idCourse));
@@ -148,6 +148,18 @@ public class CourseService {
         courseDAO.addProfessorsForCourse(course);
 
     }
+
+
+    public void deleteStudentFromCourse(Integer idCourse, Integer idStudent) {
+        courseDAO.deleteStudentFromCourse(idCourse, idStudent);
+
+    }
+
+    public void deleteProfessorFromCourse(Integer idCourse, Integer idProfessor) {
+        courseDAO.deleteProfessorFromCourse(idCourse, idProfessor);
+
+    }
+
 
 
 }

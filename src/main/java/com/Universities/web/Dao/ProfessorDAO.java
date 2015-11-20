@@ -3,6 +3,7 @@ package com.Universities.web.Dao;
 
 import com.Universities.web.data.Course;
 import com.Universities.web.data.Professor;
+import com.Universities.web.data.Student;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -98,6 +99,11 @@ public class ProfessorDAO {
         query.setParameter("idProfessor", idProfessor);
         List<Course> courses = query.list();
         return courses;
+    }
+
+    public void saveOrUpdate(Professor professor){
+        Session session=getSession();
+        session.saveOrUpdate(professor);
     }
 
 

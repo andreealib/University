@@ -56,17 +56,21 @@ public class CourseFacade {
         return courseService.listProfessorsForCourse(idCourse);
     }
 
-    public void addStudentsForCourse(CourseDTO courseDTO){
+    public void addStudentsForCourse(CourseDTO courseDTO) {
         courseService.addStudentsForCourse(courseDTO);
     }
 
-    public void addProfessorsForCourse(CourseDTO courseDTO){
+    public void addProfessorsForCourse(CourseDTO courseDTO) {
         courseService.addProfessorsForCourse(courseDTO);
     }
 
+    public void deleteStudentFromCourse(Integer idCourse, Integer idStudent) {
+        courseService.deleteStudentFromCourse(idCourse, idStudent);
+    }
 
-
-
+    public void deleteProfessorFromCourse(Integer idCourse, Integer idProfessor) {
+        courseService.deleteProfessorFromCourse(idCourse, idProfessor);
+    }
 
 
 }

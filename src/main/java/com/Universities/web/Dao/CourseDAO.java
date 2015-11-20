@@ -30,6 +30,12 @@ public class CourseDAO {
     @Autowired
     private HibernateTemplate hibernateTemplate;
 
+    @Autowired
+    StudentDAO studentDAO;
+
+    @Autowired
+    ProfessorDAO professorDAO;
+
     private Session getSession() {
         return hibernateTemplate.getSessionFactory().getCurrentSession();
     }
@@ -122,6 +128,31 @@ public class CourseDAO {
 
         Session session = getSession();
         session.saveOrUpdate(course);
+
+    }
+
+    public void deleteStudentFromCourse(Integer idCourse, Integer idStudent) {
+        Course course = this.getCourseById(idCourse);
+        Student student = studentDAO.getStudentById(idStudent);
+        Session session = getSession();
+
+        course.getStudents().remove(student);
+        student.getCourses().remove(course);
+        session.saveOrUpdate(course);
+        studentDAO.saveOrUpdate(student);
+
+    }
+
+
+    public void deleteProfessorFromCourse(Integer idCourse, Integer idProfessor) {
+        Course course = this.getCourseById(idCourse);
+        Professor professor = professorDAO.getProfessorById(idProfessor);
+        Session session = getSession();
+
+        course.getProfessors().remove(professor);
+        professor.getCourses().remove(course);
+        session.saveOrUpdate(course);
+        professorDAO.saveOrUpdate(professor);
 
     }
 

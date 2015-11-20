@@ -102,5 +102,10 @@ public class StudentDAO {
         return courses;
     }
 
+    public void saveOrUpdate(Student student){
+        Session session=getSession();
+        session.saveOrUpdate(student);
+    }
+
 
 }
