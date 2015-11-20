@@ -64,7 +64,7 @@ public class AddOrUpdateCourseController {
     public String submitCourseEdit(@ModelAttribute("course") CourseDTO course,@PathVariable("idCourse")Integer idCourse) {
 
         coursefacade.updateCourse(course);
-        return "redirect:/courses/"+course.getIdCourse();
+        return "redirect:/courses";
 
     }
 
