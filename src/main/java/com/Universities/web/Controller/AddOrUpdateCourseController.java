@@ -72,21 +72,5 @@ public class AddOrUpdateCourseController {
 
 
 
-//    @RequestMapping(value = "/students/edit/{idStudent:.+}", method = RequestMethod.GET)
-//    public ModelAndView setupStudentEdit(@PathVariable("idStudent") Integer idStudent) {
-//        ModelAndView modelAndView = new ModelAndView("studentEdit");
-//        StudentDTO student = studentfacade.viewStudent(idStudent);
-//        modelAndView.addObject("student", student);
-//        return modelAndView;
-//    }
-//
-//    @RequestMapping(value = "/students/edit/{idStudent:.+}", method = RequestMethod.POST)
-//    public String submitStudentEdit(@ModelAttribute("student") StudentDTO student) {
-//        studentfacade.updateStudent(student);
-//
-//        return "redirect:/students";
-//
-//
-//    }
 
 }
