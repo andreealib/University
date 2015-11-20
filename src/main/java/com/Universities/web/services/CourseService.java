@@ -113,23 +113,15 @@ public class CourseService {
     public void addStudentsForCourse(CourseDTO courseDTO) {
 
 
-<<<<<<< HEAD
-
-            Set<Integer> studentsIds = courseDTO.getStudentsIds();
-=======
         Set<Integer> studentsIds = courseDTO.getStudentsIds();
->>>>>>> branch2
+
 
         Course course = courseDAO.getCourseById(courseDTO.getIdCourse());
 
-<<<<<<< HEAD
 
-            Set<Student> students = new HashSet<Student>();
-            for (Integer s : studentsIds) {
-=======
         Set<Student> students = new HashSet<Student>();
         for (Integer s : studentsIds) {
->>>>>>> branch2
+
 
             students.add(integerToStudent.convert(s));
         }
@@ -139,6 +131,7 @@ public class CourseService {
 
 
     }
+
 
     public void addProfessorsForCourse(CourseDTO courseDTO) {
 
@@ -170,7 +163,6 @@ public class CourseService {
         courseDAO.deleteProfessorFromCourse(idCourse, idProfessor);
 
     }
-
 
 
 }
