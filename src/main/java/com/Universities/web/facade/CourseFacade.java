@@ -64,8 +64,12 @@ public class CourseFacade {
         courseService.addProfessorsForCourse(courseDTO);
     }
 
+    public void deleteStudentFromCourse(Integer idCourse, Integer idStudent) {
+        courseService.deleteStudentFromCourse(idCourse, idStudent);
+    }
 
-
-
+    public void deleteProfessorFromCourse(Integer idCourse, Integer idProfessor) {
+        courseService.deleteProfessorFromCourse(idCourse, idProfessor);
+    }
 
 }

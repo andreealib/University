@@ -19,7 +19,7 @@
 <div class="container">
     <div class="navbar-header">
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="<%=request.getContextPath()%>/index.jsp">Home</a></li>
+            <li><a href="<%=request.getContextPath()%>/index">Home</a></li>
             <li><a href="<%=request.getContextPath()%>/students">Students</a></li>
             <li><a href="<%=request.getContextPath()%>/professors">Professors</a></li>
             <li><a href="<%=request.getContextPath()%>/courses">Courses</a></li>
@@ -85,6 +85,11 @@
                                         <td><a class="btn btn-default"
                                                href="<%=request.getContextPath()%>/students/${studentDTO.idStudent}">${studentDTO.name}${' '}${studentDTO.surname}</a>
                                         </td>
+
+                                        <td>
+                                            <a href="${pageContext.request.contextPath}/courses/${course.idCourse}/deleteStud/${studentDTO.idStudent}">Delete</a>
+                                        </td>
+
                                     </tr>
                                 </c:forEach>
                                 </tbody>
@@ -121,6 +126,11 @@
                                         <td><a class="btn btn-default"
                                                href="<%=request.getContextPath()%>/professors/${professorDTO.idProfessor}">${professorDTO.name}${' '}${professorDTO.surname}</a>
                                         </td>
+
+                                        <td>
+                                            <a href="${pageContext.request.contextPath}/courses/${course.idCourse}/deleteProf/${professorDTO.idProfessor}">Delete</a>
+                                        </td>
+
                                     </tr>
                                 </c:forEach>
                                 </tbody>
