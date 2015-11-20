@@ -66,11 +66,44 @@ public class CourseDAO {
     public void updateCourse(Course course) {
 
         Session session = getSession();
+        //session.update(course);
 
         Course course1 = getCourseById(course.getIdCourse());
+
+
         course1.setName(course.getName());
         course1.setProfessors(course.getProfessors());
         course1.setStudents(course.getStudents());
+
+
+   /*     //modify coresponding course in students that have this course
+       List<Professor> professorList=this.listProfessorsForCourse(course.getIdCourse());
+        for (Professor p : professorList) {
+            Set<Course> courses = p.getCourses();
+            for (Course c : courses) {
+                if (c.equals(course)) {
+                    c.setName(course.getName());
+                    c.setProfessors(course.getProfessors());
+                    c.setStudents(course.getStudents());
+                }
+            }
+            professorDAO.saveOrUpdate(p);
+        }
+
+
+        // modify coresponding course in students that have this course
+        List<Student> studentList=this.listStudentsForCourse(course.getIdCourse());
+        for (Student s : studentList) {
+            Set<Course> courses = s.getCourses();
+            for (Course c : courses) {
+                if (c.equals(course)) {
+                    c.setName(course.getName());
+                    c.setProfessors(course.getProfessors());
+                    c.setStudents(course.getStudents());
+                }
+            }
+            studentDAO.saveOrUpdate(s);
+        }*/
 
         session.saveOrUpdate(course1);
 
