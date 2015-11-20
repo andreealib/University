@@ -29,7 +29,7 @@ public class Professor implements Serializable {
     @Column(name = "cnp")
     private Long cnp;
 
-    @ManyToMany(fetch = FetchType.LAZY,mappedBy = "professors")
+    @ManyToMany(fetch = FetchType.LAZY,mappedBy = "professors",cascade = {CascadeType.PERSIST,CascadeType.MERGE,CascadeType.DETACH})
     //@JoinTable(name="professor_has_course",joinColumns = @JoinColumn(name="professor_idProfessor"),inverseJoinColumns = @JoinColumn(name="course_idCourse"))
     private Set<Course> courses;
 

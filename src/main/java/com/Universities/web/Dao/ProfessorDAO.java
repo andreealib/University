@@ -79,6 +79,12 @@ public class ProfessorDAO {
         Professor professor = this.getProfessorById(idProfessor);
         if (professor != null) {
             session.delete(professor);
+
+            //deleteing the linked courses connected to this professor
+            for(Course course:professor.getCourses()){
+                course.getProfessors().remove(professor);
+            }
+
             deleted = true;
         }
 
