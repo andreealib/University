@@ -18,20 +18,13 @@
     </appender>
 
     <appender name="dailyFile" class="org.apache.log4j.DailyRollingFileAppender">
-        <param name="File" value="D:/intern/comparator.log" />
+        <param name="File" value="D:/faculty/faculty.log" />
         <param name="DatePattern" value="'.'yyyy-MM-dd-a" />
         <layout class="org.apache.log4j.PatternLayout">
             <param name="ConversionPattern" value="%-5p: %d %t %c - %m%n" />
         </layout>
     </appender>
 
-    <!-- Application Loggers -->
-    <!-- an example-->
-    <!--<logger name="com.evozon.comparator.controllers">
-        <level value="info"/>
-        <appender-ref ref="file"/>
-    </logger>
--->
     <logger name="com.Universities.web">
         <level value="info" />
         <!--<appender-ref ref="file"/>-->

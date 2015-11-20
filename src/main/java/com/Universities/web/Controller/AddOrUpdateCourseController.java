@@ -61,35 +61,15 @@ public class AddOrUpdateCourseController {
     }
 
     @RequestMapping(value = "/courses/edit/{idCourse:.+}", method = RequestMethod.POST)
-    public String submitCourseEdit(@ModelAttribute("course") CourseDTO course,@PathVariable("idCourse")Integer idCourse) {
+    public String submitCourseEdit(@PathVariable("idCourse")Integer idCourse) {
 
-        coursefacade.updateCourse(course);
-        return "redirect:/courses/"+course.getIdCourse();
+        coursefacade.updateCourse(idCourse);
+        return "redirect:/courses";
 
 
 
     }
 
 
-
-
-
-
-//    @RequestMapping(value = "/students/edit/{idStudent:.+}", method = RequestMethod.GET)
-//    public ModelAndView setupStudentEdit(@PathVariable("idStudent") Integer idStudent) {
-//        ModelAndView modelAndView = new ModelAndView("studentEdit");
-//        StudentDTO student = studentfacade.viewStudent(idStudent);
-//        modelAndView.addObject("student", student);
-//        return modelAndView;
-//    }
-//
-//    @RequestMapping(value = "/students/edit/{idStudent:.+}", method = RequestMethod.POST)
-//    public String submitStudentEdit(@ModelAttribute("student") StudentDTO student) {
-//        studentfacade.updateStudent(student);
-//
-//        return "redirect:/students";
-//
-//
-//    }
 
 }
