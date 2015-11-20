@@ -3,6 +3,7 @@ package com.Universities.web.Controller;
 import com.Universities.web.Validator.CourseValidator;
 import com.Universities.web.data.Course;
 import com.Universities.web.dto.CourseDTO;
+import com.Universities.web.dto.StudentDTO;
 import com.Universities.web.facade.CourseFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -61,11 +62,34 @@ public class AddOrUpdateCourseController {
 
     @RequestMapping(value = "/courses/edit/{idCourse:.+}", method = RequestMethod.POST)
     public String submitCourseEdit(@ModelAttribute("course") CourseDTO course,@PathVariable("idCourse")Integer idCourse) {
-        coursefacade.updateCourse(course);
 
-        return "redirect:/courses/"+idCourse;
+        coursefacade.updateCourse(course);
+        return "redirect:/courses/"+course.getIdCourse();
+
 
 
     }
+
+
+
+
+
+
+//    @RequestMapping(value = "/students/edit/{idStudent:.+}", method = RequestMethod.GET)
+//    public ModelAndView setupStudentEdit(@PathVariable("idStudent") Integer idStudent) {
+//        ModelAndView modelAndView = new ModelAndView("studentEdit");
+//        StudentDTO student = studentfacade.viewStudent(idStudent);
+//        modelAndView.addObject("student", student);
+//        return modelAndView;
+//    }
+//
+//    @RequestMapping(value = "/students/edit/{idStudent:.+}", method = RequestMethod.POST)
+//    public String submitStudentEdit(@ModelAttribute("student") StudentDTO student) {
+//        studentfacade.updateStudent(student);
+//
+//        return "redirect:/students";
+//
+//
+//    }
 
 }

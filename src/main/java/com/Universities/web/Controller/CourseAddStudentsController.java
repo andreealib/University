@@ -51,6 +51,7 @@ public class CourseAddStudentsController {
     public String submitAddStudents(@ModelAttribute("courseDTO") CourseDTO courseDTO, @PathVariable("idCourse") Integer idCourse) {
 
         Integer id = idCourse;
+
         courseFacade.addStudentsForCourse(courseDTO);
 
         return "redirect:/courses/"+String.valueOf(id);

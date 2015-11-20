@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -37,14 +38,15 @@ public class CoursesController {
         return "courses";
     }
 
-    @RequestMapping(value="/courses/{idCourse:.+}",method = RequestMethod.GET)
-    public String viewCourse(Model model, @PathVariable("idCourse") Integer idCourse){
-        CourseDTO course=courseFacade.viewCourse(idCourse);
-        model.addAttribute("course",course);
-        model.addAttribute("registeredStudents",courseFacade.listStudentsForCourse(idCourse));
-        model.addAttribute("registeredProfessors",courseFacade.listProfessorsForCourse(idCourse));
+    @RequestMapping(value = "/courses/{idCourse:.+}", method = RequestMethod.GET)
+    public ModelAndView viewCourse(ModelAndView model, @PathVariable("idCourse") Integer idCourse) {
 
-        return "courseView";
+        CourseDTO course = courseFacade.viewCourse(idCourse);
+        model.addObject("course", course);
+        model.addObject("registeredStudents", courseFacade.listStudentsForCourse(idCourse));
+        model.addObject("registeredProfessors", courseFacade.listProfessorsForCourse(idCourse));
+        model.setViewName("courseView");
+        return model;
 
     }
 
