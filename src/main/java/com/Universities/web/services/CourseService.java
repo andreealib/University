@@ -110,7 +110,7 @@ public class CourseService {
         return registeredProfessors;
     }
 
-    public void addStudentsForCourse(CourseDTO courseDTO) {
+    public void addStudentsForCourse( CourseDTO courseDTO) {
 
 
             Set<Integer> studentsIds = courseDTO.getStudentsIds();
@@ -129,8 +129,10 @@ public class CourseService {
 
     }
 
-    public void addProfessorsForCourse(CourseDTO courseDTO) {
+    public void addProfessorsForCourse( CourseDTO courseDTO) {
 
+
+        //CourseDTO courseDTO = courseConverter.convertCourseToDTO(courseDAO.getCourseById(idCourse));
 
         Set<Integer> professorsIds = courseDTO.getProfessorsIds();
 
