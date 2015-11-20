@@ -44,7 +44,7 @@ public class CourseService {
     public CourseDTO getCourseById(Integer idCourse) {
 
         Course course = courseDAO.getCourseById(idCourse);
-        CourseDTO courseDTO = courseConverter.convertCourseToDTO(courseDAO.getCourseById(idCourse));
+        CourseDTO courseDTO = courseConverter.convertCourseToDTO(course);
         return courseDTO;
 
     }
@@ -71,7 +71,7 @@ public class CourseService {
     }
 
     public void updateCourse(CourseDTO courseDTO) {
-        Course course = courseConverter.convertCourseDTOToCourse(courseDTO);
+        Course course = courseDAO.getCourseById(courseDTO.getIdCourse());
         courseDAO.updateCourse(course);
     }
 
@@ -113,18 +113,19 @@ public class CourseService {
     public void addStudentsForCourse(CourseDTO courseDTO) {
 
 
-        Set<Integer> studentsIds = courseDTO.getStudentsIds();
+            Set<Integer> studentsIds = courseDTO.getStudentsIds();
 
-        Course course =courseDAO.getCourseById(courseDTO.getIdCourse());
+            Course course = courseDAO.getCourseById(courseDTO.getIdCourse());
 
-        Set<Student> students = new HashSet<Student>();
-        for (Integer s : studentsIds) {
+            Set<Student> students = new HashSet<Student>();
+            for (Integer s : studentsIds) {
 
-            students.add(integerToStudent.convert(s));
-        }
-        course.getStudents().addAll(students);
+                students.add(integerToStudent.convert(s));
+            }
+            course.getStudents().addAll(students);
 
-        courseDAO.addStudentsForCourse(course);
+            courseDAO.addStudentsForCourse(course);
+
 
     }
 
@@ -133,7 +134,7 @@ public class CourseService {
 
         Set<Integer> professorsIds = courseDTO.getProfessorsIds();
 
-        Course course =courseDAO.getCourseById(courseDTO.getIdCourse());
+        Course course = courseDAO.getCourseById(courseDTO.getIdCourse());
 
         Set<Professor> professors = new HashSet<Professor>();
         for (Integer p : professorsIds) {
