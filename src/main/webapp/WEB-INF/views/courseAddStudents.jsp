@@ -60,7 +60,7 @@
                             <div class="form-group">
                                 <div class="col-lg-12">
                                     <a class="btn btn-default"
-                                       href="<%=request.getContextPath()%>courses">Back to
+                                       href="http://localhost:8080/courses">Back to
                                         courses</a>
                                 </div>
                             </div>

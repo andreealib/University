@@ -78,6 +78,12 @@ public class StudentDAO {
         Student student = this.getStudentById(idStudent);
         if (student != null) {
             session.delete(student);
+
+            //deleteing the linked courses connected to this student
+            for(Course course:student.getCourses()){
+                course.getStudents().remove(student);
+            }
+
             deleted = true;
             logger.info("student deleted.");
         }
