@@ -72,15 +72,22 @@ public class StudentDTO implements Serializable{
 
         StudentDTO that = (StudentDTO) o;
 
-        if (!idStudent.equals(that.idStudent)) return false;
-        return cnp.equals(that.cnp);
+        if (getIdStudent() != null ? !getIdStudent().equals(that.getIdStudent()) : that.getIdStudent() != null)
+            return false;
+        if (getName() != null ? !getName().equals(that.getName()) : that.getName() != null) return false;
+        if (getSurname() != null ? !getSurname().equals(that.getSurname()) : that.getSurname() != null) return false;
+        if (getGender() != null ? !getGender().equals(that.getGender()) : that.getGender() != null) return false;
+        return !(getCnp() != null ? !getCnp().equals(that.getCnp()) : that.getCnp() != null);
 
     }
 
     @Override
     public int hashCode() {
-        int result = idStudent.hashCode();
-        result = 31 * result + cnp.hashCode();
+        int result = getIdStudent() != null ? getIdStudent().hashCode() : 0;
+        result = 31 * result + (getName() != null ? getName().hashCode() : 0);
+        result = 31 * result + (getSurname() != null ? getSurname().hashCode() : 0);
+        result = 31 * result + (getGender() != null ? getGender().hashCode() : 0);
+        result = 31 * result + (getCnp() != null ? getCnp().hashCode() : 0);
         return result;
     }
 

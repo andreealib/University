@@ -61,10 +61,10 @@ public class AddOrUpdateCourseController {
     }
 
     @RequestMapping(value = "/courses/edit/{idCourse:.+}", method = RequestMethod.POST)
-    public String submitCourseEdit(@PathVariable("idCourse")Integer idCourse) {
+    public String submitCourseEdit(@ModelAttribute("course") CourseDTO courseDTO) {
 
-        coursefacade.updateCourse(idCourse);
-        return "redirect:/courses";
+        coursefacade.updateCourse(courseDTO);
+        return "redirect:/courses/"+courseDTO.getIdCourse();
 
 
 

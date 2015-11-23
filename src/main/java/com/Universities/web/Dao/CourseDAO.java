@@ -85,10 +85,12 @@ public class CourseDAO {
                     c.setName(course.getName());
                     c.setProfessors(course.getProfessors());
                     c.setStudents(course.getStudents());
-                    professorDAO.saveOrUpdate(p);
+
 
                 }
+
             }
+            professorDAO.saveOrUpdate(p);
         }
 
 
@@ -101,10 +103,10 @@ public class CourseDAO {
                     c.setName(course.getName());
                     c.setProfessors(course.getProfessors());
                     c.setStudents(course.getStudents());
-                    studentDAO.saveOrUpdate(s);
                 }
-            }
 
+            }
+            studentDAO.saveOrUpdate(s);
         }
 
         session.saveOrUpdate(course1);

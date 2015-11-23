@@ -70,8 +70,8 @@ public class CourseService {
         courseDAO.addCourse(course);
     }
 
-    public void updateCourse(Integer idCourse) {
-        Course course = courseDAO.getCourseById(idCourse);
+    public void updateCourse(CourseDTO courseDTO) {
+        Course course = courseDAO.getCourseById(courseDTO.getIdCourse());
         courseDAO.updateCourse(course);
     }
 

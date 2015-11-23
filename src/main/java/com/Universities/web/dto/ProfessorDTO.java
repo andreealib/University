@@ -70,15 +70,22 @@ public class ProfessorDTO implements Serializable{
 
         ProfessorDTO that = (ProfessorDTO) o;
 
-        if (!idProfessor.equals(that.idProfessor)) return false;
-        return !(cnp != null ? !cnp.equals(that.cnp) : that.cnp != null);
+        if (getIdProfessor() != null ? !getIdProfessor().equals(that.getIdProfessor()) : that.getIdProfessor() != null)
+            return false;
+        if (getName() != null ? !getName().equals(that.getName()) : that.getName() != null) return false;
+        if (getSurname() != null ? !getSurname().equals(that.getSurname()) : that.getSurname() != null) return false;
+        if (getGender() != null ? !getGender().equals(that.getGender()) : that.getGender() != null) return false;
+        return !(getCnp() != null ? !getCnp().equals(that.getCnp()) : that.getCnp() != null);
 
     }
 
     @Override
     public int hashCode() {
-        int result = idProfessor.hashCode();
-        result = 31 * result + (cnp != null ? cnp.hashCode() : 0);
+        int result = getIdProfessor() != null ? getIdProfessor().hashCode() : 0;
+        result = 31 * result + (getName() != null ? getName().hashCode() : 0);
+        result = 31 * result + (getSurname() != null ? getSurname().hashCode() : 0);
+        result = 31 * result + (getGender() != null ? getGender().hashCode() : 0);
+        result = 31 * result + (getCnp() != null ? getCnp().hashCode() : 0);
         return result;
     }
 }

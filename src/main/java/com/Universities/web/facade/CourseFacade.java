@@ -36,9 +36,9 @@ public class CourseFacade {
         return courseService.getCourseById(idCourse);
     }
 
-    public void updateCourse(Integer idCourse) {
+    public void updateCourse(CourseDTO courseDTO) {
 
-        courseService.updateCourse(idCourse);
+        courseService.updateCourse(courseDTO);
     }
 
     public String deleteCourse(Integer idCourse) {
