@@ -76,7 +76,7 @@ public class CourseDAO {
         course1.setStudents(course.getStudents());
 
 
-   /*     //modify coresponding course in students that have this course
+        //modify coresponding course in students that have this course
        List<Professor> professorList=this.listProfessorsForCourse(course.getIdCourse());
         for (Professor p : professorList) {
             Set<Course> courses = p.getCourses();
@@ -85,9 +85,10 @@ public class CourseDAO {
                     c.setName(course.getName());
                     c.setProfessors(course.getProfessors());
                     c.setStudents(course.getStudents());
+                    professorDAO.saveOrUpdate(p);
+
                 }
             }
-            professorDAO.saveOrUpdate(p);
         }
 
 
@@ -100,10 +101,11 @@ public class CourseDAO {
                     c.setName(course.getName());
                     c.setProfessors(course.getProfessors());
                     c.setStudents(course.getStudents());
+                    studentDAO.saveOrUpdate(s);
                 }
             }
-            studentDAO.saveOrUpdate(s);
-        }*/
+
+        }
 
         session.saveOrUpdate(course1);
 

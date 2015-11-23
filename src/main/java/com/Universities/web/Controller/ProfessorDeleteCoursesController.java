@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 /**
  * Created by andreealibotean on 11/19/2015.
  */
+/*
 @Controller
 public class ProfessorDeleteCoursesController {
 
@@ -27,3 +28,4 @@ public class ProfessorDeleteCoursesController {
 
     }
 }
+*/
