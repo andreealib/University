@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
+
 /**
  * Created by andreealibotean on 11/18/2015.
  */
@@ -37,8 +39,8 @@ public class AddOrUpdateCourseController {
     }
 
     @RequestMapping(value = "/courseForm", method = RequestMethod.POST)
-    public String submitCourseForm(@ModelAttribute("course") CourseDTO course, BindingResult result, SessionStatus sessionStatus) {
-        courseValidator.validate(course, result);
+    public String submitCourseForm(@Valid @ModelAttribute("course") CourseDTO course, BindingResult result, SessionStatus sessionStatus) {
+        //courseValidator.validate(course, result);
 
         if (result.hasErrors()) {
             ModelAndView modelAndView = new ModelAndView("courseForm");
@@ -61,7 +63,15 @@ public class AddOrUpdateCourseController {
     }
 
     @RequestMapping(value = "/courses/edit/{idCourse:.+}", method = RequestMethod.POST)
-    public String submitCourseEdit(@ModelAttribute("course") CourseDTO courseDTO) {
+    public String submitCourseEdit(@Valid @ModelAttribute("course") CourseDTO courseDTO,BindingResult result) {
+
+        if(result.hasErrors()){
+            ModelAndView modelAndView = new ModelAndView("courseEdit");
+            CourseDTO course = coursefacade.viewCourse(courseDTO.getIdCourse());
+            modelAndView.addObject("course", course);
+            return modelAndView.getViewName();
+        }
+
 
         coursefacade.updateCourse(courseDTO);
         return "redirect:/courses/"+courseDTO.getIdCourse();

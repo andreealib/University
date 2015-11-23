@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
+
 /**
  * Created by andreealibotean on 11/18/2015.
  */
@@ -39,8 +41,8 @@ public class AddOrUpdateStudentController {
     }
 
     @RequestMapping(value = "/studentForm", method = RequestMethod.POST)
-    public String submitStudentForm(@ModelAttribute("student") StudentDTO student, BindingResult result, SessionStatus sessionStatus) {
-        studentValidator.validate(student, result);
+    public String submitStudentForm(@Valid @ModelAttribute("student") StudentDTO student, BindingResult result, SessionStatus sessionStatus) {
+        //studentValidator.validate(student, result);
 
         if (result.hasErrors()) {
             ModelAndView modelAndView = new ModelAndView("studentForm");
@@ -63,7 +65,15 @@ public class AddOrUpdateStudentController {
     }
 
     @RequestMapping(value = "/students/edit/{idStudent:.+}", method = RequestMethod.POST)
-    public String submitStudentEdit(@ModelAttribute("student") StudentDTO student) {
+    public String submitStudentEdit(@Valid @ModelAttribute("student") StudentDTO student,BindingResult result) {
+
+        if(result.hasErrors()){
+            ModelAndView modelAndView = new ModelAndView("studentEdit");
+            StudentDTO studentd = studentfacade.viewStudent(student.getIdStudent());
+            modelAndView.addObject("student", studentd);
+            return modelAndView.getViewName();
+        }
+
         studentfacade.updateStudent(student);
 
         return "redirect:/students";

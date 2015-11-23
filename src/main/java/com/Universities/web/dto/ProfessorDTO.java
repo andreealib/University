@@ -1,17 +1,34 @@
 package com.Universities.web.dto;
 
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.Range;
+import org.springframework.format.annotation.NumberFormat;
+
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Set;
 
 /**
  * Created by andreealibotean on 11/17/2015.
  */
-public class ProfessorDTO implements Serializable{
+public class ProfessorDTO implements Serializable {
     private Integer idProfessor;
+
+    @Size(min = 2, message = "Size name must be larger than 2.")
+    @NotBlank(message = "Cannot be empty.")
     private String name;
+
+    @Size(min = 2, message = "Size surname must be larger than 2.")
+    @NotBlank(message = "Cannot be empty.")
     private String surname;
+
+    @Pattern(regexp = "^[M|F|m|f]", message = "Gender must be: M,F,m or f and consists of only 1 character.")
     private String gender;
+
+    @Range(min = 1111111111111L, max = 9999999999999L, message = "Must be a 13-digit number and cannot start with 0.")
     private Long cnp;
+
     private Set<Integer> coursesIds;
 
 

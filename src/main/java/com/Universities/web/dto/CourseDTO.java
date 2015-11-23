@@ -1,5 +1,8 @@
 package com.Universities.web.dto;
 
+import org.hibernate.validator.constraints.NotBlank;
+
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Set;
 
@@ -9,6 +12,9 @@ import java.util.Set;
 public class CourseDTO implements Serializable {
 
     private Integer idCourse;
+
+    @Size(min = 2,message = "Size name must be larger than 2.")
+    @NotBlank(message = "Cannot be empty.")
     private String name;
     private Set<Integer> studentsIds;
     private Set<Integer> professorsIds;
