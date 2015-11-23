@@ -2,6 +2,7 @@ package com.Universities.web.dto;
 
 import org.hibernate.validator.constraints.NotBlank;
 
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Set;
@@ -15,6 +16,7 @@ public class CourseDTO implements Serializable {
 
     @Size(min = 2,message = "Size name must be larger than 2.")
     @NotBlank(message = "Cannot be empty.")
+    @Pattern(regexp = "^(?!\\s*$|\\s).*$",message = "Cannot begin with spaces.")
     private String name;
     private Set<Integer> studentsIds;
     private Set<Integer> professorsIds;
