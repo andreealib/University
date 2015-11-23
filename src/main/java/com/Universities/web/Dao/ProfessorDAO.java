@@ -43,18 +43,37 @@ public class ProfessorDAO {
         return singleResult;
     }
 
+
+    //CHECK UNIQUE CNP
+    public Professor checkUniqueCnp(Professor professor) {
+        Session session = getSession();
+        String cnp = String.valueOf(professor.getCnp());
+        String searchQuery = "from Professor p where p.cnp = :cnp";
+        Query query = session.createQuery(searchQuery);
+        query.setParameter("cnp", cnp);
+        Professor professor1 = (Professor) query.uniqueResult();
+        return professor1;
+    }
+
+
     public List<Professor> getLstProfessors() {
         Session session = getSession();
         List<Professor> lstProfessors = session.createQuery("from Professor").list();
         return lstProfessors;
     }
 
-    public void addProfessor(Professor professor) {
+    public boolean addProfessor(Professor professor) {
 
+        //
+        if (checkUniqueCnp(professor) != null) {
+            return false;
+        }
+
+        //
         Session session = getSession();
         session.save(professor);
         logger.info("professor added");
-
+        return true;
     }
 
     public void updateProfessor(Professor professor) {
@@ -83,7 +102,7 @@ public class ProfessorDAO {
             session.delete(professor);
 
             //deleteing the linked courses connected to this professor
-            for(Course course:professor.getCourses()){
+            for (Course course : professor.getCourses()) {
                 course.getProfessors().remove(professor);
             }
 
@@ -102,8 +121,8 @@ public class ProfessorDAO {
         return courses;
     }
 
-    public void saveOrUpdate(Professor professor){
-        Session session=getSession();
+    public void saveOrUpdate(Professor professor) {
+        Session session = getSession();
         session.saveOrUpdate(professor);
     }
 

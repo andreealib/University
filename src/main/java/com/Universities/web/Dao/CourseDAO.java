@@ -50,6 +50,8 @@ public class CourseDAO {
         return singleResult;
     }
 
+
+
     public List<Course> getLstCourses() {
         Session session = getSession();
         List<Course> lstCourses = session.createQuery("from Course").list();

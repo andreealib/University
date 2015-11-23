@@ -46,8 +46,25 @@ public class AddOrUpdateProfessorController {
         if (result.hasErrors()) {
             ModelAndView modelAndView = new ModelAndView("professorForm");
             modelAndView.addObject("professor", professor);
+            //String errorCnp="Already exist a person with this CNP in database.";
+           // modelAndView.addObject("errorCnp",errorCnp);
             return modelAndView.getViewName();
         }
+
+      /*  if(professorfacade.addProfessor(professor)==false){
+            ModelAndView modelAndView = new ModelAndView("professorForm");
+            modelAndView.addObject("professor", professor);
+            boolean errorCnp=true;
+             modelAndView.addObject("errorCnp",errorCnp);
+            return modelAndView.getViewName();
+        }
+        else{
+            ModelAndView modelAndView = new ModelAndView("professorForm");
+            modelAndView.addObject("professor", professor);
+            boolean errorCnp=false;
+            modelAndView.addObject("errorCnp",errorCnp);
+            //return modelAndView.getViewName();
+        }*/
 
         professorfacade.addProfessor(professor);
         return "redirect:professors";
