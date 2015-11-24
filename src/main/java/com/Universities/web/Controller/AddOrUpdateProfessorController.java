@@ -6,6 +6,7 @@ import com.Universities.web.dto.CourseDTO;
 import com.Universities.web.dto.ProfessorDTO;
 import com.Universities.web.facade.CourseFacade;
 import com.Universities.web.facade.ProfessorFacade;
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,6 +36,7 @@ public class AddOrUpdateProfessorController {
     public String setupProfessorForm(Model model) {
         ProfessorDTO professor = new ProfessorDTO();
         model.addAttribute("professor", professor);
+        //model.addAttribute("errorCnp",false);
         return "professorForm";
 
     }
@@ -42,31 +44,56 @@ public class AddOrUpdateProfessorController {
     @RequestMapping(value = "/professorForm", method = RequestMethod.POST)
     public String submitProfessorForm(@Valid @ModelAttribute("professor") ProfessorDTO professor, BindingResult result, SessionStatus sessionStatus) {
         //professorValidator.validate(professor, result);
+        ModelAndView modelAndView = new ModelAndView("professorForm");
 
         if (result.hasErrors()) {
-            ModelAndView modelAndView = new ModelAndView("professorForm");
+            //ModelAndView modelAndView = new ModelAndView("professorForm");
             modelAndView.addObject("professor", professor);
+            //modelAndView.addObject("errorCnp", false);
             //String errorCnp="Already exist a person with this CNP in database.";
-           // modelAndView.addObject("errorCnp",errorCnp);
+            // modelAndView.addObject("errorCnp",errorCnp);
             return modelAndView.getViewName();
         }
 
-      /*  if(professorfacade.addProfessor(professor)==false){
-            ModelAndView modelAndView = new ModelAndView("professorForm");
+      /*  if (professorfacade.addProfessor(professor) == false) {
+            //ModelAndView modelAndView = new ModelAndView("professorForm");
             modelAndView.addObject("professor", professor);
-            boolean errorCnp=true;
-             modelAndView.addObject("errorCnp",errorCnp);
+            boolean errorCnp = true;
+            modelAndView.addObject("errorCnp", errorCnp);
             return modelAndView.getViewName();
-        }
-        else{
-            ModelAndView modelAndView = new ModelAndView("professorForm");
-            modelAndView.addObject("professor", professor);
-            boolean errorCnp=false;
-            modelAndView.addObject("errorCnp",errorCnp);
+        } else {
+            //ModelAndView modelAndView = new ModelAndView("professorForm");
+            // modelAndView.addObject("professor", professor);
+            boolean errorCnp = false;
+            modelAndView.addObject("errorCnp", errorCnp);
             //return modelAndView.getViewName();
         }*/
 
-        professorfacade.addProfessor(professor);
+        /*boolean errorCnp=professorfacade.addProfessor(professor);
+        modelAndView.addObject("errorCnp",errorCnp);
+        if(errorCnp==true){
+            modelAndView.addObject("professor", professor);
+            modelAndView.addObject("errorCnp",false);
+            return modelAndView.getViewName();
+
+        }*/
+        //boolean errorCnp=false;
+        try {
+            professorfacade.addProfessor(professor);
+            //modelAndView.addObject("errorCnp",errorCnp);
+        } catch(ConstraintViolationException e) {
+            e.printStackTrace();
+            //errorCnp=true;
+            ModelAndView modelAndView1=new ModelAndView("professorFormException");
+            modelAndView.addObject("professor", new ProfessorDTO());
+            //modelAndView.addObject("errorCnp",true);
+            return modelAndView1.getViewName();
+
+
+
+
+        }
+        //modelAndView.addObject("errorCnp",errorCnp);
         return "redirect:professors";
 
 
@@ -81,9 +108,9 @@ public class AddOrUpdateProfessorController {
     }
 
     @RequestMapping(value = "/professors/edit/{idProfessor:.+}", method = RequestMethod.POST)
-    public String submitProfessorEdit(@Valid @ModelAttribute("professor") ProfessorDTO professor,BindingResult result) {
+    public String submitProfessorEdit(@Valid @ModelAttribute("professor") ProfessorDTO professor, BindingResult result) {
 
-        if(result.hasErrors()){
+        if (result.hasErrors()) {
             ModelAndView modelAndView = new ModelAndView("professorEdit");
             ProfessorDTO professord = professorfacade.viewProfessor(professor.getIdProfessor());
             modelAndView.addObject("professor", professord);

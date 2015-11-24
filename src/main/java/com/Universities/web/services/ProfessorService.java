@@ -62,9 +62,9 @@ public class ProfessorService {
 
     }
 
-    public boolean addProfessor(ProfessorDTO professorDTO) {
+    public void addProfessor(ProfessorDTO professorDTO) {
         Professor professor = professorConverter.convertProfessorDTOToProfessor(professorDTO);
-       return  professorDAO.addProfessor(professor);
+        professorDAO.addProfessor(professor);
     }
 
     public void updateProfessor(ProfessorDTO professorDTO) {

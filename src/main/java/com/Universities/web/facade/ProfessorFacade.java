@@ -25,9 +25,9 @@ public class ProfessorFacade {
         return professorService.getLstProfessors();
     }
 
-    public boolean addProfessor(ProfessorDTO professorDTO) {
+    public void addProfessor(ProfessorDTO professorDTO) {
 
-        return professorService.addProfessor(professorDTO);
+          professorService.addProfessor(professorDTO);
     }
 
     public ProfessorDTO viewProfessor(Integer idProfessor) {

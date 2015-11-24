@@ -6,7 +6,9 @@ import com.Universities.web.data.Professor;
 import com.Universities.web.data.Student;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -47,13 +49,14 @@ public class ProfessorDAO {
     //CHECK UNIQUE CNP
     public Professor checkUniqueCnp(Professor professor) {
         Session session = getSession();
-        String cnp = String.valueOf(professor.getCnp());
+        //String cnp = String.valueOf(professor.getCnp());
         String searchQuery = "from Professor p where p.cnp = :cnp";
         Query query = session.createQuery(searchQuery);
-        query.setParameter("cnp", cnp);
+        query.setParameter("cnp", professor.getCnp());
         Professor professor1 = (Professor) query.uniqueResult();
         return professor1;
     }
+    //
 
 
     public List<Professor> getLstProfessors() {
@@ -62,18 +65,14 @@ public class ProfessorDAO {
         return lstProfessors;
     }
 
-    public boolean addProfessor(Professor professor) {
+    public void addProfessor(Professor professor) throws ConstraintViolationException{
 
-        //
-        if (checkUniqueCnp(professor) != null) {
-            return false;
-        }
 
-        //
-        Session session = getSession();
-        session.save(professor);
-        logger.info("professor added");
-        return true;
+            Session session = getSession();
+            session.save(professor);
+            logger.info("professor added");
+
+
     }
 
     public void updateProfessor(Professor professor) {
