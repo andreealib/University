@@ -8,6 +8,7 @@ import com.Universities.web.facade.ProfessorFacade;
 import com.Universities.web.facade.StudentFacade;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -86,7 +87,17 @@ public class AddOrUpdateStudentController {
             return modelAndView.getViewName();
         }
 
-        studentfacade.updateStudent(student);
+        try {
+            studentfacade.updateStudent(student);
+
+        } catch (DataIntegrityViolationException e) {
+            e.printStackTrace();
+            ModelAndView modelAndView1=new ModelAndView("studentEditException");
+            StudentDTO student1 = studentfacade.viewStudent(student.getIdStudent());
+            modelAndView1.addObject("student", student1);
+            return modelAndView1.getViewName();
+
+        }
 
         return "redirect:/students";
 

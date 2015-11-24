@@ -9,6 +9,7 @@ import org.hibernate.exception.ConstraintViolationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -55,7 +56,7 @@ public class StudentDAO {
 
     }
 
-    public void updateStudent(Student student) {
+    public void updateStudent(Student student) throws DataIntegrityViolationException {
 
         Session session = getSession();
 

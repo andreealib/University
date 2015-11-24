@@ -94,12 +94,11 @@ public class AddOrUpdateProfessorController {
             e.printStackTrace();
             ModelAndView modelAndView1=new ModelAndView("professorEditException");
             ProfessorDTO professor1 = professorfacade.viewProfessor(professor.getIdProfessor());
-            modelAndView.addObject("professor", professor1);
+            modelAndView1.addObject("professor", professor1);
             return modelAndView1.getViewName();
 
-
         }
-        professorfacade.updateProfessor(professor);
+
 
         return "redirect:/professors";
 
