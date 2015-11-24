@@ -88,13 +88,6 @@
                                     <form:errors path="cnp"/>
                                 </div>
 
-
-                                <c:if test="${errorCnp==true}">
-                                    <div class="has-error" style="color: #ff0700">
-                                        There is already a person with this CNP registered in DB.
-                                    </div>
-                                </c:if>
-
                             </div>
                         </div>
 

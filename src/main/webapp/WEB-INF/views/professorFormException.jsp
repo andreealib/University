@@ -94,13 +94,8 @@
                                 <div class="has-error" style="color: #ff0700">
                                     <form:errors path="cnp"/>
                                 </div>
-
-
-                              <%--  <c:if test="${errorCnp==true}">
-                                    <div class="has-error" style="color: #ff0700">--%>
-                                        There is already a person with the CNP you entered registered in DB.
-                                  <%--  </div>
-                                </c:if>--%>
+                                <p style="color: #ff0700 ">This CNP is already registered.
+                                Please insert another or modify the CNP.</p>
 
                             </div>
                         </div>
@@ -108,18 +103,8 @@
                         <div class="form-group">
                             <div class="col-lg-6 col-lg-offset-6">
 
-                                    <%--<c:choose>
-
-                                        <c:when test="${errorCnp==true}">
-                                            <button type="submit" class="btn btn-primary" disabled="true">Submit</button>
-                                        </c:when>--%>
-
-                                    <%-- <c:otherwise>--%>
                                 <button type="submit" class="btn btn-primary">Submit</button>
-                                    <%--   </c:otherwise>
 
-                                   </c:choose>
-   --%>
 
                                 <a class="btn btn-default" href="<%=request.getContextPath()%>/professors">Back</a>
                             </div>

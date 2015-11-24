@@ -47,53 +47,23 @@ public class AddOrUpdateProfessorController {
         ModelAndView modelAndView = new ModelAndView("professorForm");
 
         if (result.hasErrors()) {
-            //ModelAndView modelAndView = new ModelAndView("professorForm");
             modelAndView.addObject("professor", professor);
-            //modelAndView.addObject("errorCnp", false);
-            //String errorCnp="Already exist a person with this CNP in database.";
-            // modelAndView.addObject("errorCnp",errorCnp);
             return modelAndView.getViewName();
         }
 
-      /*  if (professorfacade.addProfessor(professor) == false) {
-            //ModelAndView modelAndView = new ModelAndView("professorForm");
-            modelAndView.addObject("professor", professor);
-            boolean errorCnp = true;
-            modelAndView.addObject("errorCnp", errorCnp);
-            return modelAndView.getViewName();
-        } else {
-            //ModelAndView modelAndView = new ModelAndView("professorForm");
-            // modelAndView.addObject("professor", professor);
-            boolean errorCnp = false;
-            modelAndView.addObject("errorCnp", errorCnp);
-            //return modelAndView.getViewName();
-        }*/
-
-        /*boolean errorCnp=professorfacade.addProfessor(professor);
-        modelAndView.addObject("errorCnp",errorCnp);
-        if(errorCnp==true){
-            modelAndView.addObject("professor", professor);
-            modelAndView.addObject("errorCnp",false);
-            return modelAndView.getViewName();
-
-        }*/
-        //boolean errorCnp=false;
         try {
             professorfacade.addProfessor(professor);
-            //modelAndView.addObject("errorCnp",errorCnp);
-        } catch(ConstraintViolationException e) {
+
+        } catch (ConstraintViolationException e) {
             e.printStackTrace();
-            //errorCnp=true;
-            ModelAndView modelAndView1=new ModelAndView("professorFormException");
+
+            ModelAndView modelAndView1 = new ModelAndView("professorFormException");
             modelAndView.addObject("professor", new ProfessorDTO());
-            //modelAndView.addObject("errorCnp",true);
+
             return modelAndView1.getViewName();
 
-
-
-
         }
-        //modelAndView.addObject("errorCnp",errorCnp);
+
         return "redirect:professors";
 
 

@@ -4,10 +4,7 @@ import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
 import org.springframework.format.annotation.NumberFormat;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Set;
 
@@ -31,8 +28,8 @@ public class ProfessorDTO implements Serializable {
     @Pattern(regexp = "^[M|F|m|f]", message = "Gender must be: M,F,m or f and consists of only 1 character.")
     private String gender;
 
-    @Min(value = 1000000000000L,message = "Must consist of 13-digit number and cannot start with 0.")
-    @Max(value = 9999999999999L,message = "Must consist of 13-digit number and cannot start with 0.")
+    @NotNull(message = "Cannot be empty.")
+    @Range(min = 1000000000000L,max = 9999999999999L,message = "Must consist of 13-digit number and cannot start with 0.")
     private Long cnp;
 
     private Set<Integer> coursesIds;
