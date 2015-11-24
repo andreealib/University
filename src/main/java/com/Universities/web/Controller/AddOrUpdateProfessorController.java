@@ -8,6 +8,7 @@ import com.Universities.web.facade.CourseFacade;
 import com.Universities.web.facade.ProfessorFacade;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -79,14 +80,25 @@ public class AddOrUpdateProfessorController {
 
     @RequestMapping(value = "/professors/edit/{idProfessor:.+}", method = RequestMethod.POST)
     public String submitProfessorEdit(@Valid @ModelAttribute("professor") ProfessorDTO professor, BindingResult result) {
+        ModelAndView modelAndView = new ModelAndView("professorEdit");
 
         if (result.hasErrors()) {
-            ModelAndView modelAndView = new ModelAndView("professorEdit");
             ProfessorDTO professord = professorfacade.viewProfessor(professor.getIdProfessor());
             modelAndView.addObject("professor", professord);
             return modelAndView.getViewName();
         }
+        try {
+            professorfacade.updateProfessor(professor);
 
+        } catch (DataIntegrityViolationException e) {
+            e.printStackTrace();
+            ModelAndView modelAndView1=new ModelAndView("professorEditException");
+            ProfessorDTO professor1 = professorfacade.viewProfessor(professor.getIdProfessor());
+            modelAndView.addObject("professor", professor1);
+            return modelAndView1.getViewName();
+
+
+        }
         professorfacade.updateProfessor(professor);
 
         return "redirect:/professors";

@@ -5,6 +5,7 @@ import com.Universities.web.data.Course;
 import com.Universities.web.data.Student;
 import org.hibernate.Query;
 import org.hibernate.classic.Session;
+import org.hibernate.exception.ConstraintViolationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +47,7 @@ public class StudentDAO {
         return lstStudents;
     }
 
-    public void addStudent(Student student) {
+    public void addStudent(Student student) throws ConstraintViolationException {
 
         Session session = getSession();
         session.save(student);

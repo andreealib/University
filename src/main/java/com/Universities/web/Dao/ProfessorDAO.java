@@ -46,36 +46,23 @@ public class ProfessorDAO {
     }
 
 
-    //CHECK UNIQUE CNP
-    public Professor checkUniqueCnp(Professor professor) {
-        Session session = getSession();
-        //String cnp = String.valueOf(professor.getCnp());
-        String searchQuery = "from Professor p where p.cnp = :cnp";
-        Query query = session.createQuery(searchQuery);
-        query.setParameter("cnp", professor.getCnp());
-        Professor professor1 = (Professor) query.uniqueResult();
-        return professor1;
-    }
-    //
-
-
     public List<Professor> getLstProfessors() {
         Session session = getSession();
         List<Professor> lstProfessors = session.createQuery("from Professor").list();
         return lstProfessors;
     }
 
-    public void addProfessor(Professor professor) throws ConstraintViolationException{
+    public void addProfessor(Professor professor) throws ConstraintViolationException {
 
 
-            Session session = getSession();
-            session.save(professor);
-            logger.info("professor added");
+        Session session = getSession();
+        session.save(professor);
+        logger.info("professor added");
 
 
     }
 
-    public void updateProfessor(Professor professor) {
+    public void updateProfessor(Professor professor)  throws DataIntegrityViolationException{
 
         Session session = getSession();
 

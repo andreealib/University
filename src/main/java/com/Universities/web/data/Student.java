@@ -26,7 +26,7 @@ public class Student implements Serializable {
     @Column(name = "gender")
     private String gender;
 
-    @Column(name = "cnp")
+    @Column(name = "cnp",unique = true)
     private Long cnp;
 
     @ManyToMany(fetch = FetchType.LAZY,mappedBy = "students",cascade = {CascadeType.PERSIST,CascadeType.MERGE,CascadeType.DETACH})

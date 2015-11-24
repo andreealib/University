@@ -6,6 +6,7 @@ import com.Universities.web.dto.ProfessorDTO;
 import com.Universities.web.dto.StudentDTO;
 import com.Universities.web.facade.ProfessorFacade;
 import com.Universities.web.facade.StudentFacade;
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -43,14 +44,25 @@ public class AddOrUpdateStudentController {
     @RequestMapping(value = "/studentForm", method = RequestMethod.POST)
     public String submitStudentForm(@Valid @ModelAttribute("student") StudentDTO student, BindingResult result, SessionStatus sessionStatus) {
         //studentValidator.validate(student, result);
-
+        ModelAndView modelAndView = new ModelAndView("studentForm");
         if (result.hasErrors()) {
-            ModelAndView modelAndView = new ModelAndView("studentForm");
+
             modelAndView.addObject("student", student);
             return modelAndView.getViewName();
         }
 
-        studentfacade.addStudent(student);
+        try {
+            studentfacade.addStudent(student);
+
+        } catch (ConstraintViolationException e) {
+            e.printStackTrace();
+
+            ModelAndView modelAndView1 = new ModelAndView("studentFormException");
+            modelAndView.addObject("student", new ProfessorDTO());
+
+            return modelAndView1.getViewName();
+
+        }
         return "redirect:students";
 
 
