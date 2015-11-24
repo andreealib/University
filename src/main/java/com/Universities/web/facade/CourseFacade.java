@@ -72,4 +72,8 @@ public class CourseFacade {
         courseService.deleteProfessorFromCourse(idCourse, idProfessor);
     }
 
+    public void coursesPdf(List<CourseDTO> courseDTOList){
+        courseService.coursesPdf(courseDTOList);
+    }
+
 }

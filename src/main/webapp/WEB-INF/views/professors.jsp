@@ -69,6 +69,13 @@
                                     href="${pageContext.request.contextPath}/professorForm">Add</a>
                             </td>
                         </tr>
+
+
+                        <tr>
+                            <a class="btn btn-default" href="<%=request.getContextPath()%>/professorsPdf" target="_blank">PDF</a>
+                        </tr>
+
+
                         </tbody>
                     </table>
                 </div>

@@ -70,6 +70,12 @@
               <td colspan="6"><a href="${pageContext.request.contextPath}/studentForm">Add</a>
               </td>
             </tr>
+
+            <tr>
+              <a class="btn btn-default" href="<%=request.getContextPath()%>/studentsPdf" target="_blank">PDF</a>
+            </tr>
+
+
             </tbody>
           </table>
         </div>

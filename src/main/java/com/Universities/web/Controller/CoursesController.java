@@ -2,6 +2,7 @@ package com.Universities.web.Controller;
 
 import com.Universities.web.dto.CourseDTO;
 import com.Universities.web.facade.CourseFacade;
+import com.Universities.web.services.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +24,8 @@ public class CoursesController {
     CourseFacade courseFacade;
 
 
+
+
     /**
      * Viewmodel for all entry from "courses" table
      *
@@ -34,9 +37,11 @@ public class CoursesController {
 
         List<CourseDTO> courseList = courseFacade.getLstcourses();
         model.addAttribute("courses", courseList);
-
+        courseFacade.coursesPdf(courseList);
         return "courses";
     }
+
+
 
     @RequestMapping(value = "/courses/{idCourse:.+}", method = RequestMethod.GET)
     public ModelAndView viewCourse(ModelAndView model, @PathVariable("idCourse") Integer idCourse) {

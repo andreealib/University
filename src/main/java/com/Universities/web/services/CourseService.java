@@ -8,13 +8,20 @@ import com.Universities.web.data.Student;
 import com.Universities.web.dto.CourseDTO;
 import com.Universities.web.dto.ProfessorDTO;
 import com.Universities.web.dto.StudentDTO;
+import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.CMYKColor;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.itextpdf.*;
 
-import java.util.ArrayList;
-import java.util.HashSet;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.*;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by andreealibotean on 11/17/2015.
@@ -161,6 +168,49 @@ public class CourseService {
 
     public void deleteProfessorFromCourse(Integer idCourse, Integer idProfessor) {
         courseDAO.deleteProfessorFromCourse(idCourse, idProfessor);
+
+    }
+
+    public void coursesPdf(List<CourseDTO> courseDTOList) {
+        Document document = new Document(PageSize.A4, 50, 50, 50, 50);
+        try {
+            PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("C:\\Users\\andreealibotean\\Desktop\\University\\src\\main\\webapp\\resources\\pdf\\courses.pdf"));
+            document.open();
+
+            Paragraph title1 = new Paragraph("List of courses for " + new Date().toString(), FontFactory.getFont(FontFactory.HELVETICA, 18, Font.BOLDITALIC, new CMYKColor(0, 255, 255, 17)));
+            Paragraph title11 = new Paragraph("Courses:", FontFactory.getFont(FontFactory.HELVETICA, 16, Font.BOLDITALIC, new CMYKColor(0, 255, 255, 17)));
+            Chapter chapter1 = new Chapter(title1, 1);
+            chapter1.setNumberDepth(0);
+            Section section1 = chapter1.addSection(title11);
+
+            PdfPTable t = new PdfPTable(2);
+            t.setSpacingBefore(25);
+            t.setSpacingAfter(25);
+
+            PdfPCell c1 = new PdfPCell(new Phrase("No."));
+            t.addCell(c1);
+
+            PdfPCell c2 = new PdfPCell(new Phrase("Name"));
+            t.addCell(c2);
+
+
+            int no = 0;
+            for (CourseDTO c : courseDTOList) {
+                t.addCell(new PdfPCell(new Phrase("" + ++no + ".")));
+                t.addCell(new PdfPCell(new Phrase(c.getName())));
+            }
+
+            section1.add(t);
+            document.add(chapter1);
+            document.close();
+
+
+        } catch (DocumentException de) {
+            de.printStackTrace();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
 
     }
 

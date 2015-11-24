@@ -92,6 +92,7 @@
                             <div class="col-lg-8">
                                 <form:input type="text" path="cnp" placeholder="insert 13 digits no."/>
                                 <div class="has-error" style="color: #ff0700">
+
                                     <form:errors path="cnp"/>
                                 </div>
                                 <p style="color: #ff0700 ">This CNP is already registered.

@@ -49,6 +49,9 @@ public class ProfessorFacade {
     public List<CourseDTO> listCoursesForProfessor(Integer idProfessor) {
         return professorService.listCoursesForProfessor(idProfessor);
     }
+    public void professorsPdf(List<ProfessorDTO> professorDTOList){
+        professorService.professorsPdf(professorDTOList);
 
+    }
 
 }

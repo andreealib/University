@@ -12,10 +12,18 @@ import com.Universities.web.data.Student;
 import com.Universities.web.dto.CourseDTO;
 import com.Universities.web.dto.ProfessorDTO;
 import com.Universities.web.dto.StudentDTO;
+import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.CMYKColor;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -93,6 +101,59 @@ public class StudentService {
         }
 
         return attendingCourses;
+    }
+
+    public void studentsPdf(List<StudentDTO> studentDTOList) {
+        Document document = new Document(PageSize.A4, 50, 50, 50, 50);
+        try {
+            PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("C:\\Users\\andreealibotean\\Desktop\\University\\src\\main\\webapp\\resources\\pdf\\students.pdf"));
+            document.open();
+
+            Paragraph title1 = new Paragraph("List of students for " + new Date().toString(), FontFactory.getFont(FontFactory.HELVETICA, 18, Font.BOLDITALIC, new CMYKColor(0, 255, 255, 17)));
+            Paragraph title11 = new Paragraph("Students:", FontFactory.getFont(FontFactory.HELVETICA, 16, Font.BOLDITALIC, new CMYKColor(0, 255, 255, 17)));
+            Chapter chapter1 = new Chapter(title1, 1);
+            chapter1.setNumberDepth(0);
+            Section section1 = chapter1.addSection(title11);
+
+            PdfPTable t = new PdfPTable(5);
+            t.setSpacingBefore(25);
+            t.setSpacingAfter(25);
+
+            PdfPCell c1 = new PdfPCell(new Phrase("No."));
+            t.addCell(c1);
+
+            PdfPCell c2 = new PdfPCell(new Phrase("Name"));
+            t.addCell(c2);
+
+            PdfPCell c3 = new PdfPCell(new Phrase("Surname"));
+            t.addCell(c3);
+
+            PdfPCell c4 = new PdfPCell(new Phrase("Gender"));
+            t.addCell(c4);
+
+            PdfPCell c5 = new PdfPCell(new Phrase("CNP"));
+            t.addCell(c5);
+            int no = 0;
+            for (StudentDTO c : studentDTOList) {
+                t.addCell(new PdfPCell(new Phrase("" + ++no + ".")));
+                t.addCell(new PdfPCell(new Phrase(c.getName())));
+                t.addCell(new PdfPCell(new Phrase(c.getSurname())));
+                t.addCell(new PdfPCell(new Phrase(c.getGender())));
+                t.addCell(new PdfPCell(new Phrase(""+c.getCnp())));
+            }
+
+            section1.add(t);
+            document.add(chapter1);
+            document.close();
+
+
+        } catch (DocumentException de) {
+            de.printStackTrace();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+
     }
 
 

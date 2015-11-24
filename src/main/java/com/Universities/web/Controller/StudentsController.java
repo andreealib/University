@@ -5,6 +5,7 @@ import com.Universities.web.dto.ProfessorDTO;
 import com.Universities.web.dto.StudentDTO;
 import com.Universities.web.facade.ProfessorFacade;
 import com.Universities.web.facade.StudentFacade;
+import com.Universities.web.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,20 +25,22 @@ public class StudentsController {
     public StudentFacade studentFacade;
 
 
+
+
     @RequestMapping(value = "/students", method = RequestMethod.GET)
     public String getAllStudents(Model model) {
 
         List<StudentDTO> studentList = studentFacade.getLstStudents();
         model.addAttribute("students", studentList);
-
+        studentFacade.studentsPdf(studentList);
         return "students";
     }
 
-    @RequestMapping(value="/students/{idStudent:.+}",method = RequestMethod.GET)
-    public String viewStudent(Model model, @PathVariable("idStudent") Integer idStudent){
-        StudentDTO student=studentFacade.viewStudent(idStudent);
-        model.addAttribute("student",student);
-        model.addAttribute("attendedCourses",studentFacade.listCoursesForStudent(idStudent));
+    @RequestMapping(value = "/students/{idStudent:.+}", method = RequestMethod.GET)
+    public String viewStudent(Model model, @PathVariable("idStudent") Integer idStudent) {
+        StudentDTO student = studentFacade.viewStudent(idStudent);
+        model.addAttribute("student", student);
+        model.addAttribute("attendedCourses", studentFacade.listCoursesForStudent(idStudent));
 
         return "studentView";
 
