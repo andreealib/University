@@ -76,4 +76,13 @@ public class CourseFacade {
         courseService.coursesPdf(courseDTOList);
     }
 
+    public Integer getNoOfPages(){
+        return courseService.getNoOfPages(3);
+    }
+
+    public List<CourseDTO> getLstcoursesPerPage(Integer pageNumber){
+        return courseService.getLstCoursesPerPage(pageNumber,3);
+
+    }
+
 }

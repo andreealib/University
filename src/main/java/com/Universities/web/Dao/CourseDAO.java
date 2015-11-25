@@ -195,6 +195,29 @@ public class CourseDAO {
 
     }
 
+    public Integer getNoOfCourses(){
+        Session session=getSession();
+        String queryString="select count(*) from Course";
+        Query query=session.createQuery(queryString);
+        Long singleResult=(Long) query.uniqueResult();
+        Integer noOfCourses=singleResult.intValue();
+        logger.info("no. of courses is:"+noOfCourses);
+        return noOfCourses;
+    }
+
+    public List<Course> getLstCoursesPerPage(Integer pageNumber,Integer coursesPerPage){
+        int start=coursesPerPage*(pageNumber-1);
+        Session session=getSession();
+        String queryString="from Course c order by c.idCourse";
+        Query query=session.createQuery(queryString);
+        query.setFirstResult(start);
+        query.setMaxResults(coursesPerPage);
+
+        List<Course> courseList=query.list();
+        return courseList;
+
+    }
+
 
 
 

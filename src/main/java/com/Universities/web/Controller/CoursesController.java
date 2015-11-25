@@ -24,23 +24,22 @@ public class CoursesController {
     CourseFacade courseFacade;
 
 
-
-
     /**
      * Viewmodel for all entry from "courses" table
      *
      * @param model
      * @return courses.jsp
      */
-    @RequestMapping(value = "/courses", method = RequestMethod.GET)
-    public String getAllCourses(Model model) {
+    @RequestMapping(value = "/courses/page={page}", method = RequestMethod.GET)
+    public String getAllCourses(@PathVariable("page") String page, Model model) {
 
-        List<CourseDTO> courseList = courseFacade.getLstcourses();
+        Integer pageNumber = Integer.parseInt(page);
+        List<CourseDTO> courseList = courseFacade.getLstcoursesPerPage(pageNumber);
+        model.addAttribute("numberOfPages",courseFacade.getNoOfPages());
         model.addAttribute("courses", courseList);
         courseFacade.coursesPdf(courseList);
         return "courses";
     }
-
 
 
     @RequestMapping(value = "/courses/{idCourse:.+}", method = RequestMethod.GET)

@@ -214,5 +214,31 @@ public class CourseService {
 
     }
 
+    public Integer getNoOfPages(Integer coursesPerPage) {
+        Integer noOfCourses = courseDAO.getNoOfCourses();
+        Integer noOfPages;
+        if (noOfCourses % coursesPerPage == 0) {
+            noOfPages = noOfCourses / coursesPerPage;
+        } else {
+            noOfPages = noOfCourses / coursesPerPage + 1;
+        }
+        return noOfPages;
+    }
+
+    public List<CourseDTO> getLstCoursesPerPage(Integer pageNumber,Integer coursesPerPage){
+        List<Course> courseList=courseDAO.getLstCoursesPerPage(pageNumber,coursesPerPage);
+
+        List<CourseDTO> courseDTOs = new ArrayList<CourseDTO>();
+
+        for (Course cd : courseList) {
+            CourseDTO courseDTO = courseConverter.convertCourseToDTO(cd);
+            courseDTOs.add(courseDTO);
+        }
+
+        return courseDTOs;
+
+
+    }
+
 
 }

@@ -63,6 +63,16 @@
                         </tbody>
                         <tbody>
                         <tr>
+                            <td>
+                                <div class="pagination-container">
+                                    <c:forEach var="page" begin="1" end="${numberOfPages}">
+                                        <c:url var="url" value="/courses/page=${page}" />
+                                        <span id="page-number"> <a href="${url}"> ${page} </a> </span>
+                                    </c:forEach>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
                             <td colspan="6"><a href="${pageContext.request.contextPath}/courseForm">Add</a>
                             </td>
                         </tr>
