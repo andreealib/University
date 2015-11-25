@@ -96,7 +96,7 @@
                                     <form:errors path="cnp"/>
                                 </div>
                                 <p style="color: #ff0700 ">This CNP is already registered.
-                                Please insert another or modify the CNP.</p>
+                                    Please insert another or modify the CNP.</p>
 
                             </div>
                         </div>
@@ -107,7 +107,8 @@
                                 <button type="submit" class="btn btn-primary">Submit</button>
 
 
-                                <a class="btn btn-default" href="<%=request.getContextPath()%>/professors/page=1">Back</a>
+                                <a class="btn btn-default"
+                                   href="<%=request.getContextPath()%>/professors/page=1">Back</a>
                             </div>
                         </div>
 

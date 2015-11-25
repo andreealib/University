@@ -52,6 +52,6 @@ public class CourseAddProfessorsController {
         Integer id = idCourse;
         courseFacade.addProfessorsForCourse(courseDTO);
 
-        return "redirect:/courses/"+String.valueOf(id);
+        return "redirect:/courses/" + String.valueOf(id);
     }
 }

@@ -37,14 +37,12 @@ public class AddOrUpdateProfessorController {
     public String setupProfessorForm(Model model) {
         ProfessorDTO professor = new ProfessorDTO();
         model.addAttribute("professor", professor);
-        //model.addAttribute("errorCnp",false);
         return "professorForm";
 
     }
 
     @RequestMapping(value = "/professorForm", method = RequestMethod.POST)
     public String submitProfessorForm(@Valid @ModelAttribute("professor") ProfessorDTO professor, BindingResult result, SessionStatus sessionStatus) {
-        //professorValidator.validate(professor, result);
         ModelAndView modelAndView = new ModelAndView("professorForm");
 
         if (result.hasErrors()) {
@@ -92,7 +90,7 @@ public class AddOrUpdateProfessorController {
 
         } catch (DataIntegrityViolationException e) {
             e.printStackTrace();
-            ModelAndView modelAndView1=new ModelAndView("professorEditException");
+            ModelAndView modelAndView1 = new ModelAndView("professorEditException");
             ProfessorDTO professor1 = professorfacade.viewProfessor(professor.getIdProfessor());
             modelAndView1.addObject("professor", professor1);
             return modelAndView1.getViewName();
@@ -100,7 +98,7 @@ public class AddOrUpdateProfessorController {
         }
 
 
-        return "redirect:/professors/"+professor.getIdProfessor();
+        return "redirect:/professors/" + professor.getIdProfessor();
 
 
     }

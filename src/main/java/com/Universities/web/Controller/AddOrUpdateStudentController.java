@@ -44,7 +44,6 @@ public class AddOrUpdateStudentController {
 
     @RequestMapping(value = "/studentForm", method = RequestMethod.POST)
     public String submitStudentForm(@Valid @ModelAttribute("student") StudentDTO student, BindingResult result, SessionStatus sessionStatus) {
-        //studentValidator.validate(student, result);
         ModelAndView modelAndView = new ModelAndView("studentForm");
         if (result.hasErrors()) {
 
@@ -78,9 +77,9 @@ public class AddOrUpdateStudentController {
     }
 
     @RequestMapping(value = "/students/edit/{idStudent:.+}", method = RequestMethod.POST)
-    public String submitStudentEdit(@Valid @ModelAttribute("student") StudentDTO student,BindingResult result) {
+    public String submitStudentEdit(@Valid @ModelAttribute("student") StudentDTO student, BindingResult result) {
 
-        if(result.hasErrors()){
+        if (result.hasErrors()) {
             ModelAndView modelAndView = new ModelAndView("studentEdit");
             StudentDTO studentd = studentfacade.viewStudent(student.getIdStudent());
             modelAndView.addObject("student", studentd);
@@ -92,14 +91,14 @@ public class AddOrUpdateStudentController {
 
         } catch (DataIntegrityViolationException e) {
             e.printStackTrace();
-            ModelAndView modelAndView1=new ModelAndView("studentEditException");
+            ModelAndView modelAndView1 = new ModelAndView("studentEditException");
             StudentDTO student1 = studentfacade.viewStudent(student.getIdStudent());
             modelAndView1.addObject("student", student1);
             return modelAndView1.getViewName();
 
         }
 
-        return "redirect:/students/"+student.getIdStudent();
+        return "redirect:/students/" + student.getIdStudent();
 
 
     }

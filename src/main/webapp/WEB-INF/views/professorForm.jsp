@@ -94,20 +94,12 @@
                         <div class="form-group">
                             <div class="col-lg-6 col-lg-offset-6">
 
-                                <%--<c:choose>
 
-                                    <c:when test="${errorCnp==true}">
-                                        <button type="submit" class="btn btn-primary" disabled="true">Submit</button>
-                                    </c:when>--%>
+                                <button type="submit" class="btn btn-primary">Submit</button>
 
-                                   <%-- <c:otherwise>--%>
-                                        <button type="submit" class="btn btn-primary">Submit</button>
-                                 <%--   </c:otherwise>
 
-                                </c:choose>
---%>
-
-                                <a class="btn btn-default" href="<%=request.getContextPath()%>/professors/page=1">Back</a>
+                                <a class="btn btn-default"
+                                   href="<%=request.getContextPath()%>/professors/page=1">Back</a>
                             </div>
                         </div>
 

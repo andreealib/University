@@ -27,7 +27,7 @@ public class ProfessorFacade {
 
     public void addProfessor(ProfessorDTO professorDTO) {
 
-          professorService.addProfessor(professorDTO);
+        professorService.addProfessor(professorDTO);
     }
 
     public ProfessorDTO viewProfessor(Integer idProfessor) {
@@ -49,18 +49,19 @@ public class ProfessorFacade {
     public List<CourseDTO> listCoursesForProfessor(Integer idProfessor) {
         return professorService.listCoursesForProfessor(idProfessor);
     }
-    public void professorsPdf(List<ProfessorDTO> professorDTOList){
+
+    public void professorsPdf(List<ProfessorDTO> professorDTOList) {
         professorService.professorsPdf(professorDTOList);
 
     }
 
-    public Integer getNoOfPages(){
+    public Integer getNoOfPages() {
 
         return professorService.getNoOfPages(3);
     }
 
-    public List<ProfessorDTO> getLstProfessorsPerPage(Integer pageNumber){
-        return professorService.getLstProfessorsPerPage(pageNumber,3);
+    public List<ProfessorDTO> getLstProfessorsPerPage(Integer pageNumber) {
+        return professorService.getLstProfessorsPerPage(pageNumber, 3);
 
     }
 

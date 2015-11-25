@@ -30,7 +30,6 @@ public class Student implements Serializable {
     private Long cnp;
 
     @ManyToMany(fetch = FetchType.LAZY,mappedBy = "students",targetEntity = Course.class,cascade = {CascadeType.PERSIST,CascadeType.MERGE})
-    //@JoinTable(name="course_has_student",joinColumns = @JoinColumn(name="student_idStudent"),inverseJoinColumns = @JoinColumn(name="course_idCourse"))
     private Set<Course> courses;
 
     public Integer getIdStudent() {

@@ -48,7 +48,7 @@ public class StudentService {
     public StudentDTO getStudentById(Integer idStudent) {
 
         Student student = studentDAO.getStudentById(idStudent);
-        StudentDTO studentDTO = studentConverter.convertStudentToStudentDTO(studentDAO.getStudentById(idStudent));
+        StudentDTO studentDTO = studentConverter.convertStudentToStudentDTO(student);
         return studentDTO;
 
     }
@@ -69,8 +69,7 @@ public class StudentService {
 
     }
 
-    public void addStudent(StudentDTO studentDTO)
-    {
+    public void addStudent(StudentDTO studentDTO) {
         Student student = studentConverter.convertStudentDTOToStudent(studentDTO);
         studentDAO.addStudent(student);
     }
@@ -82,11 +81,9 @@ public class StudentService {
 
     public String deleteStudent(Integer idStudent) {
 
-        if(studentDAO.deleteStudent(idStudent)==true)
-        {
+        if (studentDAO.deleteStudent(idStudent) == true) {
             return "The student has been deleted.";
-        }
-        else{
+        } else {
             return "There was a problem in deleting the student.";
         }
 
@@ -139,7 +136,7 @@ public class StudentService {
                 t.addCell(new PdfPCell(new Phrase(c.getName())));
                 t.addCell(new PdfPCell(new Phrase(c.getSurname())));
                 t.addCell(new PdfPCell(new Phrase(c.getGender())));
-                t.addCell(new PdfPCell(new Phrase(""+c.getCnp())));
+                t.addCell(new PdfPCell(new Phrase("" + c.getCnp())));
             }
 
             section1.add(t);
@@ -168,8 +165,8 @@ public class StudentService {
         return noOfPages;
     }
 
-    public List<StudentDTO> getLstStudentsPerPage(Integer pageNumber,Integer studentsPerPage){
-        List<Student> studentList=studentDAO.getLstStudentsPerPage(pageNumber,studentsPerPage);
+    public List<StudentDTO> getLstStudentsPerPage(Integer pageNumber, Integer studentsPerPage) {
+        List<Student> studentList = studentDAO.getLstStudentsPerPage(pageNumber, studentsPerPage);
 
         List<StudentDTO> studentDTOs = new ArrayList<StudentDTO>();
 

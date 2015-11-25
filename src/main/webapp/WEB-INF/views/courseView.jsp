@@ -60,7 +60,8 @@
                                     <a class="btn btn-default"
                                        href="<%=request.getContextPath()%>/courses/edit/${course.idCourse}">Update
                                         course</a>
-                                    <a class="btn btn-default" href="<%=request.getContextPath()%>/courses/page=1">Back</a>
+                                    <a class="btn btn-default"
+                                       href="<%=request.getContextPath()%>/courses/page=1">Back</a>
                                 </div>
                             </div>
                         </fieldset>

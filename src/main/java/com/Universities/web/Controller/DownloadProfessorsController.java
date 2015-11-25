@@ -30,9 +30,11 @@ public class DownloadProfessorsController {
     @RequestMapping(value = "/professorsPdf", method = RequestMethod.GET)
     public void donwloadCoursesPdf(HttpServletResponse response) throws IOException {
 
+        //generate professors.pdf
         List<ProfessorDTO> professorList = professorFacade.getLstProfessors();
         professorFacade.professorsPdf(professorList);
 
+        //access the pdf and render it to user
         File file = new File("C:\\Users\\andreealibotean\\Desktop\\University\\src\\main\\webapp\\resources\\pdf\\professors.pdf");
 
         if (!file.exists()) {

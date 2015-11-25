@@ -69,7 +69,7 @@
                             <td>
                                 <div class="pagination-container">
                                     <c:forEach var="page" begin="1" end="${numberOfPages}">
-                                        <c:url var="url" value="/professors/page=${page}" />
+                                        <c:url var="url" value="/professors/page=${page}"/>
                                         <span id="page-number"> <a href="${url}"> ${page} </a> </span>
                                     </c:forEach>
                                 </div>
@@ -84,7 +84,8 @@
 
 
                         <tr>
-                            <a class="btn btn-default" href="<%=request.getContextPath()%>/professorsPdf" target="_blank">PDF</a>
+                            <a class="btn btn-default" href="<%=request.getContextPath()%>/professorsPdf"
+                               target="_blank">PDF</a>
                         </tr>
 
 

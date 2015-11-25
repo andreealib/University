@@ -108,4 +108,15 @@ public class ProfessorDTO implements Serializable {
         result = 31 * result + (getCnp() != null ? getCnp().hashCode() : 0);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "ProfessorDTO{" +
+                "idProfessor=" + idProfessor +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", gender='" + gender + '\'' +
+                ", cnp=" + cnp +
+                '}';
+    }
 }

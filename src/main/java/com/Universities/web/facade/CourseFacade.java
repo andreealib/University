@@ -72,17 +72,17 @@ public class CourseFacade {
         courseService.deleteProfessorFromCourse(idCourse, idProfessor);
     }
 
-    public void coursesPdf(List<CourseDTO> courseDTOList){
+    public void coursesPdf(List<CourseDTO> courseDTOList) {
         courseService.coursesPdf(courseDTOList);
     }
 
-    public Integer getNoOfPages(){
+    public Integer getNoOfPages() {
 
         return courseService.getNoOfPages(3);
     }
 
-    public List<CourseDTO> getLstcoursesPerPage(Integer pageNumber){
-        return courseService.getLstCoursesPerPage(pageNumber,3);
+    public List<CourseDTO> getLstcoursesPerPage(Integer pageNumber) {
+        return courseService.getLstCoursesPerPage(pageNumber, 3);
 
     }
 

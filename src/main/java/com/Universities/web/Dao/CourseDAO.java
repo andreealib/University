@@ -52,7 +52,6 @@ public class CourseDAO {
     }
 
 
-
     public List<Course> getLstCourses() {
         Session session = getSession();
         List<Course> lstCourses = session.createQuery("from Course").list();
@@ -68,63 +67,13 @@ public class CourseDAO {
 
     public void updateCourse(Course course) {
 
+        Session session = getSession();
 
-       Session session = getSession();
-       /* Transaction tx=session.beginTransaction();
-        Course course1=(Course)session.get(Course.class,course.getIdCourse());
-        course1.setName(course.getName());
-        course1.setProfessors(course.getProfessors());
-        course1.setStudents(course.getStudents());
-        session.saveOrUpdate(course1);*/
-       String updateQuery="update Course c  set c.name= :name where c.idCourse= :idCourse";
-        Query query=session.createQuery(updateQuery);
-        query.setParameter("name",course.getName());
-        //query.setParameter("students",course.getStudents());
-        //query.setParameter("professors",course.getProfessors());
-
-       query.setParameter("idCourse",course.getIdCourse());
+        String updateQuery = "update Course c  set c.name= :name where c.idCourse= :idCourse";
+        Query query = session.createQuery(updateQuery);
+        query.setParameter("name", course.getName());
+        query.setParameter("idCourse", course.getIdCourse());
         query.executeUpdate();
-        //session.update(course);
-
-/*        Course course1 = getCourseById(course.getIdCourse());
-
-
-
-
-       //modify coresponding course in students that have this course
-       List<Professor> professorList=this.listProfessorsForCourse(course1.getIdCourse());
-        for (Professor p : professorList) {
-            Set<Course> courses = p.getCourses();
-            for (Course c : courses) {
-                if (c.equals(course)) {
-                    c.setName(course1.getName());
-                    c.setProfessors(course1.getProfessors());
-                    c.setStudents(course1.getStudents());
-
-
-                }
-
-            }
-            professorDAO.saveOrUpdate(p);
-        }
-
-
-        // modify coresponding course in students that have this course
-        List<Student> studentList=this.listStudentsForCourse(course1.getIdCourse());
-        for (Student s : studentList) {
-            Set<Course> courses = s.getCourses();
-            for (Course c : courses) {
-                if (c.equals(course)) {
-                    c.setName(course1.getName());
-                    c.setProfessors(course1.getProfessors());
-                    c.setStudents(course1.getStudents());
-                }
-
-            }
-            studentDAO.saveOrUpdate(s);
-        }
-
-       ;*/
 
 
     }
@@ -208,30 +157,28 @@ public class CourseDAO {
 
     }
 
-    public Integer getNoOfCourses(){
-        Session session=getSession();
-        String queryString="select count(*) from Course";
-        Query query=session.createQuery(queryString);
-        Long singleResult=(Long) query.uniqueResult();
-        Integer noOfCourses=singleResult.intValue();
-        logger.info("no. of courses is:"+noOfCourses);
+    public Integer getNoOfCourses() {
+        Session session = getSession();
+        String queryString = "select count(*) from Course";
+        Query query = session.createQuery(queryString);
+        Long singleResult = (Long) query.uniqueResult();
+        Integer noOfCourses = singleResult.intValue();
+        logger.info("no. of courses is:" + noOfCourses);
         return noOfCourses;
     }
 
-    public List<Course> getLstCoursesPerPage(Integer pageNumber,Integer coursesPerPage){
-        int start=coursesPerPage*(pageNumber-1);
-        Session session=getSession();
-        String queryString="from Course c order by c.idCourse";
-        Query query=session.createQuery(queryString);
+    public List<Course> getLstCoursesPerPage(Integer pageNumber, Integer coursesPerPage) {
+        int start = coursesPerPage * (pageNumber - 1);
+        Session session = getSession();
+        String queryString = "from Course c order by c.idCourse";
+        Query query = session.createQuery(queryString);
         query.setFirstResult(start);
         query.setMaxResults(coursesPerPage);
 
-        List<Course> courseList=query.list();
+        List<Course> courseList = query.list();
         return courseList;
 
     }
-
-
 
 
 }

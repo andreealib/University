@@ -20,8 +20,8 @@ public class CourseConverter {
 
     }
 
-    public Course convertCourseDTOToCourse(CourseDTO courseDTO){
-        Course course =new Course();
+    public Course convertCourseDTOToCourse(CourseDTO courseDTO) {
+        Course course = new Course();
 
         course.setIdCourse(courseDTO.getIdCourse());
         course.setName(courseDTO.getName());

@@ -79,7 +79,7 @@ public class CourseService {
 
     public void updateCourse(CourseDTO courseDTO) {
 
-        Course course=courseConverter.convertCourseDTOToCourse(courseDTO);
+        Course course = courseConverter.convertCourseDTOToCourse(courseDTO);
         courseDAO.updateCourse(course);
     }
 
@@ -143,8 +143,6 @@ public class CourseService {
 
     public void addProfessorsForCourse(CourseDTO courseDTO) {
 
-
-        //CourseDTO courseDTO = courseConverter.convertCourseToDTO(courseDAO.getCourseById(idCourse));
 
         Set<Integer> professorsIds = courseDTO.getProfessorsIds();
 
@@ -226,8 +224,8 @@ public class CourseService {
         return noOfPages;
     }
 
-    public List<CourseDTO> getLstCoursesPerPage(Integer pageNumber,Integer coursesPerPage){
-        List<Course> courseList=courseDAO.getLstCoursesPerPage(pageNumber,coursesPerPage);
+    public List<CourseDTO> getLstCoursesPerPage(Integer pageNumber, Integer coursesPerPage) {
+        List<Course> courseList = courseDAO.getLstCoursesPerPage(pageNumber, coursesPerPage);
 
         List<CourseDTO> courseDTOs = new ArrayList<CourseDTO>();
 

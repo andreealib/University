@@ -46,22 +46,22 @@ public class StudentFacade {
         return studentService.deleteStudent(idStudent);
     }
 
-    public List<CourseDTO> listCoursesForStudent(Integer idStudent){
+    public List<CourseDTO> listCoursesForStudent(Integer idStudent) {
         return studentService.listCoursesForStudent(idStudent);
     }
 
-    public void studentsPdf(List<StudentDTO> studentDTOList){
+    public void studentsPdf(List<StudentDTO> studentDTOList) {
         studentService.studentsPdf(studentDTOList);
 
     }
 
-    public Integer getNoOfPages(){
+    public Integer getNoOfPages() {
 
         return studentService.getNoOfPages(3);
     }
 
-    public List<StudentDTO> getLstStudentsPerPage(Integer pageNumber){
-        return studentService.getLstStudentsPerPage(pageNumber,3);
+    public List<StudentDTO> getLstStudentsPerPage(Integer pageNumber) {
+        return studentService.getLstStudentsPerPage(pageNumber, 3);
 
     }
 }

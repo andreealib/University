@@ -27,9 +27,11 @@ public class DownloadCoursesController {
     @RequestMapping(value = "/coursesPdf", method = RequestMethod.GET)
     public void donwloadCoursesPdf(HttpServletResponse response) throws IOException {
 
+        //generate courses.pdf
         List<CourseDTO> courseDTOs = courseFacade.getLstcourses();
         courseFacade.coursesPdf(courseDTOs);
 
+        //access the pdf and render it to user
         File file = new File("C:\\Users\\andreealibotean\\Desktop\\University\\src\\main\\webapp\\resources\\pdf\\courses.pdf");
 
         if (!file.exists()) {

@@ -20,9 +20,9 @@ public class CourseDeleteStudentController {
     @RequestMapping(value = "/courses/{idCourse:.+}/deleteStud/{idStudent:.+}", method = RequestMethod.GET)
     public String deleteStudentFromCourse(@PathVariable("idCourse") Integer idCourse, @PathVariable("idStudent") Integer idStudent) {
 
-       courseFacade.deleteStudentFromCourse(idCourse,idStudent);
+        courseFacade.deleteStudentFromCourse(idCourse, idStudent);
 
-        return "redirect:/courses/"+idCourse;
+        return "redirect:/courses/" + idCourse;
     }
 }
 

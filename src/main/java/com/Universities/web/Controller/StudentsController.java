@@ -25,16 +25,12 @@ public class StudentsController {
     public StudentFacade studentFacade;
 
 
-
-
     @RequestMapping(value = "/students/page={page}", method = RequestMethod.GET)
-    public String getAllStudents(@PathVariable("page")String page, Model model) {
-
+    public String getAllStudents(@PathVariable("page") String page, Model model) {
 
         Integer pageNumber = Integer.parseInt(page);
         List<StudentDTO> studList = studentFacade.getLstStudentsPerPage(pageNumber);
-        model.addAttribute("numberOfPages",studentFacade.getNoOfPages());
-
+        model.addAttribute("numberOfPages", studentFacade.getNoOfPages());
         model.addAttribute("students", studList);
 
         return "students";

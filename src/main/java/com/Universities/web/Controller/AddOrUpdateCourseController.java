@@ -40,7 +40,6 @@ public class AddOrUpdateCourseController {
 
     @RequestMapping(value = "/courseForm", method = RequestMethod.POST)
     public String submitCourseForm(@Valid @ModelAttribute("course") CourseDTO course, BindingResult result, SessionStatus sessionStatus) {
-        //courseValidator.validate(course, result);
 
         if (result.hasErrors()) {
             ModelAndView modelAndView = new ModelAndView("courseForm");
@@ -63,9 +62,9 @@ public class AddOrUpdateCourseController {
     }
 
     @RequestMapping(value = "/courses/edit/{idCourse:.+}", method = RequestMethod.POST)
-    public String submitCourseEdit(@Valid @ModelAttribute("course") CourseDTO courseDTO,BindingResult result) {
+    public String submitCourseEdit(@Valid @ModelAttribute("course") CourseDTO courseDTO, BindingResult result) {
 
-        if(result.hasErrors()){
+        if (result.hasErrors()) {
             ModelAndView modelAndView = new ModelAndView("courseEdit");
             CourseDTO course = coursefacade.viewCourse(courseDTO.getIdCourse());
             modelAndView.addObject("course", course);
@@ -74,12 +73,10 @@ public class AddOrUpdateCourseController {
 
 
         coursefacade.updateCourse(courseDTO);
-        return "redirect:/courses/"+courseDTO.getIdCourse();
-
+        return "redirect:/courses/" + courseDTO.getIdCourse();
 
 
     }
-
 
 
 }

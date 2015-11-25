@@ -62,7 +62,7 @@ public class ProfessorDAO {
 
     }
 
-    public void updateProfessor(Professor professor)  throws DataIntegrityViolationException{
+    public void updateProfessor(Professor professor) throws DataIntegrityViolationException {
 
         Session session = getSession();
 
@@ -87,7 +87,7 @@ public class ProfessorDAO {
         if (professor != null) {
             session.delete(professor);
 
-            //deleteing the linked courses connected to this professor
+            //deleting the linked courses connected to this professor
             for (Course course : professor.getCourses()) {
                 course.getProfessors().remove(professor);
             }
@@ -112,25 +112,25 @@ public class ProfessorDAO {
         session.saveOrUpdate(professor);
     }
 
-    public Integer getNoOfProfessors(){
-        Session session=getSession();
-        String queryString="select count(*) from Professor";
-        Query query=session.createQuery(queryString);
-        Long singleResult=(Long) query.uniqueResult();
-        Integer noOfProfessors=singleResult.intValue();
-        logger.info("no. of professors is:"+noOfProfessors);
+    public Integer getNoOfProfessors() {
+        Session session = getSession();
+        String queryString = "select count(*) from Professor";
+        Query query = session.createQuery(queryString);
+        Long singleResult = (Long) query.uniqueResult();
+        Integer noOfProfessors = singleResult.intValue();
+        logger.info("no. of professors is:" + noOfProfessors);
         return noOfProfessors;
     }
 
-    public List<Professor> getLstProfessorsPerPage(Integer pageNumber,Integer professorsPerPage){
-        int start=professorsPerPage*(pageNumber-1);
-        Session session=getSession();
-        String queryString="from Professor p order by p.idProfessor";
-        Query query=session.createQuery(queryString);
+    public List<Professor> getLstProfessorsPerPage(Integer pageNumber, Integer professorsPerPage) {
+        int start = professorsPerPage * (pageNumber - 1);
+        Session session = getSession();
+        String queryString = "from Professor p order by p.idProfessor";
+        Query query = session.createQuery(queryString);
         query.setFirstResult(start);
         query.setMaxResults(professorsPerPage);
 
-        List<Professor> professorList=query.list();
+        List<Professor> professorList = query.list();
         return professorList;
 
     }

@@ -44,12 +44,10 @@ public class ProfessorService {
     IntegerToCourse integerToCourse;
 
 
-
-
     public ProfessorDTO getProfessorById(Integer idProfessor) {
 
         Professor professor = professorDAO.getProfessorById(idProfessor);
-        ProfessorDTO professorDTO = professorConverter.convertProfessorToProfessorDTO(professorDAO.getProfessorById(idProfessor));
+        ProfessorDTO professorDTO = professorConverter.convertProfessorToProfessorDTO(professor);
         return professorDTO;
 
     }
@@ -102,61 +100,6 @@ public class ProfessorService {
     }
 
 
-
-
-
-//        Iterator<CourseDTO> iterator=teachingCourses.iterator();
-//        while(iterator.hasNext()){
-//
-//            if(iterator.next().getIdCourse()==idCourse){
-//                teachingCourses.remove(iterator.next());
-//            }
-//        }
-
-//        ProfessorDTO professorDTO = professorConverter.convertProfessorToProfessorDTO(professorDAO.getProfessorById(idProfessor));
-//
-//
-//        List<Course> courses = new ArrayList<Course>();
-//
-//        for (CourseDTO cdto : teachingCourses) {
-//            courses.add(courseConverter.convertCourseDTOToCourse(cdto));
-//        }
-//
-//        Course deletedCourse = courseDAO.getCourseById(idCourse);
-//        courses.remove(deletedCourse);
-//
-//
-//        Professor professor = professorDAO.getProfessorById(idProfessor);
-//        professor.setCourses(courses);
-//
-//        professorDAO.updateProfessor(professor);
-
-//       Professor professor=professorDAO.getProfessorById(idProfessor);
-//        ProfessorDTO professorDTO=professorConverter.convertProfessorToProfessorDTO(professor);
-//        Set<Integer> coursesDTO=professorDTO.getCoursesIds();
-//        coursesDTO.remove(idCourse);
-//        professorDTO.setCoursesIds(coursesDTO);
-//
-//
-//
-//        Course course=integerToCourse.convert(idCourse);
-//        CourseDTO courseDTO=courseConverter.convertCourseToDTO(course);
-//        Set<Integer> professorsDTO=courseDTO.getProfessorsIds();
-//        professorsDTO.remove(idProfessor);
-//        courseDTO.setProfessorsIds(professorsDTO);
-//
-//        Professor professorToUpdate=professorConverter.convertProfessorDTOToProfessor(professorDTO);
-//        professorToUpdate.getCourses().remove(course);
-//
-//        Course courseToUpdate=courseConverter.convertCourseDTOToCourse(courseDTO);
-//        courseToUpdate.getProfessors().remove(professor);
-//
-//
-//
-//        professorDAO.deleteCourseForProfessor(professorToUpdate);
-//        courseDAO.deleteProfessorForCourse(courseToUpdate);*/
-
-
     public void professorsPdf(List<ProfessorDTO> professorDTOList) {
         Document document = new Document(PageSize.A4, 50, 50, 50, 50);
         try {
@@ -193,7 +136,7 @@ public class ProfessorService {
                 t.addCell(new PdfPCell(new Phrase(c.getName())));
                 t.addCell(new PdfPCell(new Phrase(c.getSurname())));
                 t.addCell(new PdfPCell(new Phrase(c.getGender())));
-                t.addCell(new PdfPCell(new Phrase(""+c.getCnp())));
+                t.addCell(new PdfPCell(new Phrase("" + c.getCnp())));
             }
 
             section1.add(t);
@@ -222,8 +165,8 @@ public class ProfessorService {
         return noOfPages;
     }
 
-    public List<ProfessorDTO> getLstProfessorsPerPage(Integer pageNumber,Integer professorsPerPage){
-        List<Professor> professorList=professorDAO.getLstProfessorsPerPage(pageNumber,professorsPerPage);
+    public List<ProfessorDTO> getLstProfessorsPerPage(Integer pageNumber, Integer professorsPerPage) {
+        List<Professor> professorList = professorDAO.getLstProfessorsPerPage(pageNumber, professorsPerPage);
 
         List<ProfessorDTO> professorDTOs = new ArrayList<ProfessorDTO>();
 
@@ -236,7 +179,6 @@ public class ProfessorService {
 
 
     }
-
 
 
 }
