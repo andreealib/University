@@ -65,7 +65,7 @@ public class AddOrUpdateProfessorController {
 
         }
 
-        return "redirect:professors";
+        return "redirect:professors/page=1";
 
 
     }
@@ -100,7 +100,7 @@ public class AddOrUpdateProfessorController {
         }
 
 
-        return "redirect:/professors";
+        return "redirect:/professors/"+professor.getIdProfessor();
 
 
     }

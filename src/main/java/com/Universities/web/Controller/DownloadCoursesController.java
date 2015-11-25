@@ -1,5 +1,6 @@
 package com.Universities.web.Controller;
 
+import com.Universities.web.dto.CourseDTO;
 import com.Universities.web.facade.CourseFacade;
 import com.Universities.web.services.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.net.URLConnection;
 import java.nio.charset.Charset;
+import java.util.List;
 
 /**
  * Created by andreealibotean on 11/24/2015.
@@ -19,14 +21,18 @@ import java.nio.charset.Charset;
 @Controller
 public class DownloadCoursesController {
 
+    @Autowired
+    CourseFacade courseFacade;
 
+    @RequestMapping(value = "/coursesPdf", method = RequestMethod.GET)
+    public void donwloadCoursesPdf(HttpServletResponse response) throws IOException {
 
-    @RequestMapping(value="/coursesPdf", method = RequestMethod.GET)
-    public void donwloadCoursesPdf(HttpServletResponse response) throws IOException{
+        List<CourseDTO> courseDTOs = courseFacade.getLstcourses();
+        courseFacade.coursesPdf(courseDTOs);
 
-        File file=new File("C:\\Users\\andreealibotean\\Desktop\\University\\src\\main\\webapp\\resources\\pdf\\courses.pdf");
+        File file = new File("C:\\Users\\andreealibotean\\Desktop\\University\\src\\main\\webapp\\resources\\pdf\\courses.pdf");
 
-        if(!file.exists()){
+        if (!file.exists()) {
             String errorMessage = "Sorry. The file you are looking for does not exist";
             System.out.println(errorMessage);
             OutputStream outputStream = response.getOutputStream();
@@ -35,18 +41,18 @@ public class DownloadCoursesController {
             return;
         }
 
-        String mimeType= URLConnection.guessContentTypeFromName(file.getName());
-        if(mimeType==null){
+        String mimeType = URLConnection.guessContentTypeFromName(file.getName());
+        if (mimeType == null) {
             System.out.println("mimetype is not detectable, will take default");
             mimeType = "application/octet-stream";
         }
 
-        System.out.println("mimetype : "+mimeType);
+        System.out.println("mimetype : " + mimeType);
 
         response.setContentType(mimeType);
 
-        response.setHeader("Content-Disposition", String.format("inline; filename=\"" + file.getName() +"\""));
-        response.setContentLength((int)file.length());
+        response.setHeader("Content-Disposition", String.format("inline; filename=\"" + file.getName() + "\""));
+        response.setContentLength((int) file.length());
 
         InputStream inputStream = new BufferedInputStream(new FileInputStream(file));
 

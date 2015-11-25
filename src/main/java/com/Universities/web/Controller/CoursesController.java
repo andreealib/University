@@ -35,9 +35,10 @@ public class CoursesController {
 
         Integer pageNumber = Integer.parseInt(page);
         List<CourseDTO> courseList = courseFacade.getLstcoursesPerPage(pageNumber);
-        model.addAttribute("numberOfPages",courseFacade.getNoOfPages());
+
+        model.addAttribute("numberOfPages", courseFacade.getNoOfPages());
         model.addAttribute("courses", courseList);
-        courseFacade.coursesPdf(courseList);
+
         return "courses";
     }
 

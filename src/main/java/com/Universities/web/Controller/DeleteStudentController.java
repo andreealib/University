@@ -19,6 +19,6 @@ public class DeleteStudentController {
     @RequestMapping(value = "students/delete/{idStudent:.+}", method = RequestMethod.GET)
     public String deleteStudent(@PathVariable("idStudent") Integer idStudent) {
         studentFacade.deleteStudent(idStudent);
-        return "redirect:/students";
+        return "redirect:/students/page=1";
     }
 }

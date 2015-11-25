@@ -20,6 +20,6 @@ public class DeleteProfessorController {
     public String deleteProfessor(@PathVariable("idProfessor") Integer idProfessor) {
 
         professorFacade.deleteProfessor(idProfessor);
-        return "redirect:/professors";
+        return "redirect:/professors/page=1";
     }
 }

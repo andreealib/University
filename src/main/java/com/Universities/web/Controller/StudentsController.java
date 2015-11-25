@@ -30,9 +30,9 @@ public class StudentsController {
     @RequestMapping(value = "/students", method = RequestMethod.GET)
     public String getAllStudents(Model model) {
 
-        List<StudentDTO> studentList = studentFacade.getLstStudents();
-        model.addAttribute("students", studentList);
-        studentFacade.studentsPdf(studentList);
+
+        //model.addAttribute("students", studentList);
+
         return "students";
     }
 

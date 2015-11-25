@@ -211,5 +211,32 @@ public class ProfessorService {
     }
 
 
+    public Integer getNoOfPages(Integer professorsPerPage) {
+        Integer noOfProfessors = professorDAO.getNoOfProfessors();
+        Integer noOfPages;
+        if (noOfProfessors % professorsPerPage == 0) {
+            noOfPages = noOfProfessors / professorsPerPage;
+        } else {
+            noOfPages = noOfProfessors / professorsPerPage + 1;
+        }
+        return noOfPages;
+    }
+
+    public List<ProfessorDTO> getLstProfessorsPerPage(Integer pageNumber,Integer professorsPerPage){
+        List<Professor> professorList=professorDAO.getLstProfessorsPerPage(pageNumber,professorsPerPage);
+
+        List<ProfessorDTO> professorDTOs = new ArrayList<ProfessorDTO>();
+
+        for (Professor cd : professorList) {
+            ProfessorDTO professorDTO = professorConverter.convertProfessorToProfessorDTO(cd);
+            professorDTOs.add(professorDTO);
+        }
+
+        return professorDTOs;
+
+
+    }
+
+
 
 }

@@ -54,4 +54,14 @@ public class ProfessorFacade {
 
     }
 
+    public Integer getNoOfPages(){
+
+        return professorService.getNoOfPages(3);
+    }
+
+    public List<ProfessorDTO> getLstProfessorsPerPage(Integer pageNumber){
+        return professorService.getLstProfessorsPerPage(pageNumber,3);
+
+    }
+
 }

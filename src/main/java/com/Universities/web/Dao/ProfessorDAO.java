@@ -112,5 +112,28 @@ public class ProfessorDAO {
         session.saveOrUpdate(professor);
     }
 
+    public Integer getNoOfProfessors(){
+        Session session=getSession();
+        String queryString="select count(*) from Professor";
+        Query query=session.createQuery(queryString);
+        Long singleResult=(Long) query.uniqueResult();
+        Integer noOfProfessors=singleResult.intValue();
+        logger.info("no. of professors is:"+noOfProfessors);
+        return noOfProfessors;
+    }
+
+    public List<Professor> getLstProfessorsPerPage(Integer pageNumber,Integer professorsPerPage){
+        int start=professorsPerPage*(pageNumber-1);
+        Session session=getSession();
+        String queryString="from Professor p order by p.idProfessor";
+        Query query=session.createQuery(queryString);
+        query.setFirstResult(start);
+        query.setMaxResults(professorsPerPage);
+
+        List<Professor> professorList=query.list();
+        return professorList;
+
+    }
+
 
 }

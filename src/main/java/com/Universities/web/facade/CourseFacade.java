@@ -77,6 +77,7 @@ public class CourseFacade {
     }
 
     public Integer getNoOfPages(){
+
         return courseService.getNoOfPages(3);
     }
 

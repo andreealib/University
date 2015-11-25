@@ -22,9 +22,9 @@
     <div class="navbar-header">
         <ul class="nav navbar-nav navbar-right">
             <li><a href="http://localhost:8080">Home</a></li>
-            <li><a href="<%=request.getContextPath()%>/students">Students</a></li>
-            <li><a href="<%=request.getContextPath()%>/professors">Professors</a></li>
-            <li><a href="<%=request.getContextPath()%>/courses">Courses</a></li>
+            <li><a href="<%=request.getContextPath()%>/students/page=1">Students</a></li>
+            <li><a href="<%=request.getContextPath()%>/professors/page=1">Professors</a></li>
+            <li><a href="<%=request.getContextPath()%>/courses/page=1">Courses</a></li>
         </ul>
     </div>
     <div class="row">
@@ -103,7 +103,7 @@
                             <div class="col-lg-6 col-lg-offset-6">
                                 <button type="submit" class="btn btn-primary">Submit</button>
                                 <button type="reset" class="btn btn-default">Cancel</button>
-                                <a class="btn btn-default" href="<%=request.getContextPath()%>/professors">Back</a>
+                                <a class="btn btn-default" href="<%=request.getContextPath()%>/professors/page=1">Back</a>
                             </div>
                         </div>
 

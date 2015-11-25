@@ -25,12 +25,16 @@ public class ProfessorsController {
 
 
 
-    @RequestMapping(value = "/professors", method = RequestMethod.GET)
-    public String getAllProfessors(Model model) {
+    @RequestMapping(value = "/professors/page={page}", method = RequestMethod.GET)
+    public String getAllProfessors(@PathVariable("page")String page, Model model) {
 
-        List<ProfessorDTO> professorList = professorFacade.getLstProfessors();
-        model.addAttribute("professors", professorList);
-        professorFacade.professorsPdf(professorList);
+
+        Integer pageNumber = Integer.parseInt(page);
+        List<ProfessorDTO> profList = professorFacade.getLstProfessorsPerPage(pageNumber);
+        model.addAttribute("numberOfPages",professorFacade.getNoOfPages());
+
+        model.addAttribute("professors", profList);
+
         return "professors";
     }
 
