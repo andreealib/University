@@ -68,6 +68,11 @@ public class CourseDAO {
     public void updateCourse(Course course) {
 
         Session session = getSession();
+      /*  String updateQuery="update Course  set name= :name where idCourse= :idCourse";
+        Query query=session.createQuery(updateQuery);
+        query.setParameter("name",course.getName());
+        query.setParameter("idCourse",course.getIdCourse());
+        query.executeUpdate();*/
         //session.update(course);
 
         Course course1 = getCourseById(course.getIdCourse());
@@ -76,7 +81,6 @@ public class CourseDAO {
         course1.setName(course.getName());
         course1.setProfessors(course.getProfessors());
         course1.setStudents(course.getStudents());
-
 
        //modify coresponding course in students that have this course
        List<Professor> professorList=this.listProfessorsForCourse(course1.getIdCourse());
