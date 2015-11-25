@@ -2,6 +2,7 @@ package com.Universities.web.Dao;
 
 
 import com.Universities.web.data.Course;
+import com.Universities.web.data.Professor;
 import com.Universities.web.data.Student;
 import org.hibernate.Query;
 import org.hibernate.classic.Session;
@@ -107,6 +108,30 @@ public class StudentDAO {
     public void saveOrUpdate(Student student){
         Session session=getSession();
         session.saveOrUpdate(student);
+    }
+
+
+    public Integer getNoOfStudents(){
+        org.hibernate.Session session=getSession();
+        String queryString="select count(*) from Student";
+        Query query=session.createQuery(queryString);
+        Long singleResult=(Long) query.uniqueResult();
+        Integer noOfStudents=singleResult.intValue();
+        logger.info("no. of students is:"+noOfStudents);
+        return noOfStudents;
+    }
+
+    public List<Student> getLstStudentsPerPage(Integer pageNumber, Integer studentsPerPage){
+        int start=studentsPerPage*(pageNumber-1);
+        org.hibernate.Session session=getSession();
+        String queryString="from Student s order by s.idStudent";
+        Query query=session.createQuery(queryString);
+        query.setFirstResult(start);
+        query.setMaxResults(studentsPerPage);
+
+        List<Student> studentList=query.list();
+        return studentList;
+
     }
 
 

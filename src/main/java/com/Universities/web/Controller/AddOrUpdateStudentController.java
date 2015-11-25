@@ -64,7 +64,7 @@ public class AddOrUpdateStudentController {
             return modelAndView1.getViewName();
 
         }
-        return "redirect:students";
+        return "redirect:students/page=1";
 
 
     }
@@ -99,7 +99,7 @@ public class AddOrUpdateStudentController {
 
         }
 
-        return "redirect:/students";
+        return "redirect:/students/"+student.getIdStudent();
 
 
     }

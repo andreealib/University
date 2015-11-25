@@ -157,4 +157,31 @@ public class StudentService {
     }
 
 
+    public Integer getNoOfPages(Integer studentsPerPage) {
+        Integer noOfStudents = studentDAO.getNoOfStudents();
+        Integer noOfPages;
+        if (noOfStudents % studentsPerPage == 0) {
+            noOfPages = noOfStudents / studentsPerPage;
+        } else {
+            noOfPages = noOfStudents / studentsPerPage + 1;
+        }
+        return noOfPages;
+    }
+
+    public List<StudentDTO> getLstStudentsPerPage(Integer pageNumber,Integer studentsPerPage){
+        List<Student> studentList=studentDAO.getLstStudentsPerPage(pageNumber,studentsPerPage);
+
+        List<StudentDTO> studentDTOs = new ArrayList<StudentDTO>();
+
+        for (Student cd : studentList) {
+            StudentDTO studentDTO = studentConverter.convertStudentToStudentDTO(cd);
+            studentDTOs.add(studentDTO);
+        }
+
+        return studentDTOs;
+
+
+    }
+
+
 }

@@ -19,9 +19,9 @@
   <div class="navbar-header">
     <ul class="nav navbar-nav navbar-right">
       <li><a href="http://localhost:8080">Home</a></li>
-      <li><a href="<%=request.getContextPath()%>/students">Students</a></li>
-      <li><a href="<%=request.getContextPath()%>/professors">Professors</a></li>
-      <li><a href="<%=request.getContextPath()%>/courses">Courses</a></li>
+      <li><a href="<%=request.getContextPath()%>/students/page=1">Students</a></li>
+      <li><a href="<%=request.getContextPath()%>/professors/page=1">Professors</a></li>
+      <li><a href="<%=request.getContextPath()%>/courses/page=1">Courses</a></li>
     </ul>
   </div>
 
@@ -66,6 +66,19 @@
 
             </tbody>
             <tbody>
+
+            <tr>
+              <td>
+                <div class="pagination-container">
+                  <c:forEach var="page" begin="1" end="${numberOfPages}">
+                    <c:url var="url" value="/students/page=${page}" />
+                    <span id="page-number"> <a href="${url}"> ${page} </a> </span>
+                  </c:forEach>
+                </div>
+              </td>
+            </tr>
+
+
             <tr>
               <td colspan="6"><a href="${pageContext.request.contextPath}/studentForm">Add</a>
               </td>

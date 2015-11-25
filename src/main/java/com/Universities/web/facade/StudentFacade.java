@@ -54,4 +54,14 @@ public class StudentFacade {
         studentService.studentsPdf(studentDTOList);
 
     }
+
+    public Integer getNoOfPages(){
+
+        return studentService.getNoOfPages(3);
+    }
+
+    public List<StudentDTO> getLstStudentsPerPage(Integer pageNumber){
+        return studentService.getLstStudentsPerPage(pageNumber,3);
+
+    }
 }
