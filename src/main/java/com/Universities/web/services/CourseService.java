@@ -78,7 +78,8 @@ public class CourseService {
     }
 
     public void updateCourse(CourseDTO courseDTO) {
-        Course course = courseDAO.getCourseById(courseDTO.getIdCourse());
+
+        Course course=courseConverter.convertCourseDTOToCourse(courseDTO);
         courseDAO.updateCourse(course);
     }
 

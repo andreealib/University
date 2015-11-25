@@ -6,6 +6,7 @@ import com.Universities.web.data.Student;
 import com.Universities.web.dto.StudentDTO;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,20 +68,28 @@ public class CourseDAO {
 
     public void updateCourse(Course course) {
 
-        Session session = getSession();
-      /*  String updateQuery="update Course  set name= :name where idCourse= :idCourse";
-        Query query=session.createQuery(updateQuery);
-        query.setParameter("name",course.getName());
-        query.setParameter("idCourse",course.getIdCourse());
-        query.executeUpdate();*/
-        //session.update(course);
 
-        Course course1 = getCourseById(course.getIdCourse());
-
-
+       Session session = getSession();
+       /* Transaction tx=session.beginTransaction();
+        Course course1=(Course)session.get(Course.class,course.getIdCourse());
         course1.setName(course.getName());
         course1.setProfessors(course.getProfessors());
         course1.setStudents(course.getStudents());
+        session.saveOrUpdate(course1);*/
+       String updateQuery="update Course c  set c.name= :name where c.idCourse= :idCourse";
+        Query query=session.createQuery(updateQuery);
+        query.setParameter("name",course.getName());
+        //query.setParameter("students",course.getStudents());
+        //query.setParameter("professors",course.getProfessors());
+
+       query.setParameter("idCourse",course.getIdCourse());
+        query.executeUpdate();
+        //session.update(course);
+
+/*        Course course1 = getCourseById(course.getIdCourse());
+
+
+
 
        //modify coresponding course in students that have this course
        List<Professor> professorList=this.listProfessorsForCourse(course1.getIdCourse());
@@ -115,7 +124,7 @@ public class CourseDAO {
             studentDAO.saveOrUpdate(s);
         }
 
-        session.saveOrUpdate(course1);
+       ;*/
 
 
     }
