@@ -59,4 +59,5 @@ public class Course implements Serializable {
     public void setProfessors(Set<Professor> professors) {
         this.professors = professors;
     }
+
 }

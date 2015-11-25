@@ -87,7 +87,7 @@ public class CourseDAO {
         for (Professor p : professorList) {
             Set<Course> courses = p.getCourses();
             for (Course c : courses) {
-                if (c.getIdCourse()==course.getIdCourse()) {
+                if (c.equals(course)) {
                     c.setName(course1.getName());
                     c.setProfessors(course1.getProfessors());
                     c.setStudents(course1.getStudents());
@@ -105,7 +105,7 @@ public class CourseDAO {
         for (Student s : studentList) {
             Set<Course> courses = s.getCourses();
             for (Course c : courses) {
-                if (c.getIdCourse()==course.getIdCourse()) {
+                if (c.equals(course)) {
                     c.setName(course1.getName());
                     c.setProfessors(course1.getProfessors());
                     c.setStudents(course1.getStudents());
