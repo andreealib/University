@@ -21,6 +21,6 @@ public class DeleteCourseController {
 
         courseFacade.deleteCourse(idCourse);
 
-        return "redirect:/courses";
+        return "redirect:/courses/page=1";
     }
 }

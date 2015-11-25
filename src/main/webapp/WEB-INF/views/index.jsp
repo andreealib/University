@@ -13,8 +13,8 @@
     <div class="navbar-header">
         <ul class="nav navbar-nav navbar-right">
             <li><a href="http://localhost:8080">Home</a></li>
-            <li><a href="<%=request.getContextPath()%>/students">Students</a></li>
-            <li><a href="<%=request.getContextPath()%>/professors">Professors</a></li>
+            <li><a href="<%=request.getContextPath()%>/students/page=1">Students</a></li>
+            <li><a href="<%=request.getContextPath()%>/professors/page=1">Professors</a></li>
             <li><a href="<%=request.getContextPath()%>/courses/page=1">Courses</a></li>
         </ul>
     </div>

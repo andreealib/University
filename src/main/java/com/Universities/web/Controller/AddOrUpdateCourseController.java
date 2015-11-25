@@ -49,7 +49,7 @@ public class AddOrUpdateCourseController {
         }
 
         coursefacade.addCourse(course);
-        return "redirect:courses";
+        return "redirect:courses/page=1";
 
 
     }
