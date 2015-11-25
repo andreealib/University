@@ -58,3 +58,6 @@ server.pid
 ######################
 /.idea/workspace.xml
 /.idea/tasks.xml
+/webapp/resources/pdf/courses.pdf
+/webapp/resources/pdf/students.pdf
+/webapp/resources/pdf/professors.pdf
