@@ -78,15 +78,15 @@ public class CourseDAO {
         course1.setStudents(course.getStudents());
 
 
-        //modify coresponding course in students that have this course
-       List<Professor> professorList=this.listProfessorsForCourse(course.getIdCourse());
+       //modify coresponding course in students that have this course
+       List<Professor> professorList=this.listProfessorsForCourse(course1.getIdCourse());
         for (Professor p : professorList) {
             Set<Course> courses = p.getCourses();
             for (Course c : courses) {
-                if (c.equals(course)) {
-                    c.setName(course.getName());
-                    c.setProfessors(course.getProfessors());
-                    c.setStudents(course.getStudents());
+                if (c.getIdCourse()==course.getIdCourse()) {
+                    c.setName(course1.getName());
+                    c.setProfessors(course1.getProfessors());
+                    c.setStudents(course1.getStudents());
 
 
                 }
@@ -97,14 +97,14 @@ public class CourseDAO {
 
 
         // modify coresponding course in students that have this course
-        List<Student> studentList=this.listStudentsForCourse(course.getIdCourse());
+        List<Student> studentList=this.listStudentsForCourse(course1.getIdCourse());
         for (Student s : studentList) {
             Set<Course> courses = s.getCourses();
             for (Course c : courses) {
-                if (c.equals(course)) {
-                    c.setName(course.getName());
-                    c.setProfessors(course.getProfessors());
-                    c.setStudents(course.getStudents());
+                if (c.getIdCourse()==course.getIdCourse()) {
+                    c.setName(course1.getName());
+                    c.setProfessors(course1.getProfessors());
+                    c.setStudents(course1.getStudents());
                 }
 
             }
