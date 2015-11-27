@@ -17,6 +17,7 @@ public class UserService {
     private UserDAO userDAO;
 
     public User getUser(String login) {
+
         return userDAO.getUser(login);
     }
 }

@@ -3,6 +3,7 @@ package com.Universities.web.services;
 import com.Universities.web.Dao.UserDAO;
 //import com.Universities.web.data.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,6 +13,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -20,11 +22,12 @@ import java.util.List;
  * Created by andreealibotean on 11/27/2015.
  */
 @Service
-@Transactional
 public class CustomUserDetailsService implements UserDetailsService {
 
     @Autowired
+    //@Resource(name="userDAO")
     private UserDAO userDAO;
+
 
     public UserDetails loadUserByUsername(String login)
             throws UsernameNotFoundException {
