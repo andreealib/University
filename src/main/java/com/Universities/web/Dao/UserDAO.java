@@ -4,6 +4,7 @@ import com.Universities.web.data.User;
 import org.hibernate.Query;
 import org.hibernate.classic.Session;
 import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,7 +20,7 @@ import java.util.List;
 public class UserDAO {
 
     @Autowired
-    private HibernateTemplate hibernateTemplate;
+    private  org.springframework.orm.hibernate3.HibernateTemplate hibernateTemplate;
 
     private Session getSession() {
         return hibernateTemplate.getSessionFactory().getCurrentSession();

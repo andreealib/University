@@ -1,3 +1,4 @@
+<!--
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:beans="http://www.springframework.org/schema/beans"
        xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
@@ -7,16 +8,16 @@
     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 
 
-    <!-- Enable @Controller annotation support -->
+    &lt;!&ndash; Enable @Controller annotation support &ndash;&gt;
     <mvc:annotation-driven/>
 
-    <!--Mapping for static resources used to access images-->
+    &lt;!&ndash;Mapping for static resources used to access images&ndash;&gt;
     <mvc:resources mapping="/resources/**" location="/resources/"/>
 
     <context:component-scan base-package="com.Universities.web"/>
-    <import resource="spring-security.xml"/>
 
-    <!-- This is used by DispatcherServlet for transforming logical names into actual file names -->
+
+    &lt;!&ndash; This is used by DispatcherServlet for transforming logical names into actual file names &ndash;&gt;
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/views/"/>
         <property name="suffix" value=".jsp"/>
@@ -47,7 +48,7 @@
         </property>
     </bean>
 
-    <!-- Hibernate Transaction Manager -->
+    &lt;!&ndash; Hibernate Transaction Manager &ndash;&gt;
     <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
@@ -76,7 +77,7 @@
         </beans:bean>
     </mvc:interceptors>
 
-    <!-- Configure to plugin JSON as request and response in method handler -->
+    &lt;!&ndash; Configure to plugin JSON as request and response in method handler &ndash;&gt;
     <beans:bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
         <beans:property name="messageConverters">
             <beans:list>
@@ -85,14 +86,14 @@
         </beans:property>
     </beans:bean>
 
-    <!-- Configure bean to convert JSON to POJO and vice versa -->
+    &lt;!&ndash; Configure bean to convert JSON to POJO and vice versa &ndash;&gt;
     <beans:bean id="jsonMessageConverter"
                 class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
 
     </beans:bean>
 
 
-    <!--convert student sent through form to Student(Model)-->
+    &lt;!&ndash;convert student sent through form to Student(Model)&ndash;&gt;
     <beans:bean id="conversionServiceStudent" class="org.springframework.context.support.ConversionServiceFactoryBean">
         <beans:property name="converters">
             <beans:set>
@@ -101,7 +102,7 @@
         </beans:property>
     </beans:bean>
 
-    <!--convert professor sent through form to professor(Model)-->
+    &lt;!&ndash;convert professor sent through form to professor(Model)&ndash;&gt;
     <beans:bean id="conversionServiceProfessor"
                 class="org.springframework.context.support.ConversionServiceFactoryBean">
         <beans:property name="converters">
@@ -111,7 +112,7 @@
         </beans:property>
     </beans:bean>
 
-    <!--convert course sent through form to course(Model)-->
+    &lt;!&ndash;convert course sent through form to course(Model)&ndash;&gt;
     <beans:bean id="conversionServiceCourse" class="org.springframework.context.support.ConversionServiceFactoryBean">
         <beans:property name="converters">
             <beans:set>
@@ -121,4 +122,4 @@
     </beans:bean>
 
 
-</beans>
+</beans>-->
