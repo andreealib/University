@@ -9,6 +9,7 @@ import com.Universities.web.facade.StudentFacade;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -25,6 +26,7 @@ import javax.validation.Valid;
  * Created by andreealibotean on 11/18/2015.
  */
 @Controller
+@RequestMapping(value = "/admin")
 public class AddOrUpdateStudentController {
 
 
@@ -63,7 +65,7 @@ public class AddOrUpdateStudentController {
             return modelAndView1.getViewName();
 
         }
-        return "redirect:students/page=1";
+        return "redirect:/admin/students/page=1";
 
 
     }
@@ -98,7 +100,7 @@ public class AddOrUpdateStudentController {
 
         }
 
-        return "redirect:/students/" + student.getIdStudent();
+        return "redirect:/admin/students/" + student.getIdStudent();
 
 
     }

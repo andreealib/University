@@ -1,5 +1,6 @@
 package com.Universities.web.Controller;
 
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,17 +24,20 @@ public class LinkNavigation {
         return new ModelAndView("home");
     }
 
+
     @RequestMapping(value="/sec/moderation", method=RequestMethod.GET)
     public ModelAndView moderatorPage() {
 
         return new ModelAndView("moderation");
     }
 
+
     @RequestMapping(value="/admin/first", method=RequestMethod.GET)
     public ModelAndView firstAdminPage() {
 
         return new ModelAndView("admin-first");
     }
+
 
     @RequestMapping(value="/admin/second", method=RequestMethod.GET)
     public ModelAndView secondAdminPage() {

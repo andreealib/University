@@ -6,6 +6,7 @@ import com.Universities.web.facade.ProfessorFacade;
 import com.Universities.web.services.CourseService;
 import com.Universities.web.services.ProfessorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,7 +26,6 @@ public class DownloadProfessorsController {
 
     @Autowired
     ProfessorFacade professorFacade;
-
 
     @RequestMapping(value = "/professorsPdf", method = RequestMethod.GET)
     public void donwloadCoursesPdf(HttpServletResponse response) throws IOException {

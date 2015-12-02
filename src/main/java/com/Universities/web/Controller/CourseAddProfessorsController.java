@@ -7,6 +7,7 @@ import com.Universities.web.facade.CourseFacade;
 import com.Universities.web.facade.ProfessorFacade;
 import com.Universities.web.facade.StudentFacade;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +21,7 @@ import java.util.List;
  * Created by andreealibotean on 11/19/2015.
  */
 @Controller
+@RequestMapping(value = "/admin")
 public class CourseAddProfessorsController {
 
     @Autowired
@@ -52,6 +54,6 @@ public class CourseAddProfessorsController {
         Integer id = idCourse;
         courseFacade.addProfessorsForCourse(courseDTO);
 
-        return "redirect:/courses/" + String.valueOf(id);
+        return "redirect:/admin/courses/" + String.valueOf(id);
     }
 }

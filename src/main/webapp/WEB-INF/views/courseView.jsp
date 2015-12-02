@@ -20,9 +20,9 @@
     <div class="navbar-header">
         <ul class="nav navbar-nav navbar-right">
             <li><a href="http://localhost:8080">Home</a></li>
-            <li><a href="<%=request.getContextPath()%>/students/page=1">Students</a></li>
-            <li><a href="<%=request.getContextPath()%>/professors/page=1">Professors</a></li>
-            <li><a href="<%=request.getContextPath()%>/courses/page=1">Courses</a></li>
+            <li><a href="<%=request.getContextPath()%>/admin/students/page=1">Students</a></li>
+            <li><a href="<%=request.getContextPath()%>/admin/professors/page=1">Professors</a></li>
+            <li><a href="<%=request.getContextPath()%>/admin/courses/page=1">Courses</a></li>
         </ul>
     </div>
     <div class="bs-docs-section">
@@ -55,13 +55,13 @@
 
                             <div class="form-group">
                                 <div class="col-lg-12">
-                                    <a class="btn btn-default" href="<%=request.getContextPath()%>/courseForm">Add
+                                    <a class="btn btn-default" href="<%=request.getContextPath()%>/admin/courseForm">Add
                                         course</a>
                                     <a class="btn btn-default"
-                                       href="<%=request.getContextPath()%>/courses/edit/${course.idCourse}">Update
+                                       href="<%=request.getContextPath()%>/admin/courses/edit/${course.idCourse}">Update
                                         course</a>
                                     <a class="btn btn-default"
-                                       href="<%=request.getContextPath()%>/courses/page=1">Back</a>
+                                       href="<%=request.getContextPath()%>/admin/courses/page=1">Back</a>
                                 </div>
                             </div>
                         </fieldset>
@@ -84,11 +84,11 @@
                                 <c:forEach var="studentDTO" items="${registeredStudents}">
                                     <tr>
                                         <td><a class="btn btn-default"
-                                               href="<%=request.getContextPath()%>/students/${studentDTO.idStudent}">${studentDTO.name}${' '}${studentDTO.surname}</a>
+                                               href="<%=request.getContextPath()%>/admin/students/${studentDTO.idStudent}">${studentDTO.name}${' '}${studentDTO.surname}</a>
                                         </td>
 
                                         <td>
-                                            <a href="${pageContext.request.contextPath}/courses/${course.idCourse}/deleteStud/${studentDTO.idStudent}">Delete</a>
+                                            <a href="${pageContext.request.contextPath}/admin/courses/${course.idCourse}/deleteStud/${studentDTO.idStudent}">Delete</a>
                                         </td>
 
                                     </tr>
@@ -105,7 +105,7 @@
         <div>
             <label>
                 <a class="btn btn-default"
-                   href="<%=request.getContextPath()%>/courses/${course.idCourse}/addStudents">Add
+                   href="<%=request.getContextPath()%>/admin/courses/${course.idCourse}/addStudents">Add
                     students</a>
             </label>
         </div>
@@ -125,11 +125,11 @@
                                 <c:forEach var="professorDTO" items="${registeredProfessors}">
                                     <tr>
                                         <td><a class="btn btn-default"
-                                               href="<%=request.getContextPath()%>/professors/${professorDTO.idProfessor}">${professorDTO.name}${' '}${professorDTO.surname}</a>
+                                               href="<%=request.getContextPath()%>/admin/professors/${professorDTO.idProfessor}">${professorDTO.name}${' '}${professorDTO.surname}</a>
                                         </td>
 
                                         <td>
-                                            <a href="${pageContext.request.contextPath}/courses/${course.idCourse}/deleteProf/${professorDTO.idProfessor}">Delete</a>
+                                            <a href="${pageContext.request.contextPath}/admin/courses/${course.idCourse}/deleteProf/${professorDTO.idProfessor}">Delete</a>
                                         </td>
 
                                     </tr>
@@ -146,7 +146,7 @@
         <div>
             <label>
                 <a class="btn btn-default"
-                   href="<%=request.getContextPath()%>/courses/${course.idCourse}/addProfessors">Add
+                   href="<%=request.getContextPath()%>/admin/courses/${course.idCourse}/addProfessors">Add
                     professors</a>
             </label>
         </div>

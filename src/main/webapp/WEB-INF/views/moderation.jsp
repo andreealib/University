@@ -22,5 +22,14 @@
 <p>This is Moderation page. It's available for moderators.<br/>
     <a href="<c:url value="/j_spring_security_logout" />" >Logout</a> <br/>
     <a href="${pageContext.request.contextPath}/index.html">Home page</a><br/></p>
+
+<div>
+    <ul>
+        <li><a href="http://localhost:8080">Home</a></li>
+        <li><a href="<%=request.getContextPath()%>/students/page=1">Students</a></li>
+        <li><a href="<%=request.getContextPath()%>/professors/page=1">Professors</a></li>
+        <li><a href="<%=request.getContextPath()%>/courses/page=1">Courses</a></li>
+    </ul>
+</div>
 </body>
 </html>

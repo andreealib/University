@@ -19,13 +19,14 @@
     <div class="navbar-header">
         <ul class="nav navbar-nav navbar-right">
             <li><a href="http://localhost:8080">Home</a></li>
-            <li><a href="<%=request.getContextPath()%>/students/page=1">Students</a></li>
-            <li><a href="<%=request.getContextPath()%>/professors/page=1">Professors</a></li>
-            <li><a href="<%=request.getContextPath()%>/courses/page=1">Courses</a></li>
+            <li><a href="<%=request.getContextPath()%>/admin/students/page=1">Students</a></li>
+            <li><a href="<%=request.getContextPath()%>/admin/professors/page=1">Professors</a></li>
+            <li><a href="<%=request.getContextPath()%>/admin/courses/page=1">Courses</a></li>
         </ul>
     </div>
 
-    <div class="bs-docs-section">
+
+
         <div class="row">
             <div class="col-lg-12">
                 <div class="page-header">
@@ -49,13 +50,13 @@
                                 <td>${professor.name}</td>
                                 <td>${professor.surname}</td>
                                 <td>
-                                    <a href="${pageContext.request.contextPath}/professors/${professor.idProfessor}">View</a>
+                                    <a href="${pageContext.request.contextPath}/admin/professors/${professor.idProfessor}">View</a>
                                 </td>
                                 <td>
-                                    <a href="${pageContext.request.contextPath}/professors/edit/${professor.idProfessor}">Edit</a>
+                                    <a href="${pageContext.request.contextPath}/admin/professors/edit/${professor.idProfessor}">Edit</a>
                                 </td>
                                 <td>
-                                    <a href="${pageContext.request.contextPath}/professors/delete/${professor.idProfessor}">Delete</a>
+                                    <a href="${pageContext.request.contextPath}/admin/professors/delete/${professor.idProfessor}">Delete</a>
 
                                 </td>
                             </tr>
@@ -69,7 +70,7 @@
                             <td>
                                 <div class="pagination-container">
                                     <c:forEach var="page" begin="1" end="${numberOfPages}">
-                                        <c:url var="url" value="/professors/page=${page}"/>
+                                        <c:url var="url" value="/admin/professors/page=${page}"/>
                                         <span id="page-number"> <a href="${url}"> ${page} </a> </span>
                                     </c:forEach>
                                 </div>
@@ -78,13 +79,13 @@
 
                         <tr>
                             <td colspan="6"><a
-                                    href="${pageContext.request.contextPath}/professorForm">Add</a>
+                                    href="${pageContext.request.contextPath}/admin/professorForm">Add</a>
                             </td>
                         </tr>
 
 
                         <tr>
-                            <a class="btn btn-default" href="<%=request.getContextPath()%>/professorsPdf"
+                            <a class="btn btn-default" href="<%=request.getContextPath()%>/admin/professorsPdf"
                                target="_blank">PDF</a>
                         </tr>
 

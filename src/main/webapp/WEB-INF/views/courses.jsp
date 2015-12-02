@@ -20,9 +20,9 @@
     <div class="navbar-header">
         <ul class="nav navbar-nav navbar-right">
             <li><a href="http://localhost:8080">Home</a></li>
-            <li><a href="<%=request.getContextPath()%>/students/page=1">Students</a></li>
-            <li><a href="<%=request.getContextPath()%>/professors/page=1">Professors</a></li>
-            <li><a href="<%=request.getContextPath()%>/courses/page=1">Courses</a></li>
+            <li><a href="<%=request.getContextPath()%>/admin/students/page=1">Students</a></li>
+            <li><a href="<%=request.getContextPath()%>/admin/professors/page=1">Professors</a></li>
+            <li><a href="<%=request.getContextPath()%>/admin/courses/page=1">Courses</a></li>
         </ul>
     </div>
 
@@ -48,13 +48,13 @@
                                 <td>${status.index + 1}</td>
                                 <td>${courseDTO.name}</td>
                                 <td>
-                                    <a href="${pageContext.request.contextPath}/courses/${courseDTO.idCourse}">View</a>
+                                    <a href="${pageContext.request.contextPath}/admin/courses/${courseDTO.idCourse}">View</a>
                                 </td>
                                 <td>
-                                    <a href="${pageContext.request.contextPath}/courses/edit/${courseDTO.idCourse}">Edit</a>
+                                    <a href="${pageContext.request.contextPath}/admin/courses/edit/${courseDTO.idCourse}">Edit</a>
                                 </td>
                                 <td>
-                                    <a href="${pageContext.request.contextPath}/courses/delete/${courseDTO.idCourse}">Delete</a>
+                                    <a href="${pageContext.request.contextPath}/admin/courses/delete/${courseDTO.idCourse}">Delete</a>
                                 </td>
                             </tr>
 
@@ -66,14 +66,14 @@
                             <td>
                                 <div class="pagination-container">
                                     <c:forEach var="page" begin="1" end="${numberOfPages}">
-                                        <c:url var="url" value="/courses/page=${page}"/>
+                                        <c:url var="url" value="/admin/courses/page=${page}"/>
                                         <span id="page-number"> <a href="${url}"> ${page} </a> </span>
                                     </c:forEach>
                                 </div>
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="6"><a href="${pageContext.request.contextPath}/courseForm">Add</a>
+                            <td colspan="6"><a href="${pageContext.request.contextPath}/admin/courseForm">Add</a>
                             </td>
                         </tr>
 

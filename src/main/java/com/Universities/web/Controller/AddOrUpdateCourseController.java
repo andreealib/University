@@ -6,6 +6,7 @@ import com.Universities.web.dto.CourseDTO;
 import com.Universities.web.dto.StudentDTO;
 import com.Universities.web.facade.CourseFacade;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,6 +23,7 @@ import javax.validation.Valid;
  * Created by andreealibotean on 11/18/2015.
  */
 @Controller
+@RequestMapping(value = "/admin")
 public class AddOrUpdateCourseController {
 
     @Autowired
@@ -48,7 +50,7 @@ public class AddOrUpdateCourseController {
         }
 
         coursefacade.addCourse(course);
-        return "redirect:courses/page=1";
+        return "redirect:/admin/courses/page=1";
 
 
     }
@@ -73,7 +75,7 @@ public class AddOrUpdateCourseController {
 
 
         coursefacade.updateCourse(courseDTO);
-        return "redirect:/courses/" + courseDTO.getIdCourse();
+        return "redirect:/admin/courses/" + courseDTO.getIdCourse();
 
 
     }

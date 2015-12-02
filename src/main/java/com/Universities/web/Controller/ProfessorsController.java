@@ -5,6 +5,7 @@ import com.Universities.web.dto.ProfessorDTO;
 import com.Universities.web.facade.ProfessorFacade;
 import com.Universities.web.services.ProfessorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,11 +18,11 @@ import java.util.List;
  * Created by andreealibotean on 11/18/2015.
  */
 @Controller
+@RequestMapping(value = "/admin")
 public class ProfessorsController {
 
     @Autowired
     public ProfessorFacade professorFacade;
-
 
     @RequestMapping(value = "/professors/page={page}", method = RequestMethod.GET)
     public String getAllProfessors(@PathVariable("page") String page, Model model) {

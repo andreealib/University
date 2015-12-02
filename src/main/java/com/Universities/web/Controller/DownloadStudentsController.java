@@ -6,6 +6,7 @@ import com.Universities.web.facade.StudentFacade;
 import com.Universities.web.services.ProfessorService;
 import com.Universities.web.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;

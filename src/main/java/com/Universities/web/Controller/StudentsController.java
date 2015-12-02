@@ -7,6 +7,7 @@ import com.Universities.web.facade.ProfessorFacade;
 import com.Universities.web.facade.StudentFacade;
 import com.Universities.web.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,11 +20,11 @@ import java.util.List;
  * Created by andreealibotean on 11/18/2015.
  */
 @Controller
+@RequestMapping(value = "/admin")
 public class StudentsController {
 
     @Autowired
     public StudentFacade studentFacade;
-
 
     @RequestMapping(value = "/students/page={page}", method = RequestMethod.GET)
     public String getAllStudents(@PathVariable("page") String page, Model model) {
