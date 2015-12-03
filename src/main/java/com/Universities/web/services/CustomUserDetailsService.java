@@ -25,7 +25,6 @@ import java.util.List;
 public class CustomUserDetailsService implements UserDetailsService {
 
     @Autowired
-    //@Resource(name="userDAO")
     private UserDAO userDAO;
 
 
