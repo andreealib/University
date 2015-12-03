@@ -1,4 +1,4 @@
-package com.Universities.web.Controller;
+package com.Universities.web.Controller.admin;
 
 import com.Universities.web.facade.CourseFacade;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,24 +7,22 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
 /**
  * Created by andreealibotean on 11/20/2015.
  */
 @Controller
 @RequestMapping(value = "/admin")
-public class CourseDeleteStudentController {
+public class CourseDeleteProfessorController {
 
     @Autowired
     CourseFacade courseFacade;
 
-    @RequestMapping(value = "/courses/{idCourse:.+}/deleteStud/{idStudent:.+}", method = RequestMethod.GET)
-    public String deleteStudentFromCourse(@PathVariable("idCourse") Integer idCourse, @PathVariable("idStudent") Integer idStudent) {
+    @RequestMapping(value = "/courses/{idCourse:.+}/deleteProf/{idProfessor:.+}", method = RequestMethod.GET)
+    public String deleteProfessorFromCourse(@PathVariable("idCourse") Integer idCourse, @PathVariable("idProfessor") Integer idProfessor) {
 
-        courseFacade.deleteStudentFromCourse(idCourse, idStudent);
+        courseFacade.deleteProfessorFromCourse(idCourse, idProfessor);
 
         return "redirect:/admin/courses/" + idCourse;
     }
 }
-

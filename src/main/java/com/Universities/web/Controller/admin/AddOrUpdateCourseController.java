@@ -1,4 +1,4 @@
-package com.Universities.web.Controller;
+package com.Universities.web.Controller.admin;
 
 import com.Universities.web.Validator.CourseValidator;
 import com.Universities.web.data.Course;

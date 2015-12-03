@@ -21,6 +21,15 @@
 <p>
     <a href="<c:url value="/j_spring_security_logout" />" >Logout</a> <br/>
     <a href="${pageContext.request.contextPath}/index.html">Home page</a><br/>
+
+<div>
+    <ul>
+        <li><a href="http://localhost:8080">Home</a></li>
+        <li><a href="<%=request.getContextPath()%>/admin/students/page=1">Students</a></li>
+        <li><a href="<%=request.getContextPath()%>/admin/professors/page=1">Professors</a></li>
+        <li><a href="<%=request.getContextPath()%>/admin/courses/page=1">Courses</a></li>
+    </ul>
+</div>
 </p>
 </body>
 </html>

@@ -13,13 +13,12 @@
 
     <!--enable method level security using annotations-->
     <context:component-scan base-package="com.Universities.web.Controller"/>
-    <global-method-security secured-annotations="enabled"/>
-
+   <!-- <global-method-security secured-annotations="enabled"/>-->
     <http auto-config="true">
 
 
         <intercept-url pattern="/sec/moderation.html" access="ROLE_MODERATOR"/>
-        <intercept-url pattern="/admin/*" access="ROLE_ADMIN"/>
+        <intercept-url pattern="/admin/**" access="ROLE_ADMIN"/>
 
         <form-login login-page="/user-login.html"
                     default-target-url="/success-login.html"
@@ -38,47 +37,5 @@
 
     </beans:bean>
 
-   <!-- <beans:bean id="myDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <beans:property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <beans:property name="url" value="jdbc:mysql://localhost:3306/faculty"/>
-        <beans:property name="username" value="con1"/>
-        <beans:property name="password" value="con1"/>
-    </beans:bean>
-
-    <context:property-placeholder location="classpath:database.properties"/>
-
-    <tx:annotation-driven transaction-manager="transactionManager"/>
-
-
-    <beans:bean id="sessionFactory"
-          class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
-        <beans:property name="dataSource" ref="myDataSource"/>
-        <beans:property name="packagesToScan" value="com.Universities.web.data"/>
-        <beans:property name="hibernateProperties">
-            <beans:bean>
-                <beans:property value="hibernate.hbm2ddl.auto">none</beans:property>
-                <beans:property key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</beans:property>
-                <beans:property key="hibernate.show_sql">true</beans:property>
-            </beans:bean>
-        </beans:property>
-    </beans:bean>
-
-    &lt;!&ndash; Hibernate Transaction Manager &ndash;&gt;
-    <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-
-    <bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-
-    <beans:bean id="messageSource"
-                class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-        <beans:property name="basename" value="classpath:messages"/>
-        <beans:property name="defaultEncoding" value="UTF-8"/>
-    </beans:bean>-->
-
-    <!--  <beans:bean id="userService" class="com.Universities.web.services.UserService">
-      </beans:bean>-->
 
 </beans:beans>

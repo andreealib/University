@@ -1,4 +1,4 @@
-package com.Universities.web.Controller;
+package com.Universities.web.Controller.admin;
 
 import com.Universities.web.data.Student;
 import com.Universities.web.dto.ProfessorDTO;
