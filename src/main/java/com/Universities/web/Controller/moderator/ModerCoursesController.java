@@ -1,10 +1,8 @@
-package com.Universities.web.Controller.admin;
+package com.Universities.web.Controller.moderator;
 
 import com.Universities.web.dto.CourseDTO;
 import com.Universities.web.facade.CourseFacade;
-import com.Universities.web.services.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,12 +13,10 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 /**
- * Created by Lei Florin on 01.10.2015.
+ * Created by andreealibotean on 12/3/2015.
  */
-
 @Controller
-@RequestMapping(value = "/admin")
-public class CoursesController {
+public class ModerCoursesController {
 
     @Autowired
     CourseFacade courseFacade;
@@ -41,7 +37,7 @@ public class CoursesController {
         model.addAttribute("numberOfPages", courseFacade.getNoOfPages());
         model.addAttribute("courses", courseList);
 
-        return "admin/courses";
+        return "moder/courses";
     }
 
 
@@ -52,7 +48,7 @@ public class CoursesController {
         model.addObject("course", course);
         model.addObject("registeredStudents", courseFacade.listStudentsForCourse(idCourse));
         model.addObject("registeredProfessors", courseFacade.listProfessorsForCourse(idCourse));
-        model.setViewName("admin/courseView");
+        model.setViewName("moder/courseView");
         return model;
 
     }

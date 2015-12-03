@@ -39,10 +39,4 @@ public class LinkNavigation {
     }
 
 
-    @RequestMapping(value="/admin/second", method=RequestMethod.GET)
-    public ModelAndView secondAdminPage() {
-
-        return new ModelAndView("admin-second");
-    }
-
 }

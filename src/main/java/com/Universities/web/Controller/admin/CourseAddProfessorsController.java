@@ -33,7 +33,7 @@ public class CourseAddProfessorsController {
     @RequestMapping(value = "/courses/{idCourse:.+}/addProfessors", method = RequestMethod.GET)
     public ModelAndView setupAddProfessors(@PathVariable("idCourse") Integer idCourse) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("courseAddProfessors");
+        modelAndView.setViewName("admin/courseAddProfessors");
 
         CourseDTO courseDTO = courseFacade.viewCourse(idCourse);
 

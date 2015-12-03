@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: andreealibotean
-  Date: 11/10/2015
-  Time: 10:42 AM
+  Date: 12/3/2015
+  Time: 10:28 AM
   To change this template use File | Settings | File Templates.
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
@@ -11,7 +11,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Professor details</title>
+    <title>Student details</title>
     <link href="<c:url value="/resources/core/css/bootstrap.min.css" />" rel="stylesheet">
 </head>
 <body>
@@ -19,17 +19,17 @@
 <div class="container">
     <div class="navbar-header">
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="<%=request.getContextPath()%>/admin/first.html">Home</a></li>
-            <li><a href="<%=request.getContextPath()%>/admin/students/page=1">Students</a></li>
-            <li><a href="<%=request.getContextPath()%>/admin/professors/page=1">Professors</a></li>
-            <li><a href="<%=request.getContextPath()%>/admin/courses/page=1">Courses</a></li>
+            <li><a href="<%=request.getContextPath()%>/sec/moderation.html">Home</a></li>
+            <li><a href="<%=request.getContextPath()%>/students/page=1">Students</a></li>
+            <li><a href="<%=request.getContextPath()%>/professors/page=1">Professors</a></li>
+            <li><a href="<%=request.getContextPath()%>/courses/page=1">Courses</a></li>
         </ul>
     </div>
     <div class="bs-docs-section">
         <div class="row">
             <div class="col-lg-12">
                 <div class="page-header">
-                    <h1 id="forms">Professor Details</h1>
+                    <h1 id="forms">Student Details</h1>
                 </div>
             </div>
         </div>
@@ -39,30 +39,29 @@
                 <div class="well bs-component">
                     <form class="form-horizontal">
                         <fieldset>
-                            <legend>Professor details</legend>
+                            <legend>Student details</legend>
 
-                            <%--Professor Name--%>
+                            <%--Student Name--%>
                             <div class="form-group">
                                 <label class="col-lg-2 control-label">Name:</label>
 
                                 <div class="col-lg-8">
                                     <div class="radio">
                                         <label>
-                                            ${professor.name}
+                                            ${student.name}
                                         </label>
                                     </div>
                                 </div>
                             </div>
 
-
-                            <%--Professor Surname--%>
+                            <%--Student Surname--%>
                             <div class="form-group">
                                 <label class="col-lg-2 control-label">Surname:</label>
 
                                 <div class="col-lg-8">
                                     <div class="radio">
                                         <label>
-                                            ${professor.surname}
+                                            ${student.surname}
                                         </label>
                                     </div>
                                 </div>
@@ -76,7 +75,7 @@
                                 <div class="col-lg-8">
                                     <div class="radio">
                                         <label>
-                                            ${professor.gender}
+                                            ${student.gender}
                                         </label>
                                     </div>
                                 </div>
@@ -89,7 +88,7 @@
                                 <div class="col-lg-8">
                                     <div class="radio">
                                         <label>
-                                            ${professor.cnp}
+                                            ${student.cnp}
                                         </label>
                                     </div>
                                 </div>
@@ -98,12 +97,7 @@
                             <div class="form-group">
                                 <div class="col-lg-12">
                                     <a class="btn btn-default"
-                                       href="<%=request.getContextPath()%>/admin/professorForm">Add professor</a>
-                                    <a class="btn btn-default"
-                                       href="<%=request.getContextPath()%>/admin/professors/edit/${professor.idProfessor}">Update
-                                        professor</a>
-                                    <a class="btn btn-default"
-                                       href="<%=request.getContextPath()%>/admin/professors/page=1">Back</a>
+                                       href="<%=request.getContextPath()%>/students/page=1">Back</a>
                                 </div>
                             </div>
                         </fieldset>
@@ -112,34 +106,30 @@
             </div>
         </div>
 
-        <%--List of courses that professor teaches--%>
+        <%--List of attended courses--%>
         <div class="row table-bordered">
             <div class="form-group">
-                <label class="col-lg-2 control-label">Teaches at courses:</label>
+                <label class="col-lg-2 control-label">Enrolled in:</label>
 
                 <div class="col-lg-10">
                     <div class="radio">
                         <label>
                             <table class="table table-striped table-hover ">
                                 <tbody>
-                                <c:forEach var="courseDTO" items="${teachingCourses}">
+                                <c:forEach var="courseDTO" items="${attendedCourses}">
                                     <tr>
                                         <td><a class="btn btn-default"
-                                               href="<%=request.getContextPath()%>/admin/courses/${courseDTO.idCourse}">${courseDTO.name}</a>
+                                               href="<%=request.getContextPath()%>/courses/${courseDTO.idCourse}">${courseDTO.name}</a>
                                         </td>
-
-
                                     </tr>
                                 </c:forEach>
                                 </tbody>
                             </table>
                         </label>
-
                     </div>
                 </div>
             </div>
         </div>
-
 
     </div>
 
@@ -149,4 +139,3 @@
 
 </body>
 </html>
-

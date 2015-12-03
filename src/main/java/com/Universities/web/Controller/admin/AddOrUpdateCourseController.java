@@ -36,7 +36,7 @@ public class AddOrUpdateCourseController {
     public String setupCourseForm(Model model) {
         CourseDTO course = new CourseDTO();
         model.addAttribute("course", course);
-        return "courseForm";
+        return "admin/courseForm";
 
     }
 
@@ -44,7 +44,7 @@ public class AddOrUpdateCourseController {
     public String submitCourseForm(@Valid @ModelAttribute("course") CourseDTO course, BindingResult result, SessionStatus sessionStatus) {
 
         if (result.hasErrors()) {
-            ModelAndView modelAndView = new ModelAndView("courseForm");
+            ModelAndView modelAndView = new ModelAndView("admin/courseForm");
             modelAndView.addObject("course", course);
             return modelAndView.getViewName();
         }
@@ -57,7 +57,7 @@ public class AddOrUpdateCourseController {
 
     @RequestMapping(value = "/courses/edit/{idCourse:.+}", method = RequestMethod.GET)
     public ModelAndView setupCourseEdit(@PathVariable("idCourse") Integer idCourse) {
-        ModelAndView modelAndView = new ModelAndView("courseEdit");
+        ModelAndView modelAndView = new ModelAndView("admin/courseEdit");
         CourseDTO course = coursefacade.viewCourse(idCourse);
         modelAndView.addObject("course", course);
         return modelAndView;
@@ -67,7 +67,7 @@ public class AddOrUpdateCourseController {
     public String submitCourseEdit(@Valid @ModelAttribute("course") CourseDTO courseDTO, BindingResult result) {
 
         if (result.hasErrors()) {
-            ModelAndView modelAndView = new ModelAndView("courseEdit");
+            ModelAndView modelAndView = new ModelAndView("admin/courseEdit");
             CourseDTO course = coursefacade.viewCourse(courseDTO.getIdCourse());
             modelAndView.addObject("course", course);
             return modelAndView.getViewName();

@@ -39,13 +39,13 @@ public class AddOrUpdateProfessorController {
     public String setupProfessorForm(Model model) {
         ProfessorDTO professor = new ProfessorDTO();
         model.addAttribute("professor", professor);
-        return "professorForm";
+        return "admin/professorForm";
 
     }
 
     @RequestMapping(value = "/professorForm", method = RequestMethod.POST)
     public String submitProfessorForm(@Valid @ModelAttribute("professor") ProfessorDTO professor, BindingResult result, SessionStatus sessionStatus) {
-        ModelAndView modelAndView = new ModelAndView("professorForm");
+        ModelAndView modelAndView = new ModelAndView("admin/professorForm");
 
         if (result.hasErrors()) {
             modelAndView.addObject("professor", professor);
@@ -58,7 +58,7 @@ public class AddOrUpdateProfessorController {
         } catch (ConstraintViolationException e) {
             e.printStackTrace();
 
-            ModelAndView modelAndView1 = new ModelAndView("professorFormException");
+            ModelAndView modelAndView1 = new ModelAndView("admin/professorFormException");
             modelAndView.addObject("professor", new ProfessorDTO());
 
             return modelAndView1.getViewName();
@@ -72,7 +72,7 @@ public class AddOrUpdateProfessorController {
 
     @RequestMapping(value = "/professors/edit/{idProfessor:.+}", method = RequestMethod.GET)
     public ModelAndView setupProfessorEdit(@PathVariable("idProfessor") Integer idProfessor) {
-        ModelAndView modelAndView = new ModelAndView("professorEdit");
+        ModelAndView modelAndView = new ModelAndView("admin/professorEdit");
         ProfessorDTO professor = professorfacade.viewProfessor(idProfessor);
         modelAndView.addObject("professor", professor);
         return modelAndView;
@@ -80,7 +80,7 @@ public class AddOrUpdateProfessorController {
 
     @RequestMapping(value = "/professors/edit/{idProfessor:.+}", method = RequestMethod.POST)
     public String submitProfessorEdit(@Valid @ModelAttribute("professor") ProfessorDTO professor, BindingResult result) {
-        ModelAndView modelAndView = new ModelAndView("professorEdit");
+        ModelAndView modelAndView = new ModelAndView("admin/professorEdit");
 
         if (result.hasErrors()) {
             ProfessorDTO professord = professorfacade.viewProfessor(professor.getIdProfessor());
@@ -92,7 +92,7 @@ public class AddOrUpdateProfessorController {
 
         } catch (DataIntegrityViolationException e) {
             e.printStackTrace();
-            ModelAndView modelAndView1 = new ModelAndView("professorEditException");
+            ModelAndView modelAndView1 = new ModelAndView("admin/professorEditException");
             ProfessorDTO professor1 = professorfacade.viewProfessor(professor.getIdProfessor());
             modelAndView1.addObject("professor", professor1);
             return modelAndView1.getViewName();

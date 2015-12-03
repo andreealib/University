@@ -40,13 +40,13 @@ public class AddOrUpdateStudentController {
     public String setupStudentForm(Model model) {
         StudentDTO student = new StudentDTO();
         model.addAttribute("student", student);
-        return "studentForm";
+        return "admin/studentForm";
 
     }
 
     @RequestMapping(value = "/studentForm", method = RequestMethod.POST)
     public String submitStudentForm(@Valid @ModelAttribute("student") StudentDTO student, BindingResult result, SessionStatus sessionStatus) {
-        ModelAndView modelAndView = new ModelAndView("studentForm");
+        ModelAndView modelAndView = new ModelAndView("admin/studentForm");
         if (result.hasErrors()) {
 
             modelAndView.addObject("student", student);
@@ -59,7 +59,7 @@ public class AddOrUpdateStudentController {
         } catch (ConstraintViolationException e) {
             e.printStackTrace();
 
-            ModelAndView modelAndView1 = new ModelAndView("studentFormException");
+            ModelAndView modelAndView1 = new ModelAndView("admin/studentFormException");
             modelAndView.addObject("student", new ProfessorDTO());
 
             return modelAndView1.getViewName();
@@ -72,7 +72,7 @@ public class AddOrUpdateStudentController {
 
     @RequestMapping(value = "/students/edit/{idStudent:.+}", method = RequestMethod.GET)
     public ModelAndView setupStudentEdit(@PathVariable("idStudent") Integer idStudent) {
-        ModelAndView modelAndView = new ModelAndView("studentEdit");
+        ModelAndView modelAndView = new ModelAndView("admin/studentEdit");
         StudentDTO student = studentfacade.viewStudent(idStudent);
         modelAndView.addObject("student", student);
         return modelAndView;
@@ -82,7 +82,7 @@ public class AddOrUpdateStudentController {
     public String submitStudentEdit(@Valid @ModelAttribute("student") StudentDTO student, BindingResult result) {
 
         if (result.hasErrors()) {
-            ModelAndView modelAndView = new ModelAndView("studentEdit");
+            ModelAndView modelAndView = new ModelAndView("admin/studentEdit");
             StudentDTO studentd = studentfacade.viewStudent(student.getIdStudent());
             modelAndView.addObject("student", studentd);
             return modelAndView.getViewName();
@@ -93,7 +93,7 @@ public class AddOrUpdateStudentController {
 
         } catch (DataIntegrityViolationException e) {
             e.printStackTrace();
-            ModelAndView modelAndView1 = new ModelAndView("studentEditException");
+            ModelAndView modelAndView1 = new ModelAndView("admin/studentEditException");
             StudentDTO student1 = studentfacade.viewStudent(student.getIdStudent());
             modelAndView1.addObject("student", student1);
             return modelAndView1.getViewName();

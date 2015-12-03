@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: andreealibotean
-  Date: 11/10/2015
-  Time: 10:42 AM
+  Date: 12/3/2015
+  Time: 10:31 AM
   To change this template use File | Settings | File Templates.
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
@@ -19,10 +19,10 @@
 <div class="container">
     <div class="navbar-header">
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="<%=request.getContextPath()%>/admin/first.html">Home</a></li>
-            <li><a href="<%=request.getContextPath()%>/admin/students/page=1">Students</a></li>
-            <li><a href="<%=request.getContextPath()%>/admin/professors/page=1">Professors</a></li>
-            <li><a href="<%=request.getContextPath()%>/admin/courses/page=1">Courses</a></li>
+            <li><a href="<%=request.getContextPath()%>/sec/moderation.html">Home</a></li>
+            <li><a href="<%=request.getContextPath()%>/students/page=1">Students</a></li>
+            <li><a href="<%=request.getContextPath()%>/professors/page=1">Professors</a></li>
+            <li><a href="<%=request.getContextPath()%>/courses/page=1">Courses</a></li>
         </ul>
     </div>
     <div class="bs-docs-section">
@@ -98,12 +98,7 @@
                             <div class="form-group">
                                 <div class="col-lg-12">
                                     <a class="btn btn-default"
-                                       href="<%=request.getContextPath()%>/admin/professorForm">Add professor</a>
-                                    <a class="btn btn-default"
-                                       href="<%=request.getContextPath()%>/admin/professors/edit/${professor.idProfessor}">Update
-                                        professor</a>
-                                    <a class="btn btn-default"
-                                       href="<%=request.getContextPath()%>/admin/professors/page=1">Back</a>
+                                       href="<%=request.getContextPath()%>/professors/page=1">Back</a>
                                 </div>
                             </div>
                         </fieldset>
@@ -125,7 +120,7 @@
                                 <c:forEach var="courseDTO" items="${teachingCourses}">
                                     <tr>
                                         <td><a class="btn btn-default"
-                                               href="<%=request.getContextPath()%>/admin/courses/${courseDTO.idCourse}">${courseDTO.name}</a>
+                                               href="<%=request.getContextPath()%>/courses/${courseDTO.idCourse}">${courseDTO.name}</a>
                                         </td>
 
 
@@ -149,4 +144,3 @@
 
 </body>
 </html>
-
