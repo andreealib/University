@@ -14,23 +14,33 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
-    <title>First Admin page</title>
+    <link href="<c:url value="/resources/core/css/bootstrap.min.css" />" rel="stylesheet">
+    <title>Admin page</title>
 </head>
 <body>
-<h1>First Admin page</h1>
+<div class="container">
+    <h1>Admin page</h1>
 
-<p>
-    <a href="<c:url value="/j_spring_security_logout" />">Logout</a> <br/>
-    <a href="${pageContext.request.contextPath}/index.html">Home page</a><br/>
+    <p>This is Admin page. It's available for admins.<br/>
 
-<div>
-    <ul>
-        <li><a href="http://localhost:8080">Home</a></li>
-        <li><a href="<%=request.getContextPath()%>/admin/students/page=1">Students</a></li>
-        <li><a href="<%=request.getContextPath()%>/admin/professors/page=1">Professors</a></li>
-        <li><a href="<%=request.getContextPath()%>/admin/courses/page=1">Courses</a></li>
-    </ul>
+    <div class="navbar-header">
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="http://localhost:8080">Home</a></li>
+            <li><a href="<%=request.getContextPath()%>/admin/students/page=1">Students</a></li>
+            <li><a href="<%=request.getContextPath()%>/admin/professors/page=1">Professors</a></li>
+            <li><a href="<%=request.getContextPath()%>/admin/courses/page=1">Courses</a></li>
+        </ul>
+    </div>
+    <br/>
+
+    <div class="form-group">
+        <div class="col-lg-12">
+            <a href="<c:url value="/j_spring_security_logout" />" class="btn btn-info">Logout</a>
+            <a href="${pageContext.request.contextPath}/index.html" class="btn btn-info">Home page</a>
+        </div>
+    </div>
+
 </div>
-</p>
+
 </body>
 </html>
