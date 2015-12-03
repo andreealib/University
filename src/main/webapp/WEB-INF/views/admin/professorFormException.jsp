@@ -35,6 +35,7 @@
             <li><a href="<%=request.getContextPath()%>/admin/courses/page=1">Courses</a></li>
         </ul>
     </div>
+    <a href="<c:url value="/j_spring_security_logout" />" class="btn btn-info" style="position: relative;left: 65%;top: 10%;">Logout</a>
 
     <div class="row">
         <div class="col-lg-12">
