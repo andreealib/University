@@ -60,7 +60,7 @@ public class AddOrUpdateStudentController {
             e.printStackTrace();
 
             ModelAndView modelAndView1 = new ModelAndView("admin/studentFormException");
-            modelAndView.addObject("student", new ProfessorDTO());
+            modelAndView.addObject("student", new StudentDTO());
 
             return modelAndView1.getViewName();
 
