@@ -16,7 +16,7 @@ public class ContactService {
 
     public void sendContactEmail(String from, String subject, String message) {
 
-        final String to = "andreea.libotean31@gmail.com";
+        final String to = "testingmandarine@gmail.com";
         String host = "smtp.gmail.com";
 
         Properties props = new Properties();
@@ -30,7 +30,7 @@ public class ContactService {
 
         Authenticator auth = new Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(to, "@ndr33@10@ndr33@");
+                return new PasswordAuthentication(to, "mandarine");
             }
         };
 
@@ -47,7 +47,7 @@ public class ContactService {
             msg.setSubject(subject);
             msg.setSentDate(new Date());
 
-            msg.setText("You received and email from: "+from+ "\r\n"+message);
+            msg.setText(from+ "\r\n"+message);
 
             Transport.send(msg);
         } catch (MessagingException mex) {

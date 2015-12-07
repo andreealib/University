@@ -4,6 +4,7 @@ import com.Universities.web.dto.ContactDTO;
 import com.Universities.web.dto.EmailDTO;
 import com.Universities.web.services.ContactService;
 import com.Universities.web.services.EmailService;
+import com.Universities.web.services.ReadingInboxService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +25,9 @@ import javax.validation.Valid;
 public class ContactController {
     @Autowired
     ContactService contactService;
+
+    @Autowired
+    ReadingInboxService readingInboxService;
 
     @RequestMapping(value = "/contact", method = RequestMethod.GET)
     public String setupEmailForm(Model model) {
@@ -58,6 +62,7 @@ public class ContactController {
             return modelAndView1.getViewName();
 
         }
+        readingInboxService.readInbox();
 
         return "redirect:/contact";
     }

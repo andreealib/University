@@ -88,8 +88,8 @@
                         <div class="form-group">
                             <div class="col-lg-6 col-lg-offset-6">
                                 <button type="submit" class="btn btn-primary">Submit</button>
-                                <a class="btn btn-default" href="<%=request.getContextPath()%>/admin/first.html">Back
-                                    to Moderation Page</a>
+                                <a class="btn btn-default" href="<%=request.getContextPath()%>/sec/moderation.html">Back
+                                    to Moderation</a>
                             </div>
                         </div>
 

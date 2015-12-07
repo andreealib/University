@@ -51,14 +51,8 @@
 
                             <%--Email address--%>
                         <div class="form-group">
-                            <label class="col-lg-4 control-label">To:</label>
+                            <label class="col-lg-4 control-label">To:${from}</label>
 
-                            <div class="col-lg-8">
-                                <form:input type="text" path="email" placeholder="enter receiver address"/>
-                                <div class="has-error" style="color: #ff0700">
-                                    <form:errors path="email"/>
-                                </div>
-                            </div>
                         </div>
                             <%--Subject--%>
                         <div class="form-group">
@@ -89,7 +83,7 @@
                             <div class="col-lg-6 col-lg-offset-6">
                                 <button type="submit" class="btn btn-primary">Submit</button>
                                 <a class="btn btn-default" href="<%=request.getContextPath()%>/admin/first.html">Back
-                                    to Admin Page</a>
+                                    to Admin</a>
                             </div>
                         </div>
 
