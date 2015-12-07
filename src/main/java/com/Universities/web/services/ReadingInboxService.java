@@ -54,4 +54,10 @@ public class ReadingInboxService {
        return userEmail;
    }
 
+    //removes the standard first-line containing the sender's address
+    public String getContentWithoutEmail(String content){
+       String cleanContent=content.substring(content.indexOf("\r\n")+1);
+        return cleanContent;
+    }
+
 }

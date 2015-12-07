@@ -47,15 +47,15 @@
                     <tbody>
                     <c:forEach var="message" items="${emails}" varStatus="status">
                         <tr>
-                            <td>${status.index + 1}</td>
-                            <td>${message.getFrom()[0]}</td>
+                            <td>${status.index + 1})<b>Message:</b></td>
+                            <td>${readingInboxService.userEmail(message.getContent().toString())}</td>
                             <td>${message.getSubject()}</td>
                             <td>
                                 <a href="${pageContext.request.contextPath}/admin/emails/reply/${readingInboxService.userEmail(message.getContent().toString())}">Reply</a>
                             </td>
                         </tr>
-                        <tr><td><b>Message:</b></td></tr>
-                        <tr><td>${message.getContent()}</td></tr>
+
+                        <tr><td>${readingInboxService.getContentWithoutEmail(message.getContent().toString())}</td></tr>
 
 
                     </c:forEach>
