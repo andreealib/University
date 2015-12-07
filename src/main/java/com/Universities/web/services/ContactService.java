@@ -1,3 +1,4 @@
+/*
 package com.Universities.web.services;
 
 import org.apache.tools.ant.BuildException;
@@ -15,9 +16,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Properties;
 
+*/
 /**
  * Created by andreealibotean on 12/4/2015.
- */
+ *//*
+
 @Service
 public class ContactService {
 
@@ -74,12 +77,15 @@ public class ContactService {
 
 
         try {
-            Message message = new MimeMessage()
+            Message message = new MimeMessage();
         }
     }
 
-            /*<property name="host" value="smtp.gmail.com" />
+            */
+/*<property name="host" value="smtp.gmail.com" />
     <property name="port" value="587" />
     <property name="username" value="andreea.libotean31@gmail.com" />
-    <property name="password" value="@ndr33@10@ndr33@" />*/
+    <property name="password" value="@ndr33@10@ndr33@" />*//*
+
 }
+*/
