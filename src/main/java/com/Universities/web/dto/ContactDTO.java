@@ -12,7 +12,7 @@ public class ContactDTO {
 
     @NotBlank(message = "Cannot be empty.")
     @Email(message = "Not a valid email address.")
-    private String email;
+    private String from;
 
     @NotBlank(message = "Cannot be empty.")
     @Size(max = 40,message = "Subject is too long.")
@@ -21,12 +21,13 @@ public class ContactDTO {
     @NotBlank(message = "Cannot be empty.")
     private String message;
 
-    public String getEmail() {
-        return email;
+
+    public String getFrom() {
+        return from;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setFrom(String from) {
+        this.from = from;
     }
 
     public String getSubject() {
