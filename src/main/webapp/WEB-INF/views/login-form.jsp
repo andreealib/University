@@ -54,9 +54,11 @@
         <a href="${pageContext.request.contextPath}/index.html" class="btn btn-info">Home page</a><br/>
     </p>
     <br/>
+
     <p>
-        <a href="${pageContext.request.contextPath}/moderForm" class="btn btn-info">Add new account</a><br/>
+        <a href="${pageContext.request.contextPath}/moderForm" class="btn btn-info">Add new user</a>
     </p>
+
 </div>
 </body>
 </html>

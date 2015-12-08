@@ -38,6 +38,7 @@
             <a href="<c:url value="/j_spring_security_logout" />" class="btn btn-info">Logout</a>
             <a href="${pageContext.request.contextPath}/index.html" class="btn btn-info">Home page</a>
             <a href="${pageContext.request.contextPath}/admin/emails" class="btn btn-info">Check emails</a>
+            <a href="${pageContext.request.contextPath}/admin/adminForm" class="btn btn-info">Add new account</a>
         </div>
     </div>
 
