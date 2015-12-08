@@ -54,7 +54,7 @@
                             <label class="col-lg-4 control-label">From:</label>
 
                             <div class="col-lg-8">
-                                <form:input type="text" path="from" placeholder="enter receiver address"/>
+                                <form:input type="text" path="from" placeholder="enter your email"/>
                                 <div class="has-error" style="color: #ff0700">
                                     <form:errors path="from"/>
                                 </div>

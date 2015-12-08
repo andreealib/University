@@ -51,7 +51,7 @@
 
                             <%--Email address--%>
                         <div class="form-group">
-                            <label class="col-lg-4 control-label">To:${from}</label>
+                            <label class="col-lg-4 control-label">To:</label>${from}
 
                         </div>
                             <%--Subject--%>
@@ -71,7 +71,7 @@
                             <label class="col-lg-4 control-label">Message</label>
 
                             <div class="col-lg-8">
-                                <form:textarea path="text" placeholder="enter text here..." rows="15" cols="40"/>
+                                <form:textarea path="text" placeholder="enter message here..." rows="15" cols="40"/>
                                 <div class="has-error" style="color: #ff0700">
                                     <form:errors path="text"/>
                                 </div>

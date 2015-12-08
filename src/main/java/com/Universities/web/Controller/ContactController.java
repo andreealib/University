@@ -23,11 +23,9 @@ import javax.validation.Valid;
  */
 @Controller
 public class ContactController {
-    @Autowired
-    ContactService contactService;
 
     @Autowired
-    ReadingInboxService readingInboxService;
+    ContactService contactService;
 
     @RequestMapping(value = "/contact", method = RequestMethod.GET)
     public String setupEmailForm(Model model) {
@@ -62,7 +60,6 @@ public class ContactController {
             return modelAndView1.getViewName();
 
         }
-        readingInboxService.readInbox();
 
         return "redirect:/contact";
     }

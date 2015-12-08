@@ -40,4 +40,23 @@ public class UserDAO {
         }
 
     }
+
+    public void addUser(User user){
+        Session session=getSession();
+        session.saveOrUpdate(user);
+    }
+
+    public boolean checkUsernameDuplicate(String login){
+        Session session=getSession();
+        String searchQuery="from User u where u.login =:login";
+        Query query=session.createQuery(searchQuery);
+        query.setParameter("login",login);
+        if(query.uniqueResult()!=null){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
 }

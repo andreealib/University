@@ -9,6 +9,7 @@ import java.io.Serializable;
  * Created by andreealibotean on 12/7/2015.
  */
 public class ReplyDTO implements Serializable{
+
     @NotBlank(message = "Cannot be empty.")
     @Size(max = 40,message = "Subject is too long.")
     private String subject;
