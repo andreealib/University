@@ -18,6 +18,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.mail.Flags;
 import javax.mail.Message;
 import javax.validation.Valid;
 import java.util.List;
@@ -43,8 +44,8 @@ public class CheckEmailsController {
         return "checkEmails";
     }
 
-    @RequestMapping(value = "emails/view/{no:.+}",method = RequestMethod.GET)
-    public ModelAndView viewMessage(ModelAndView modelAndView,@PathVariable("no")Integer messageNumber){
+    @RequestMapping(value = "emails/view/{no:.+}", method = RequestMethod.GET)
+    public ModelAndView viewMessage(ModelAndView modelAndView, @PathVariable("no") Integer messageNumber) {
 
 
         Message email = readingInboxService.getEmail(messageNumber);
@@ -54,19 +55,30 @@ public class CheckEmailsController {
         return modelAndView;
     }
 
+    @RequestMapping(value = "emails/delete/{no:.+}", method = RequestMethod.GET)
+    public String deleteEmail(@PathVariable("no") Integer messageNumber) {
+        Message m = readingInboxService.getEmail(messageNumber);
+        try {
+            m.setFlag(Flags.Flag.DELETED, true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "redirect:/admin/emails";
+    }
+
 
     @RequestMapping(value = "/emails/reply/{from:.+}", method = RequestMethod.GET)
-    public String setupEmailForm(@PathVariable("from")String from, Model model) {
+    public String setupEmailForm(@PathVariable("from") String from, Model model) {
         EmailDTO emailDTO = new EmailDTO();
         model.addAttribute("email", emailDTO);
-        model.addAttribute("from",from);
+        model.addAttribute("from", from);
         return "email";
 
     }
 
     //redirectAttributes used to display error/success mesages after submiting (POST) a form on the returned page
     @RequestMapping(value = "/emails/reply/{from:.+}", method = RequestMethod.POST)
-    public String submitEmailForm(@Valid @ModelAttribute("email") ReplyDTO emailDTO, @PathVariable("from")String from, BindingResult result, SessionStatus sessionStatus, final RedirectAttributes redirectAttributes) {
+    public String submitEmailForm(@Valid @ModelAttribute("email") ReplyDTO emailDTO, @PathVariable("from") String from, BindingResult result, SessionStatus sessionStatus, final RedirectAttributes redirectAttributes) {
         ModelAndView modelAndView = new ModelAndView("email");
         if (result.hasErrors()) {
 
@@ -78,19 +90,19 @@ public class CheckEmailsController {
 
         try {
 
-            emailService.sendMail("testingmandarine@gmail.com",from, emailDTO.getSubject(), emailDTO.getText());
-            modelAndView.addObject("from",from);
-            redirectAttributes.addFlashAttribute("msg","The email was sent successfully.");
+            emailService.sendMail("testingmandarine@gmail.com", from, emailDTO.getSubject(), emailDTO.getText());
+            modelAndView.addObject("from", from);
+            redirectAttributes.addFlashAttribute("msg", "The email was sent successfully.");
         } catch (Exception e) {
             e.printStackTrace();
 
             ModelAndView modelAndView1 = new ModelAndView("email");
             modelAndView.addObject("email", new EmailDTO());
-            redirectAttributes.addFlashAttribute("msg","An error occured.Please try again.");
+            redirectAttributes.addFlashAttribute("msg", "An error occured.Please try again.");
             return modelAndView1.getViewName();
 
         }
 
-        return "redirect:/admin/emails/reply/"+from;
+        return "redirect:/admin/emails/reply/" + from;
     }
 }

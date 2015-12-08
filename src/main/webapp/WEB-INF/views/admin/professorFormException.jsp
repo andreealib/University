@@ -33,6 +33,8 @@
             <li><a href="<%=request.getContextPath()%>/admin/students/page=1">Students</a></li>
             <li><a href="<%=request.getContextPath()%>/admin/professors/page=1">Professors</a></li>
             <li><a href="<%=request.getContextPath()%>/admin/courses/page=1">Courses</a></li>
+            <li><a href="<%=request.getContextPath()%>/admin/emails">Emails</a></li>
+
         </ul>
     </div>
     <a href="<c:url value="/j_spring_security_logout" />" class="btn btn-info" style="position: relative;left: 65%;top: 10%;">Logout</a>

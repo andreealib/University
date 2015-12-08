@@ -29,6 +29,8 @@
             <li><a href="<%=request.getContextPath()%>/admin/students/page=1">Students</a></li>
             <li><a href="<%=request.getContextPath()%>/admin/professors/page=1">Professors</a></li>
             <li><a href="<%=request.getContextPath()%>/admin/courses/page=1">Courses</a></li>
+            <li><a href="<%=request.getContextPath()%>/admin/emails">Emails</a></li>
+
         </ul>
     </div>
     <br/>
@@ -37,7 +39,6 @@
         <div class="col-lg-12">
             <a href="<c:url value="/j_spring_security_logout" />" class="btn btn-info">Logout</a>
             <a href="${pageContext.request.contextPath}/index.html" class="btn btn-info">Home page</a>
-            <a href="${pageContext.request.contextPath}/admin/emails" class="btn btn-info">Check emails</a>
             <a href="${pageContext.request.contextPath}/admin/adminForm" class="btn btn-info">Add new account</a>
         </div>
     </div>
