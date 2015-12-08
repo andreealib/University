@@ -18,6 +18,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.mail.Message;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -40,6 +41,17 @@ public class CheckEmailsController {
         model.addAttribute("emails", readingInboxService.readInbox());
         model.addAttribute("readingInboxService", readingInboxService);
         return "checkEmails";
+    }
+
+    @RequestMapping(value = "emails/view/{no:.+}",method = RequestMethod.GET)
+    public ModelAndView viewMessage(ModelAndView modelAndView,@PathVariable("no")Integer messageNumber){
+
+
+        Message email = readingInboxService.getEmail(messageNumber);
+        modelAndView.addObject("message", email);
+        modelAndView.addObject("readingInboxService", readingInboxService);
+        modelAndView.setViewName("emailView");
+        return modelAndView;
     }
 
 

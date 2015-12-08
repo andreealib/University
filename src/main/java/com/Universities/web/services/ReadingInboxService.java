@@ -37,6 +37,16 @@ public class ReadingInboxService {
         return msg;
     }
 
+    public Message getEmail(Integer messageNumber){
+        Message[] messages=this.readInbox();
+        for(Message m:messages){
+            if (m.getMessageNumber()==messageNumber){
+                return m;
+            }
+        }
+        return null;
+    }
+
    public String userEmail(String emailBody){
        String[] lines=emailBody.split("\r\n");
        String userEmail=lines[0];
