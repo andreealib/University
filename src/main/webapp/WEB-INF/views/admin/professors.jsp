@@ -22,6 +22,8 @@
             <li><a href="<%=request.getContextPath()%>/admin/students/page=1">Students</a></li>
             <li><a href="<%=request.getContextPath()%>/admin/professors/page=1">Professors</a></li>
             <li><a href="<%=request.getContextPath()%>/admin/courses/page=1">Courses</a></li>
+            <li><a href="<%=request.getContextPath()%>/admin/emails">Emails</a></li>
+
         </ul>
     </div>
 

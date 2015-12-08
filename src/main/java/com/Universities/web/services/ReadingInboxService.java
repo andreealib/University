@@ -25,11 +25,14 @@ public class ReadingInboxService {
             Store store = session.getStore();
             store.connect("imap.gmail.com", "testingmandarine@gmail.com", "mandarine");
             Folder inbox = store.getFolder("INBOX");
-            inbox.open(Folder.READ_ONLY);
+            inbox.open(Folder.READ_WRITE);
             msg = inbox.getMessages();
+
             //need to comment this, otherwise it will not display the emails'content in jsp(checkEmails)
-            /*inbox.close(false);
+
+            /*inbox.close(true);
             store.close();*/
+
             return msg;
         } catch (Exception mex) {
             mex.printStackTrace();
@@ -42,6 +45,7 @@ public class ReadingInboxService {
         for(Message m:messages){
             if (m.getMessageNumber()==messageNumber){
                 return m;
+
             }
         }
         return null;

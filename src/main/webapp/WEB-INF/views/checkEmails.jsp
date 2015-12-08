@@ -22,6 +22,8 @@
             <li><a href="<%=request.getContextPath()%>/admin/students/page=1">Students</a></li>
             <li><a href="<%=request.getContextPath()%>/admin/professors/page=1">Professors</a></li>
             <li><a href="<%=request.getContextPath()%>/admin/courses/page=1">Courses</a></li>
+            <li><a href="<%=request.getContextPath()%>/admin/emails">Emails</a></li>
+
         </ul>
     </div>
 
@@ -55,10 +57,14 @@
                                 <a href="${pageContext.request.contextPath}/admin/emails/view/${message.getMessageNumber()}">View</a>
                             </td>
 
-
                             <td>
                                 <a href="${pageContext.request.contextPath}/admin/emails/reply/${readingInboxService.userEmail(message.getContent().toString())}">Reply</a>
                             </td>
+
+                            <td>
+                                <a href="${pageContext.request.contextPath}/admin/emails/delete/${message.getMessageNumber()}">Delete</a>
+                            </td>
+
                         </tr>
 
                     </c:forEach>
