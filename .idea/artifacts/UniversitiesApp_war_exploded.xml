@@ -57,6 +57,8 @@
           <element id="library" level="project" name="Maven: org.sonatype.sisu:sisu-guice:noaop:2.1.7" />
           <element id="library" level="project" name="Maven: javax.mail:mail:1.4.3" />
           <element id="library" level="project" name="Maven: javax.activation:activation:1.1" />
+          <element id="library" level="project" name="Maven: org.apache.ant:ant:1.8.3" />
+          <element id="library" level="project" name="Maven: org.apache.ant:ant-launcher:1.8.3" />
         </element>
       </element>
       <element id="directory" name="META-INF">

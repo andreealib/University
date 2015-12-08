@@ -1,12 +1,11 @@
 package com.Universities.web.Controller;
 
+import com.Universities.web.dto.ContactDTO;
 import com.Universities.web.dto.EmailDTO;
-import com.Universities.web.dto.ProfessorDTO;
-import com.Universities.web.dto.StudentDTO;
+import com.Universities.web.services.ContactService;
 import com.Universities.web.services.EmailService;
-import org.hibernate.exception.ConstraintViolationException;
+import com.Universities.web.services.ReadingInboxService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.MailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,29 +19,29 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.validation.Valid;
 
 /**
- * Created by andreealibotean on 12/3/2015.
+ * Created by andreealibotean on 12/7/2015.
  */
 @Controller
-public class EmailController {
+public class ContactController {
 
     @Autowired
-    EmailService emailService;
+    ContactService contactService;
 
-    @RequestMapping(value = "/email", method = RequestMethod.GET)
+    @RequestMapping(value = "/contact", method = RequestMethod.GET)
     public String setupEmailForm(Model model) {
-        EmailDTO emailDTO = new EmailDTO();
-        model.addAttribute("email", emailDTO);
-        return "/email";
+        ContactDTO contactDTO = new ContactDTO();
+        model.addAttribute("email", contactDTO);
+        return "/contact";
 
     }
 
     //redirectAttributes used to display error/success mesages after submiting (POST) a form on the returned page
-    @RequestMapping(value = "/email", method = RequestMethod.POST)
-    public String submitEmailForm(@Valid @ModelAttribute("email") EmailDTO emailDTO, BindingResult result, SessionStatus sessionStatus, final RedirectAttributes redirectAttributes) {
-        ModelAndView modelAndView = new ModelAndView("email");
+    @RequestMapping(value = "/contact", method = RequestMethod.POST)
+    public String submitEmailForm(@Valid @ModelAttribute("email") ContactDTO contactDTO, BindingResult result, SessionStatus sessionStatus, final RedirectAttributes redirectAttributes) {
+        ModelAndView modelAndView = new ModelAndView("contact");
         if (result.hasErrors()) {
 
-            modelAndView.addObject("email", emailDTO);
+            modelAndView.addObject("contact", contactDTO);
 
             return modelAndView.getViewName();
 
@@ -50,20 +49,18 @@ public class EmailController {
 
         try {
 
-            emailService.sendMail("andreea.libotean31@gmail.com", emailDTO.getEmail(), emailDTO.getSubject(), emailDTO.getText());
+            contactService.sendContactEmail(contactDTO.getFrom(),contactDTO.getSubject(),contactDTO.getMessage());
             redirectAttributes.addFlashAttribute("msg","The email was sent successfully.");
         } catch (Exception e) {
             e.printStackTrace();
 
-            ModelAndView modelAndView1 = new ModelAndView("email");
-            modelAndView.addObject("email", new EmailDTO());
+            ModelAndView modelAndView1 = new ModelAndView("contact");
+            modelAndView.addObject("contact", new ContactDTO());
             redirectAttributes.addFlashAttribute("msg","An error occured.Please try again.");
             return modelAndView1.getViewName();
 
         }
 
-        return "redirect:/email";
+        return "redirect:/contact";
     }
-
-
 }

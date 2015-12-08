@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: andreealibotean
-  Date: 12/3/2015
-  Time: 5:11 PM
+  Date: 12/7/2015
+  Time: 10:57 AM
   To change this template use File | Settings | File Templates.
 --%>
 <?xml version="1.0" encoding="ISO-8859-1" ?>
@@ -25,10 +25,10 @@
 
     <div class="navbar-header">
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="<%=request.getContextPath()%>/admin/first.html">Home</a></li>
-            <li><a href="<%=request.getContextPath()%>/admin/students/page=1">Students</a></li>
-            <li><a href="<%=request.getContextPath()%>/admin/professors/page=1">Professors</a></li>
-            <li><a href="<%=request.getContextPath()%>/admin/courses/page=1">Courses</a></li>
+            <li><a href="<%=request.getContextPath()%>/sec/moderation.html">Home</a></li>
+            <li><a href="<%=request.getContextPath()%>/students/page=1">Students</a></li>
+            <li><a href="<%=request.getContextPath()%>/professors/page=1">Professors</a></li>
+            <li><a href="<%=request.getContextPath()%>/courses/page=1">Courses</a></li>
         </ul>
     </div>
     <a href="<c:url value="/j_spring_security_logout" />" class="btn btn-info"
@@ -37,7 +37,7 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="page-header">
-                <h1 id="forms">Send Email</h1>
+                <h1 id="forms">Contact</h1>
             </div>
         </div>
     </div>
@@ -51,8 +51,14 @@
 
                             <%--Email address--%>
                         <div class="form-group">
-                            <label class="col-lg-4 control-label">To:</label>${from}
+                            <label class="col-lg-4 control-label">From:</label>
 
+                            <div class="col-lg-8">
+                                <form:input type="text" path="from" placeholder="enter your email"/>
+                                <div class="has-error" style="color: #ff0700">
+                                    <form:errors path="from"/>
+                                </div>
+                            </div>
                         </div>
                             <%--Subject--%>
                         <div class="form-group">
@@ -71,9 +77,9 @@
                             <label class="col-lg-4 control-label">Message</label>
 
                             <div class="col-lg-8">
-                                <form:textarea path="text" placeholder="enter message here..." rows="15" cols="40"/>
+                                <form:textarea path="message" placeholder="enter message here..." rows="15" cols="40"/>
                                 <div class="has-error" style="color: #ff0700">
-                                    <form:errors path="text"/>
+                                    <form:errors path="message"/>
                                 </div>
                             </div>
                         </div>
@@ -82,8 +88,8 @@
                         <div class="form-group">
                             <div class="col-lg-6 col-lg-offset-6">
                                 <button type="submit" class="btn btn-primary">Submit</button>
-                                <a class="btn btn-default" href="<%=request.getContextPath()%>/admin/first.html">Back
-                                    to Admin</a>
+                                <a class="btn btn-default" href="<%=request.getContextPath()%>/sec/moderation.html">Back
+                                    to Moderation</a>
                             </div>
                         </div>
 
@@ -92,7 +98,7 @@
             </div>
         </div>
     </div>
-<p style="color: #3e8f3e;font-size: medium">${msg}</p>
+    <p style="color: #3e8f3e;font-size: medium">${msg}</p>
 
 </div>
 
