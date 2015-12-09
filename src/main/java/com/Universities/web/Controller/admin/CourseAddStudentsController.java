@@ -5,6 +5,7 @@ import com.Universities.web.dto.CourseDTO;
 import com.Universities.web.dto.StudentDTO;
 import com.Universities.web.facade.CourseFacade;
 import com.Universities.web.facade.StudentFacade;
+import com.Universities.web.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
@@ -31,6 +32,11 @@ public class CourseAddStudentsController {
     @Autowired
     public StudentFacade studentFacade;
 
+    @Autowired
+    UserService userService;
+
+
+
     @RequestMapping(value = "/courses/{idCourse:.+}/addStudents", method = RequestMethod.GET)
     public ModelAndView setupAddStudents(@PathVariable("idCourse") Integer idCourse) {
         ModelAndView modelAndView = new ModelAndView();
@@ -45,7 +51,7 @@ public class CourseAddStudentsController {
         modelAndView.addObject("courseDTO", courseDTO);
         modelAndView.addObject("registeredStudents", registeredStudents);
         modelAndView.addObject("students", students);
-
+        modelAndView.addObject("username", userService.getLoggedUser());
         return modelAndView;
     }
 

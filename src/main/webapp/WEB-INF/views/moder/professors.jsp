@@ -25,8 +25,10 @@
         </ul>
     </div>
 
-    <a href="<c:url value="/j_spring_security_logout" />" class="btn btn-info" style="position: relative;left: 65%;top: 10%;">Logout</a>
-
+    <a href="<c:url value="/j_spring_security_logout" />" class="btn btn-info" style="position: relative;left: 65%;top: 10%;">Logout</a><br/>
+    <p style="position: relative;left: 65%;top: 10%;">
+        Logged in as: <b>${username}</b>
+    </p>
     <div class="row">
         <div class="col-lg-12">
             <div class="page-header">

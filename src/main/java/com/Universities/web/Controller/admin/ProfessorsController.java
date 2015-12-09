@@ -4,6 +4,7 @@ import com.Universities.web.dto.CourseDTO;
 import com.Universities.web.dto.ProfessorDTO;
 import com.Universities.web.facade.ProfessorFacade;
 import com.Universities.web.services.ProfessorService;
+import com.Universities.web.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
@@ -24,6 +25,11 @@ public class ProfessorsController {
     @Autowired
     public ProfessorFacade professorFacade;
 
+    @Autowired
+    UserService userService;
+
+
+
     @RequestMapping(value = "/professors/page={page}", method = RequestMethod.GET)
     public String getAllProfessors(@PathVariable("page") String page, Model model) {
 
@@ -32,7 +38,7 @@ public class ProfessorsController {
         List<ProfessorDTO> profList = professorFacade.getLstProfessorsPerPage(pageNumber);
         model.addAttribute("numberOfPages", professorFacade.getNoOfPages());
         model.addAttribute("professors", profList);
-
+        model.addAttribute("username",userService.getLoggedUser());
         return "admin/professors";
     }
 
@@ -41,7 +47,7 @@ public class ProfessorsController {
         ProfessorDTO professor = professorFacade.viewProfessor(idProfessor);
         model.addAttribute("professor", professor);
         model.addAttribute("teachingCourses", professorFacade.listCoursesForProfessor(idProfessor));
-
+        model.addAttribute("username",userService.getLoggedUser());
         return "admin/professorView";
 
     }

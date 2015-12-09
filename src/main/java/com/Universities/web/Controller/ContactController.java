@@ -5,6 +5,7 @@ import com.Universities.web.dto.EmailDTO;
 import com.Universities.web.services.ContactService;
 import com.Universities.web.services.EmailService;
 import com.Universities.web.services.ReadingInboxService;
+import com.Universities.web.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,10 +28,16 @@ public class ContactController {
     @Autowired
     ContactService contactService;
 
+    @Autowired
+    UserService userService;
+
+
+
     @RequestMapping(value = "/contact", method = RequestMethod.GET)
     public String setupEmailForm(Model model) {
         ContactDTO contactDTO = new ContactDTO();
         model.addAttribute("email", contactDTO);
+        model.addAttribute("username", userService.getLoggedUser());
         return "/contact";
 
     }
@@ -42,21 +49,22 @@ public class ContactController {
         if (result.hasErrors()) {
 
             modelAndView.addObject("contact", contactDTO);
-
+            modelAndView.addObject("username", userService.getLoggedUser());
             return modelAndView.getViewName();
 
         }
 
         try {
 
-            contactService.sendContactEmail(contactDTO.getFrom(),contactDTO.getSubject(),contactDTO.getMessage());
-            redirectAttributes.addFlashAttribute("msg","The email was sent successfully.");
+            contactService.sendContactEmail(contactDTO.getFrom(), contactDTO.getSubject(), contactDTO.getMessage());
+            redirectAttributes.addFlashAttribute("msg", "The email was sent successfully.");
         } catch (Exception e) {
             e.printStackTrace();
 
             ModelAndView modelAndView1 = new ModelAndView("contact");
             modelAndView.addObject("contact", new ContactDTO());
-            redirectAttributes.addFlashAttribute("msg","An error occured.Please try again.");
+            modelAndView.addObject("username",userService.getLoggedUser());
+            redirectAttributes.addFlashAttribute("msg", "An error occured.Please try again.");
             return modelAndView1.getViewName();
 
         }

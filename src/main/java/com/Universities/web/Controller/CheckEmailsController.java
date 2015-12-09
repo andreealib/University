@@ -6,6 +6,7 @@ import com.Universities.web.dto.StudentDTO;
 import com.Universities.web.facade.StudentFacade;
 import com.Universities.web.services.EmailService;
 import com.Universities.web.services.ReadingInboxService;
+import com.Universities.web.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,11 +37,17 @@ public class CheckEmailsController {
     @Autowired
     EmailService emailService;
 
+    @Autowired
+    UserService userService;
+
+
+
     @RequestMapping(value = "/emails", method = RequestMethod.GET)
     public String getAllEmails(Model model) {
 
         model.addAttribute("emails", readingInboxService.readInbox());
         model.addAttribute("readingInboxService", readingInboxService);
+        model.addAttribute("username", userService.getLoggedUser());
         return "checkEmails";
     }
 
@@ -51,6 +58,7 @@ public class CheckEmailsController {
         Message email = readingInboxService.getEmail(messageNumber);
         modelAndView.addObject("message", email);
         modelAndView.addObject("readingInboxService", readingInboxService);
+        modelAndView.addObject("username", userService.getLoggedUser());
         modelAndView.setViewName("emailView");
         return modelAndView;
     }
@@ -72,6 +80,7 @@ public class CheckEmailsController {
         EmailDTO emailDTO = new EmailDTO();
         model.addAttribute("email", emailDTO);
         model.addAttribute("from", from);
+        model.addAttribute("username", userService.getLoggedUser());
         return "email";
 
     }
@@ -83,7 +92,7 @@ public class CheckEmailsController {
         if (result.hasErrors()) {
 
             modelAndView.addObject("email", emailDTO);
-
+            modelAndView.addObject("username", userService.getLoggedUser());
             return modelAndView.getViewName();
 
         }
@@ -92,12 +101,14 @@ public class CheckEmailsController {
 
             emailService.sendMail("testingmandarine@gmail.com", from, emailDTO.getSubject(), emailDTO.getText());
             modelAndView.addObject("from", from);
+            modelAndView.addObject("username", userService.getLoggedUser());
             redirectAttributes.addFlashAttribute("msg", "The email was sent successfully.");
         } catch (Exception e) {
             e.printStackTrace();
 
             ModelAndView modelAndView1 = new ModelAndView("email");
             modelAndView.addObject("email", new EmailDTO());
+            modelAndView.addObject("username", userService.getLoggedUser());
             redirectAttributes.addFlashAttribute("msg", "An error occured.Please try again.");
             return modelAndView1.getViewName();
 

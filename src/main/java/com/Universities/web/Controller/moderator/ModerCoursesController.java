@@ -2,6 +2,7 @@ package com.Universities.web.Controller.moderator;
 
 import com.Universities.web.dto.CourseDTO;
 import com.Universities.web.facade.CourseFacade;
+import com.Universities.web.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +22,9 @@ public class ModerCoursesController {
     @Autowired
     CourseFacade courseFacade;
 
+    @Autowired
+    UserService userService;
+
 
     /**
      * Viewmodel for all entry from "courses" table
@@ -36,6 +40,7 @@ public class ModerCoursesController {
 
         model.addAttribute("numberOfPages", courseFacade.getNoOfPages());
         model.addAttribute("courses", courseList);
+        model.addAttribute("username",userService.getLoggedUser());
 
         return "moder/courses";
     }
@@ -48,6 +53,7 @@ public class ModerCoursesController {
         model.addObject("course", course);
         model.addObject("registeredStudents", courseFacade.listStudentsForCourse(idCourse));
         model.addObject("registeredProfessors", courseFacade.listProfessorsForCourse(idCourse));
+        model.addObject("username",userService.getLoggedUser());
         model.setViewName("moder/courseView");
         return model;
 

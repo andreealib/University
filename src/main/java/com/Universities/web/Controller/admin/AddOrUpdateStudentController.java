@@ -6,6 +6,7 @@ import com.Universities.web.dto.ProfessorDTO;
 import com.Universities.web.dto.StudentDTO;
 import com.Universities.web.facade.ProfessorFacade;
 import com.Universities.web.facade.StudentFacade;
+import com.Universities.web.services.UserService;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -36,10 +37,16 @@ public class AddOrUpdateStudentController {
     @Autowired
     StudentValidator studentValidator;
 
+    @Autowired
+    UserService userService;
+
+
+
     @RequestMapping(value = "/studentForm", method = RequestMethod.GET)
     public String setupStudentForm(Model model) {
         StudentDTO student = new StudentDTO();
         model.addAttribute("student", student);
+        model.addAttribute("username",userService.getLoggedUser());
         return "admin/studentForm";
 
     }
@@ -50,6 +57,7 @@ public class AddOrUpdateStudentController {
         if (result.hasErrors()) {
 
             modelAndView.addObject("student", student);
+            modelAndView.addObject("username",userService.getLoggedUser());
             return modelAndView.getViewName();
         }
 
@@ -61,6 +69,7 @@ public class AddOrUpdateStudentController {
 
             ModelAndView modelAndView1 = new ModelAndView("admin/studentFormException");
             modelAndView.addObject("student", new StudentDTO());
+            modelAndView.addObject("username",userService.getLoggedUser());
 
             return modelAndView1.getViewName();
 
@@ -75,6 +84,7 @@ public class AddOrUpdateStudentController {
         ModelAndView modelAndView = new ModelAndView("admin/studentEdit");
         StudentDTO student = studentfacade.viewStudent(idStudent);
         modelAndView.addObject("student", student);
+        modelAndView.addObject("username",userService.getLoggedUser());
         return modelAndView;
     }
 
@@ -85,6 +95,7 @@ public class AddOrUpdateStudentController {
             ModelAndView modelAndView = new ModelAndView("admin/studentEdit");
             StudentDTO studentd = studentfacade.viewStudent(student.getIdStudent());
             modelAndView.addObject("student", studentd);
+            modelAndView.addObject("username",userService.getLoggedUser());
             return modelAndView.getViewName();
         }
 
@@ -96,6 +107,7 @@ public class AddOrUpdateStudentController {
             ModelAndView modelAndView1 = new ModelAndView("admin/studentEditException");
             StudentDTO student1 = studentfacade.viewStudent(student.getIdStudent());
             modelAndView1.addObject("student", student1);
+            modelAndView1.addObject("username",userService.getLoggedUser());
             return modelAndView1.getViewName();
 
         }

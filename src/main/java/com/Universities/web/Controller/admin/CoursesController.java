@@ -3,8 +3,12 @@ package com.Universities.web.Controller.admin;
 import com.Universities.web.dto.CourseDTO;
 import com.Universities.web.facade.CourseFacade;
 import com.Universities.web.services.CourseService;
+import com.Universities.web.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,6 +29,10 @@ public class CoursesController {
     @Autowired
     CourseFacade courseFacade;
 
+    @Autowired
+    UserService userService;
+
+
 
     /**
      * Viewmodel for all entry from "courses" table
@@ -37,6 +45,8 @@ public class CoursesController {
 
         Integer pageNumber = Integer.parseInt(page);
         List<CourseDTO> courseList = courseFacade.getLstcoursesPerPage(pageNumber);
+        model.addAttribute("username",userService.getLoggedUser());
+
 
         model.addAttribute("numberOfPages", courseFacade.getNoOfPages());
         model.addAttribute("courses", courseList);
@@ -52,6 +62,7 @@ public class CoursesController {
         model.addObject("course", course);
         model.addObject("registeredStudents", courseFacade.listStudentsForCourse(idCourse));
         model.addObject("registeredProfessors", courseFacade.listProfessorsForCourse(idCourse));
+        model.addObject("username",userService.getLoggedUser());
         model.setViewName("admin/courseView");
         return model;
 

@@ -1,12 +1,16 @@
 package com.Universities.web.Controller.admin;
 
+import com.Universities.web.Dao.UserDAO;
 import com.Universities.web.Validator.CourseValidator;
 import com.Universities.web.data.Course;
 import com.Universities.web.dto.CourseDTO;
 import com.Universities.web.dto.StudentDTO;
 import com.Universities.web.facade.CourseFacade;
+import com.Universities.web.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,6 +22,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.security.Principal;
 
 /**
  * Created by andreealibotean on 11/18/2015.
@@ -32,10 +37,17 @@ public class AddOrUpdateCourseController {
     @Autowired
     CourseValidator courseValidator;
 
+    @Autowired
+    UserService userService;
+
+
+
+
     @RequestMapping(value = "/courseForm", method = RequestMethod.GET)
     public String setupCourseForm(Model model) {
         CourseDTO course = new CourseDTO();
         model.addAttribute("course", course);
+        model.addAttribute("username",userService.getLoggedUser());
         return "admin/courseForm";
 
     }
@@ -46,6 +58,7 @@ public class AddOrUpdateCourseController {
         if (result.hasErrors()) {
             ModelAndView modelAndView = new ModelAndView("admin/courseForm");
             modelAndView.addObject("course", course);
+            modelAndView.addObject("username",userService.getLoggedUser());
             return modelAndView.getViewName();
         }
 
@@ -60,6 +73,7 @@ public class AddOrUpdateCourseController {
         ModelAndView modelAndView = new ModelAndView("admin/courseEdit");
         CourseDTO course = coursefacade.viewCourse(idCourse);
         modelAndView.addObject("course", course);
+        modelAndView.addObject("username",userService.getLoggedUser());
         return modelAndView;
     }
 
@@ -70,6 +84,7 @@ public class AddOrUpdateCourseController {
             ModelAndView modelAndView = new ModelAndView("admin/courseEdit");
             CourseDTO course = coursefacade.viewCourse(courseDTO.getIdCourse());
             modelAndView.addObject("course", course);
+            modelAndView.addObject("username",userService.getLoggedUser());
             return modelAndView.getViewName();
         }
 

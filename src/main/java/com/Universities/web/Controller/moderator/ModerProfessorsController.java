@@ -2,6 +2,7 @@ package com.Universities.web.Controller.moderator;
 
 import com.Universities.web.dto.ProfessorDTO;
 import com.Universities.web.facade.ProfessorFacade;
+import com.Universities.web.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +21,11 @@ public class ModerProfessorsController {
     @Autowired
     public ProfessorFacade professorFacade;
 
+    @Autowired
+    UserService userService;
+
+
+
     @RequestMapping(value = "/professors/page={page}", method = RequestMethod.GET)
     public String getAllProfessors(@PathVariable("page") String page, Model model) {
 
@@ -28,7 +34,7 @@ public class ModerProfessorsController {
         List<ProfessorDTO> profList = professorFacade.getLstProfessorsPerPage(pageNumber);
         model.addAttribute("numberOfPages", professorFacade.getNoOfPages());
         model.addAttribute("professors", profList);
-
+        model.addAttribute("username", userService.getLoggedUser());
         return "moder/professors";
     }
 
@@ -37,7 +43,7 @@ public class ModerProfessorsController {
         ProfessorDTO professor = professorFacade.viewProfessor(idProfessor);
         model.addAttribute("professor", professor);
         model.addAttribute("teachingCourses", professorFacade.listCoursesForProfessor(idProfessor));
-
+        model.addAttribute("username", userService.getLoggedUser());
         return "moder/professorView";
 
     }

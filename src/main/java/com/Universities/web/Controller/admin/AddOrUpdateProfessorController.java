@@ -6,6 +6,7 @@ import com.Universities.web.dto.CourseDTO;
 import com.Universities.web.dto.ProfessorDTO;
 import com.Universities.web.facade.CourseFacade;
 import com.Universities.web.facade.ProfessorFacade;
+import com.Universities.web.services.UserService;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -35,10 +36,17 @@ public class AddOrUpdateProfessorController {
     @Autowired
     ProfessorValidator professorValidator;
 
+
+    @Autowired
+    UserService userService;
+
+
+
     @RequestMapping(value = "/professorForm", method = RequestMethod.GET)
     public String setupProfessorForm(Model model) {
         ProfessorDTO professor = new ProfessorDTO();
         model.addAttribute("professor", professor);
+        model.addAttribute("username",userService.getLoggedUser());
         return "admin/professorForm";
 
     }
@@ -49,6 +57,7 @@ public class AddOrUpdateProfessorController {
 
         if (result.hasErrors()) {
             modelAndView.addObject("professor", professor);
+            modelAndView.addObject("username",userService.getLoggedUser());
             return modelAndView.getViewName();
         }
 
@@ -60,6 +69,7 @@ public class AddOrUpdateProfessorController {
 
             ModelAndView modelAndView1 = new ModelAndView("admin/professorFormException");
             modelAndView.addObject("professor", new ProfessorDTO());
+            modelAndView.addObject("username",userService.getLoggedUser());
 
             return modelAndView1.getViewName();
 
@@ -75,6 +85,7 @@ public class AddOrUpdateProfessorController {
         ModelAndView modelAndView = new ModelAndView("admin/professorEdit");
         ProfessorDTO professor = professorfacade.viewProfessor(idProfessor);
         modelAndView.addObject("professor", professor);
+        modelAndView.addObject("username",userService.getLoggedUser());
         return modelAndView;
     }
 
@@ -85,6 +96,7 @@ public class AddOrUpdateProfessorController {
         if (result.hasErrors()) {
             ProfessorDTO professord = professorfacade.viewProfessor(professor.getIdProfessor());
             modelAndView.addObject("professor", professord);
+            modelAndView.addObject("username",userService.getLoggedUser());
             return modelAndView.getViewName();
         }
         try {
@@ -95,6 +107,7 @@ public class AddOrUpdateProfessorController {
             ModelAndView modelAndView1 = new ModelAndView("admin/professorEditException");
             ProfessorDTO professor1 = professorfacade.viewProfessor(professor.getIdProfessor());
             modelAndView1.addObject("professor", professor1);
+            modelAndView1.addObject("username",userService.getLoggedUser());
             return modelAndView1.getViewName();
 
         }
