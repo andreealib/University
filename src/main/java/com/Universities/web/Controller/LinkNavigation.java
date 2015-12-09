@@ -1,5 +1,7 @@
 package com.Universities.web.Controller;
 
+import com.Universities.web.services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +16,9 @@ import java.security.Principal;
  */
 @Controller
 public class LinkNavigation {
+
+    @Autowired
+    UserService userService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView homePage() {
@@ -30,15 +35,17 @@ public class LinkNavigation {
 
     @RequestMapping(value = "/sec/moderation", method = RequestMethod.GET)
     public ModelAndView moderatorPage() {
-
-        return new ModelAndView("moderation");
+        ModelAndView modelAndView = new ModelAndView("moderation");
+        modelAndView.addObject("username", userService.getLoggedUser());
+        return modelAndView;
     }
 
 
     @RequestMapping(value = "/admin/first", method = RequestMethod.GET)
     public ModelAndView firstAdminPage() {
-
-        return new ModelAndView("admin-first");
+        ModelAndView modelAndView = new ModelAndView("admin-first");
+        modelAndView.addObject("username", userService.getLoggedUser());
+        return modelAndView;
     }
 
 

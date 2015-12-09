@@ -20,10 +20,14 @@
 </head>
 <body>
 <div class="container">
+    <a href="<c:url value="/j_spring_security_logout" />" class="btn btn-info" style="position: relative;left: 93%;top: 10%;">Logout</a><br/>
+    <p style="position: relative;left: 93%;top: 10%;">
+        Logged in as: <b>${username}</b>
+    </p>
+
     <h1>Moderation page</h1>
 
-    <p>This is Moderation page. It's available for moderators.<br/>
-
+    <p>This is Moderation page. It's available for moderators.</p>
 
     <div class="navbar-header">
         <ul class="nav navbar-nav navbar-right">
@@ -33,12 +37,14 @@
             <li><a href="<%=request.getContextPath()%>/courses/page=1">Courses</a></li>
         </ul>
     </div>
+
+
+
     </br>
 
 
     <div class="form-group">
         <div class="col-lg-12">
-            <a href="<c:url value="/j_spring_security_logout" />" class="btn btn-info">Logout</a>
             <a href="${pageContext.request.contextPath}/index.html" class="btn btn-info">Home page</a>
             <a href="${pageContext.request.contextPath}/contact" class="btn btn-info">Contact us</a>
             <a href="${pageContext.request.contextPath}/moderForm" class="btn btn-info">Add new account</a>

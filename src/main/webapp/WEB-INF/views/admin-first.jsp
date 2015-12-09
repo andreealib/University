@@ -19,6 +19,10 @@
 </head>
 <body>
 <div class="container">
+    <a href="<c:url value="/j_spring_security_logout" />" class="btn btn-info" style="position: relative;left: 93%;top: 10%;">Logout</a><br/>
+    <p style="position: relative;left: 93%;top: 10%;">
+        Logged in as: <b>${username}</b>
+    </p>
     <h1>Admin page</h1>
 
     <p>This is Admin page. It's available for admins.<br/>
@@ -33,11 +37,12 @@
 
         </ul>
     </div>
+
+
     <br/>
 
     <div class="form-group">
         <div class="col-lg-12">
-            <a href="<c:url value="/j_spring_security_logout" />" class="btn btn-info">Logout</a>
             <a href="${pageContext.request.contextPath}/index.html" class="btn btn-info">Home page</a>
             <a href="${pageContext.request.contextPath}/admin/adminForm" class="btn btn-info">Add new account</a>
         </div>
